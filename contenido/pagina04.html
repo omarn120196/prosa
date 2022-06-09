@@ -7,7 +7,15 @@
     <title>Página 04 | I4L</title>
 </head>
 <body>
-    
+    <img class="elementos" id="fondo" src="./img/pagina04/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="terminal" src="./img/pagina04/terminal.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="instrucciones" src="./img/pagina04/instrucciones.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="dialogo01" src="./img/pagina04/dialogo01.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="dialogo02" src="./img/pagina04/dialogo02.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="dialogo03" src="./img/pagina04/dialogo03.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="dialogo04" src="./img/pagina04/dialogo04.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="dialogo04" src="./img/pagina04/dialogo04.png" data-posX="0" data-posY="0" alt="">
 
 
     <!-- Script de la página -->
@@ -20,22 +28,36 @@
             
             // Cargar Audios------------------------------------------------------
             const audio = [
-                
+                new Audio('./audios/Prosa_Integracion_04_01.mp3'),
             ]
 
             //Crear Variables-----------------------------------------------------
+            const fondo = $('#fondo');
+            const terminal = $('#terminal');
+            const instrucciones = $('#instrucciones');
+            const d01 = $('#dialogo01');
+            const d02 = $('#dialogo02');
+            const d03 = $('#dialogo03');
+            const d04 = $('#dialogo04');
+            const d05 = $('#dialogo05');
             
+
 
             //Iniciar contenido de la página--------------------------------------
             
             cargando(iniciarPagina);
 
             function iniciarPagina(){
-
+                aplicacion.reproducirAudio(audio[0], terminaPagina, 1000);
+                animacionEntrada(fondo, 'izquierda-derecha', 1, 1);
+                animacionEntrada(terminal, 'izquierda-derecha', 1, 1);
                
             }
+
+            function terminaPagina(){
+                aplicacion.terminaPantalla()
+            }
             
-            aplicacion.terminaPantalla()
         });
     </script>
 
