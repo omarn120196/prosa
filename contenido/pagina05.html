@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 05 | I4L</title>
+</head>
+<body>
+    <img class="elementos" id="texto" src="./img/pagina05/mapaNavegacion.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="instrucciones" src="./img/pagina05/instrucciones.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="circuito" src="./img/pagina05/circuito.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="botones" src="./img/pagina05/botones.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="dialogo" src="./img/pagina05/dialogo01.png" data-posX="0" data-posY="0" alt="">
+
+
+
+    <!-- Script de la página -->
+    <script type="module">
+        import {aplicacion} from './js/app.js';
+        import {animacionEntrada} from './js/animaciones.js';
+        import {cargando} from './js/funciones.js';
+
+        jQuery(function($){
+            
+            // Cargar Audios------------------------------------------------------
+            const audio = [
+                new Audio('./audios/Prosa_Integracion_04_01.mp3'),
+            ]
+
+            //Crear Variables-----------------------------------------------------
+            const txt = $('#texto');
+            const instrucciones = $('#instrucciones');
+            const circuito = $('#circuito');
+            const botones = $('#botones');
+            const d01 = $('#dialogo01');
+ 
+            
+
+
+            //Iniciar contenido de la página--------------------------------------
+            
+            cargando(iniciarPagina);
+
+            function iniciarPagina(){
+                aplicacion.reproducirAudio(audio[0], terminaPagina, 1000);
+                animacionEntrada(txt, 'izquierda-derecha', 1, 1);
+                animacionEntrada(circuito, 'izquierda-derecha', 1, 1);
+               
+            }
+
+            function terminaPagina(){
+                aplicacion.terminaPantalla()
+            }
+            
+        });
+    </script>
+
+    <!-- Termina Script -->
+</body>
+</html>
