@@ -7,24 +7,31 @@
     <title>Página 06 | I4L</title>
 </head>
 <body>
-    
+
+    <img class="elementos" id="titulo" src="./img/pagina06/titulo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="fondo" src="./img/pagina06/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="dialogo" src="./img/pagina06/dialogo01.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="btn-play" src="./img/pagina06/btn-play.png" data-posX="710" data-posY="217" alt="">
 
 
     <!-- Script de la página -->
     <script type="module">
         import {aplicacion} from './js/app.js';
-        import {animacionEntrada} from './js/animaciones.js';
+        import {animacionEntrada, parpadea} from './js/animaciones.js';
         import {cargando} from './js/funciones.js';
 
         jQuery(function($){
             
             // Cargar Audios------------------------------------------------------
             const audio = [
-                
+                new Audio('./audios/Prosa_Integracion_04_01.mp3'),
             ]
 
             //Crear Variables-----------------------------------------------------
-            
+            const titulo = $('#titulo');
+            const fondo = $('#fondo');
+            const dialogo = $('#dialogo');
+            const play = $('#btn-play');
 
             //Iniciar contenido de la página--------------------------------------
             
@@ -32,10 +39,30 @@
 
             function iniciarPagina(){
 
+                aplicacion.reproducirAudio(audio[0], clickPlay, 1000);
+                animacionEntrada(titulo, 'izquierda-derecha', 1, 1);
+                animacionEntrada(fondo, 'izquierda-derecha', 1, 1);
+                animacionEntrada(dialogo, 'izquierda-derecha', 1, 1);
+                animacionEntrada(play, 'arriba-abajo', 1, 2.5);
                
             }
+
+            function clickPlay(){
+                parpadea(play);
+                play.click(function(){
+                    if(play.css('cursor') == 'pointer'){
+                        TweenMax.killTweensOf(play);
+                        play.css({
+                            'opacity': '1',
+                            'cursor': 'default'
+                        });
+                    }
+                });
+            }
+ 
+            }
             
-            aplicacion.terminaPantalla()
+            aplicacion.terminaPantalla();
         });
     </script>
 
