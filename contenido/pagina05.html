@@ -7,6 +7,7 @@
     <title>Página 05 | I4L</title>
 </head>
 <body>
+
     <img class="elementos" id="titulo" src="./img/pagina05/titulo.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="texto" src="./img/pagina05/mapaNavegacion.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="instrucciones" src="./img/pagina05/instrucciones.png" data-posX="0" data-posY="0" alt="">
@@ -23,13 +24,16 @@
     <!-- Script de la página -->
     <script type="module">
         import {aplicacion} from './js/app.js';
+
         import {animacionEntrada, parpadea} from './js/animaciones.js';
+
         import {cargando} from './js/funciones.js';
 
         jQuery(function($){
             
             // Cargar Audios------------------------------------------------------
             const audio = [
+
                 new Audio('./audios/Prosa_Integracion_04_01.mp3'),
             ]
 
@@ -44,15 +48,13 @@
             const btnAzul = $('#btn-azul');
             const btnVerde = $('#btn-verde');
             const btnRosa = $('#btn-rosa');
- 
-            
-
 
             //Iniciar contenido de la página--------------------------------------
             
             cargando(iniciarPagina);
 
             function iniciarPagina(){
+
                 aplicacion.reproducirAudio(audio[0], clickBtnRojo, 1000);
                 animacionEntrada(titulo, 'izquierda-derecha', 1, 1);
                 animacionEntrada(txt, 'izquierda-derecha', 1, 1);
@@ -76,7 +78,10 @@
                     }
                 });
             }
+               
+            }
             
+            aplicacion.terminaPantalla()
         });
     </script>
 

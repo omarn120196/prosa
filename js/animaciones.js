@@ -132,13 +132,3 @@ export function parpadea(elemento, tiempo=.8, delay=0){
 
     
 }
-
-export function zoom(elemento){
-
-    gsap.to(elemento, {
-        duration: .8,
-        scale: 1.1,
-        repeat: -1,
-        yoyo: true,
-    })
-}

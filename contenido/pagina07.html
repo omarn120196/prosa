@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página 07 | I4L</title>
 </head>
+
 
 <body>
     <img class="elementos" id="titulo" src="./img/pagina07/titulo.png" data-posX="0" data-posY="0" alt="">
@@ -148,11 +148,37 @@
                         });
                     }
                 }
+            } 
+
+    <!-- Script de la página -->
+    <script type="module">
+        import {aplicacion} from './js/app.js';
+        import {animacionEntrada} from './js/animaciones.js';
+        import {cargando} from './js/funciones.js';
+
+        jQuery(function($){
+            
+            // Cargar Audios------------------------------------------------------
+            const audio = [
+                
+            ]
+
+            //Crear Variables-----------------------------------------------------
+            
+
+            //Iniciar contenido de la página--------------------------------------
+            
+            cargando(iniciarPagina);
+
+            function iniciarPagina(){
+
+               
             }
+            
+            aplicacion.terminaPantalla();
         });
     </script>
 
     <!-- Termina Script -->
 </body>
-
 </html>
