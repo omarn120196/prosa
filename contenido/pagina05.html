@@ -7,18 +7,23 @@
     <title>Página 05 | I4L</title>
 </head>
 <body>
+    <img class="elementos" id="titulo" src="./img/pagina05/titulo.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="texto" src="./img/pagina05/mapaNavegacion.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="instrucciones" src="./img/pagina05/instrucciones.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="circuito" src="./img/pagina05/circuito.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos" id="botones" src="./img/pagina05/botones.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="dialogo" src="./img/pagina05/dialogo01.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="btn-rojo" src="./img/pagina05/btn-homePlanet.png" data-posX="80" data-posY="127.896" alt="">
+    <img class="elementos" id="btn-azul" src="./img/pagina05/btn-normPlanet.png" data-posX="271.47" data-posY="261.507" alt="">
+    <img class="elementos" id="btn-verde" src="./img/pagina05/btn-systemPlanet.png" data-posX="440" data-posY="312.406" alt="">
+    <img class="elementos" id="btn-rosa" src="./img/pagina05/btn-wellPlanet.png" data-posX="428.712" data-posY="137.895" alt="">
 
 
 
     <!-- Script de la página -->
     <script type="module">
         import {aplicacion} from './js/app.js';
-        import {animacionEntrada} from './js/animaciones.js';
+        import {animacionEntrada, parpadea} from './js/animaciones.js';
         import {cargando} from './js/funciones.js';
 
         jQuery(function($){
@@ -29,11 +34,16 @@
             ]
 
             //Crear Variables-----------------------------------------------------
+            const titulo = $('#titulo');
             const txt = $('#texto');
             const instrucciones = $('#instrucciones');
             const circuito = $('#circuito');
-            const botones = $('#botones');
             const d01 = $('#dialogo01');
+
+            const btnRojo = $('#btn-rojo');
+            const btnAzul = $('#btn-azul');
+            const btnVerde = $('#btn-verde');
+            const btnRosa = $('#btn-rosa');
  
             
 
@@ -43,14 +53,28 @@
             cargando(iniciarPagina);
 
             function iniciarPagina(){
-                aplicacion.reproducirAudio(audio[0], terminaPagina, 1000);
+                aplicacion.reproducirAudio(audio[0], clickBtnRojo, 1000);
+                animacionEntrada(titulo, 'izquierda-derecha', 1, 1);
                 animacionEntrada(txt, 'izquierda-derecha', 1, 1);
                 animacionEntrada(circuito, 'izquierda-derecha', 1, 1);
+                animacionEntrada(btnRojo, 'arriba-abajo', 1, 1);
+                animacionEntrada(btnAzul, 'arriba-abajo', 1, 1.5);
+                animacionEntrada(btnVerde, 'arriba-abajo', 1, 2);
+                animacionEntrada(btnRosa, 'arriba-abajo', 1, 2.5);
                
             }
 
-            function terminaPagina(){
-                aplicacion.terminaPantalla()
+            function clickBtnRojo(){
+                parpadea(btnRojo);
+                btnRojo.click(function(){
+                    if(btnRojo.css('cursor') == 'pointer'){
+                        TweenMax.killTweensOf(btnRojo);
+                        btnRojo.css({
+                            'opacity': '1',
+                            'cursor': 'default'
+                        });
+                    }
+                });
             }
             
         });

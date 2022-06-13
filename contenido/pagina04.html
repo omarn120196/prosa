@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página 04 | I4L</title>
 </head>
+
 <body>
     <img class="elementos" id="fondo" src="./img/pagina04/fondo.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="terminal" src="./img/pagina04/terminal.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="deslizador" src="./img/pagina04/deslizador.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="instrucciones" src="./img/pagina04/instrucciones.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="titulo" src="./img/pagina04/titulo.png" data-posX="0" data-posY="0" alt="">
+
 
     <img class="elementos" id="dialogo01" src="./img/pagina04/dialogo01.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="dialogo02" src="./img/pagina04/dialogo02.png" data-posX="0" data-posY="0" alt="">
@@ -17,15 +22,21 @@
     <img class="elementos" id="dialogo04" src="./img/pagina04/dialogo04.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="dialogo04" src="./img/pagina04/dialogo04.png" data-posX="0" data-posY="0" alt="">
 
+    <div class="elementos" id="drop" data-id="1" data-posX="400" data-posY="450" style="width:170px; height:80px;"></div>
+    <div class="elementos" id="tarjeta" data-id="1" data-posX="17" data-posY="236.257">
+        <img src="./img/pagina04/tarjeta.png" alt="">
+    </div>
+
+    <img class="elementos" id="paloma" src="./img/pagina04/paloma.png" data-posX="450" data-posY="356" alt="">
 
     <!-- Script de la página -->
     <script type="module">
-        import {aplicacion} from './js/app.js';
-        import {animacionEntrada} from './js/animaciones.js';
-        import {cargando} from './js/funciones.js';
+        import { aplicacion } from './js/app.js';
+        import { animacionEntrada, animacionSalida, parpadea } from './js/animaciones.js';
+        import { cargando } from './js/funciones.js';
 
-        jQuery(function($){
-            
+        jQuery(function ($) {
+
             // Cargar Audios------------------------------------------------------
             const audio = [
                 new Audio('./audios/Prosa_Integracion_04_01.mp3'),
@@ -33,34 +44,81 @@
 
             //Crear Variables-----------------------------------------------------
             const fondo = $('#fondo');
+            const titulo = $('#titulo');
             const terminal = $('#terminal');
+            const deslizador = $('#deslizador');
+            const tarjeta = $('#tarjeta');
             const instrucciones = $('#instrucciones');
             const d01 = $('#dialogo01');
             const d02 = $('#dialogo02');
             const d03 = $('#dialogo03');
             const d04 = $('#dialogo04');
             const d05 = $('#dialogo05');
-            
+            const drop = $('#drop');
+            const paloma = $('#paloma');
+
 
 
             //Iniciar contenido de la página--------------------------------------
-            
+
             cargando(iniciarPagina);
 
-            function iniciarPagina(){
-                aplicacion.reproducirAudio(audio[0], terminaPagina, 1000);
+            function iniciarPagina() {
+                aplicacion.reproducirAudio(audio[0], dragDrop, 1000);
                 animacionEntrada(fondo, 'izquierda-derecha', 1, 1);
+                animacionEntrada(titulo, 'izquierda-derecha', 1, 1);
                 animacionEntrada(terminal, 'izquierda-derecha', 1, 1);
-               
+                animacionEntrada(deslizador, 'izquierda-derecha', 1, 1);
+                animacionEntrada(tarjeta, 'izquierda-derecha', 1, 1);
+                animacionEntrada(drop, 'izquierda-derecha', 1, 1);
+
             }
 
-            function terminaPagina(){
-                aplicacion.terminaPantalla()
+            function dragDrop() {
+                pasarTarjeta();
             }
-            
+
+            function pasarTarjeta() {
+                const elementoDrag = $('#tarjeta');
+                const elementoDrop = $('#drop');
+
+                let dragSelect;
+                let dropCorrespondiente;
+
+                elementoDrag.draggable({
+                    revert: true,
+                    opacity: 1,
+                    start: function (event, ui) {
+                        dragSelect = $(this).attr('data-id');
+                    }
+                });
+
+
+                elementoDrop.droppable({
+                    accept: "#tarjeta",
+                    tolerance: "intersect",
+                    drop: function (event, ui) {
+                        dropCorrespondiente = $(this).attr('data-id');
+                        verificar();
+                    }
+                });
+
+                function verificar() {
+                    if (dragSelect === dropCorrespondiente) {
+
+                        tarjeta.draggable({
+                            revert: false,
+                        });
+
+                        animacionSalida(tarjeta, 'default', .5);
+                        animacionEntrada(paloma, 'arriba-abajo', 1, 1);
+                    }
+                }
+            }
         });
     </script>
 
     <!-- Termina Script -->
 </body>
+
 </html>
