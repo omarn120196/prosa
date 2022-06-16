@@ -3,7 +3,7 @@ export function animacionEntrada(elemento, direccion, tiempo, delay = 0){
     // Hacer visible el elemento
     elemento.css({
         'display': 'block',
-        'opacity': 1
+        'opacity': '1'
     });
     
     // Seleccionar Animación
@@ -107,7 +107,10 @@ export function animacionSalida(elemento, direccion, tiempo, delay = 0){
     const retraso = (delay * 1000) + 1000;
 
     setTimeout(()=>{
-        elemento.css('display', 'none');
+        elemento.css({
+            'display': 'none', 
+            'opacity': '1'
+        });
     }, retraso)
 }
 

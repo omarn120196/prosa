@@ -447,9 +447,9 @@
             const btn_atras2 = $('#btn_atras2');
             const btn_atras3 = $('#btn_atras3');
             
-             var cuantosbotones = 4;
-             var contador = 0;
-             var cualboton = 0;
+            let cuantosbotones = 4;
+            let contador = 0;
+            let cualboton = 0;
             //Iniciar contenido de la página--------------------------------------
             
             cargando(iniciarPagina);
@@ -463,10 +463,9 @@
               
               
               setTimeout(()=>{
-                flotar(robot, 'd');
-                hablar(robot, 'd');
-              }, 2000)
-               
+                flotar(robot, 'i');
+                hablar(robot, 'i');
+              }, 2000);
             }
             function terminaD1(){
               pausarHablar();
