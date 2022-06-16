@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 15 | I4L</title>
+</head>
+
+<body>
+
+
+    <img class="elementos" id="titulo" src="./img/pagina15/titulo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="esquema" src="./img/pagina15/esquema.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="instrucciones" src="./img/pagina15/instrucciones.png" data-posX="180" data-posY="110"
+        alt="">
+
+    <img class="elementos" id="btn01" src="./img/pagina15/btn01.png" data-posX="510" data-posY="110" alt="">
+    <img class="elementos" id="btn02" src="./img/pagina15/btn02.png" data-posX="615" data-posY="170" alt="">
+    <img class="elementos" id="btn03" src="./img/pagina15/btn03.png" data-posX="795" data-posY="230" alt="">
+    <img class="elementos" id="btn04" src="./img/pagina15/btn04.png" data-posX="535" data-posY="295" alt="">
+    <img class="elementos" id="btn05" src="./img/pagina15/btn05.png" data-posX="635" data-posY="370" alt="">
+    <img class="elementos" id="btn06" src="./img/pagina15/btn06.png" data-posX="795" data-posY="440" alt="">
+    <img class="elementos" id="btn07" src="./img/pagina15/btn07.png" data-posX="495" data-posY="480" alt="">
+
+    <img class="elementos" id="info01" src="./img/pagina15/info01.png" data-posX="615" data-posY="90" alt="">
+    <img class="elementos" id="info02" src="./img/pagina15/info02.png" data-posX="715" data-posY="150" alt="">
+    <img class="elementos" id="info03" src="./img/pagina15/info03.png" data-posX="885" data-posY="220" alt="">
+    <img class="elementos" id="info04" src="./img/pagina15/info04.png" data-posX="635" data-posY="275" alt="">
+    <img class="elementos" id="info05" src="./img/pagina15/info05.png" data-posX="735" data-posY="350" alt="">
+    <img class="elementos" id="info06" src="./img/pagina15/info06.png" data-posX="875" data-posY="430" alt="">
+    <img class="elementos" id="info07" src="./img/pagina15/info07.png" data-posX="595" data-posY="470" alt="">
+
+
+
+    <!-- Script de la página -->
+    <script type="module">
+        import { aplicacion } from './js/app.js';
+        import { animacionEntrada, animacionSalida, parpadea } from './js/animaciones.js';
+        import { cargando } from './js/funciones.js';
+
+        jQuery(function ($) {
+
+            // Cargar Audios------------------------------------------------------
+            const audio = [
+                new Audio('./audios/Prosa_Integracion_15_01.mp3'),
+                new Audio('./audios/Prosa_Integracion_15_02.mp3'),
+                new Audio('./audios/Prosa_Integracion_15_03.mp3'),
+                new Audio('./audios/Prosa_Integracion_15_04.mp3'),
+                new Audio('./audios/Prosa_Integracion_15_05.mp3'),
+                new Audio('./audios/Prosa_Integracion_15_06.mp3'),
+                new Audio('./audios/Prosa_Integracion_15_07.mp3'),
+                new Audio('./audios/Prosa_Integracion_15_08.mp3'),
+                new Audio('./audios/Prosa_Integracion_15_09.mp3'),
+
+            ]
+
+            //Crear Variables-----------------------------------------------------
+            const titulo = $('#titulo');
+            const esquema = $('#esquema');
+            const instrucciones = $('#instrucciones');
+
+            const btn01 = $('#btn01');
+            const btn02 = $('#btn02');
+            const btn03 = $('#btn03');
+            const btn04 = $('#btn04');
+            const btn05 = $('#btn05');
+            const btn06 = $('#btn06');
+            const btn07 = $('#btn07');
+
+            const info01 = $('#info01');
+            const info02 = $('#info02');
+            const info03 = $('#info03');
+            const info04 = $('#info04');
+            const info05 = $('#info05');
+            const info06 = $('#info06');
+            const info07 = $('#info07');
+
+
+            //Iniciar contenido de la página--------------------------------------
+
+            cargando(iniciarPagina);
+
+            function iniciarPagina() {
+
+                aplicacion.reproducirAudio(audio[0], terminaAudio, 1000);
+                animacionEntrada(titulo, 'izquierda-derecha', 1, 1);
+                animacionEntrada(esquema, 'izquierda-derecha', 1, 2.8);
+            }
+
+            function terminaAudio() {
+                aplicacion.reproducirAudio(audio[1], parpadeaBtn01, 1000);
+                animacionEntrada(instrucciones, 'izquierda-derecha', 1, 15);
+                animacionEntrada(btn01, 'arriba-abajo', 1, 15.5);
+                animacionEntrada(btn02, 'arriba-abajo', 1, 16);
+                animacionEntrada(btn03, 'arriba-abajo', 1, 16.5);
+                animacionEntrada(btn04, 'arriba-abajo', 1, 17);
+                animacionEntrada(btn05, 'arriba-abajo', 1, 17.5);
+                animacionEntrada(btn06, 'arriba-abajo', 1, 18);
+                animacionEntrada(btn07, 'arriba-abajo', 1, 18.5);
+
+                function parpadeaBtn01() {
+                    parpadea(btn01);
+                }
+
+            }
+
+            btn01.click(function () {
+                if (btn01.css('cursor') == 'pointer') {
+                    TweenMax.killTweensOf(btn01);
+                    btn01.css({
+                        'opacity': '1',
+                        'cursor': 'default'
+                    })
+                }
+
+                aplicacion.reproducirAudio(audio[2], terminaAudio01, 1000);
+                animacionEntrada(info01, 'default', 1, .5);
+                parpadea(btn02);
+
+                function terminaAudio01() {
+                    info01.click(function () {
+                        if (info01.css('cursor') == 'pointer') {
+                            TweenMax.killTweensOf(info01);
+                            info01.css({
+                                'opacity': '1',
+                                'cursor': 'default'
+                            })
+                        }
+                        animacionSalida(info01, 'default', 1, .2);
+                    });
+                }
+            });
+            btn02.click(function () {
+                if (btn02.css('cursor') == 'pointer') {
+                    TweenMax.killTweensOf(btn02);
+                    btn02.css({
+                        'opacity': '1',
+                        'cursor': 'default'
+                    })
+                }
+
+                aplicacion.reproducirAudio(audio[3], terminaAudio02, 1000);
+                animacionEntrada(info02, 'default', 1, .5);
+                parpadea(btn03);
+
+                function terminaAudio02() {
+                    info02.click(function () {
+                        if (info02.css('cursor') == 'pointer') {
+                            TweenMax.killTweensOf(info02);
+                            info02.css({
+                                'opacity': '1',
+                                'cursor': 'default'
+                            })
+                        }
+                        animacionSalida(info02, 'default', 1, .2);
+                    });
+                }
+            });
+            btn03.click(function () {
+                if (btn03.css('cursor') == 'pointer') {
+                    TweenMax.killTweensOf(btn03);
+                    btn03.css({
+                        'opacity': '1',
+                        'cursor': 'default'
+                    })
+                }
+
+                aplicacion.reproducirAudio(audio[4], terminaAudio03, 1000);
+                animacionEntrada(info03, 'default', 1, .5);
+                parpadea(btn04);
+
+                function terminaAudio03() {
+                    info03.click(function () {
+                        if (info03.css('cursor') == 'pointer') {
+                            TweenMax.killTweensOf(info03);
+                            info03.css({
+                                'opacity': '1',
+                                'cursor': 'default'
+                            })
+                        }
+                        animacionSalida(info03, 'default', 1, .2);
+                    });
+                }
+            });
+
+            btn04.click(function () {
+                if (btn04.css('cursor') == 'pointer') {
+                    TweenMax.killTweensOf(btn04);
+                    btn04.css({
+                        'opacity': '1',
+                        'cursor': 'default'
+                    })
+                }
+
+                aplicacion.reproducirAudio(audio[5], terminaAudio04, 1000);
+                animacionEntrada(info04, 'default', 1, .5);
+                parpadea(btn05);
+
+                function terminaAudio04() {
+                    info04.click(function () {
+                        if (info04.css('cursor') == 'pointer') {
+                            TweenMax.killTweensOf(info04);
+                            info04.css({
+                                'opacity': '1',
+                                'cursor': 'default'
+                            })
+                        }
+                        animacionSalida(info04, 'default', 1, .2);
+                    });
+                }
+            });
+
+            btn05.click(function () {
+                if (btn05.css('cursor') == 'pointer') {
+                    TweenMax.killTweensOf(btn05);
+                    btn05.css({
+                        'opacity': '1',
+                        'cursor': 'default'
+                    })
+                }
+
+                aplicacion.reproducirAudio(audio[6], terminaAudio05, 1000);
+                animacionEntrada(info05, 'default', 1, .5);
+                parpadea(btn06);
+
+                function terminaAudio05() {
+                    info05.click(function () {
+                        if (info05.css('cursor') == 'pointer') {
+                            TweenMax.killTweensOf(info05);
+                            info05.css({
+                                'opacity': '1',
+                                'cursor': 'default'
+                            })
+                        }
+                        animacionSalida(info05, 'default', 1, .2);
+                    });
+                }
+            });
+
+            btn06.click(function () {
+                if (btn06.css('cursor') == 'pointer') {
+                    TweenMax.killTweensOf(btn06);
+                    btn06.css({
+                        'opacity': '1',
+                        'cursor': 'default'
+                    })
+                }
+
+                aplicacion.reproducirAudio(audio[7], terminaAudio06, 1000);
+                animacionEntrada(info06, 'default', 1, .5);
+                parpadea(btn07);
+
+                function terminaAudio06() {
+                    info06.click(function () {
+                        if (info06.css('cursor') == 'pointer') {
+                            TweenMax.killTweensOf(info06);
+                            info06.css({
+                                'opacity': '1',
+                                'cursor': 'default'
+                            })
+                        }
+                        animacionSalida(info06, 'default', 1, .2);
+                    });
+                }
+            });
+
+            btn07.click(function () {
+                if (btn07.css('cursor') == 'pointer') {
+                    TweenMax.killTweensOf(btn07);
+                    btn07.css({
+                        'opacity': '1',
+                        'cursor': 'default'
+                    })
+                }
+
+                aplicacion.reproducirAudio(audio[8], terminaAudio07, 1000);
+                animacionEntrada(info07, 'default', 1, .5);
+
+                function terminaAudio07() {
+                    aplicacion.terminaPantalla();
+                    info07.click(function () {
+                        if (info07.css('cursor') == 'pointer') {
+                            TweenMax.killTweensOf(info07);
+                            info07.css({
+                                'opacity': '1',
+                                'cursor': 'default'
+                            })
+                        }
+                        animacionSalida(info07, 'default', 1, .2);
+                    });
+                }
+            });
+        });
+    </script>
+
+    <!-- Termina Script -->
+</body>
+
+</html>

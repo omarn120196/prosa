@@ -453,7 +453,7 @@
             cargando(iniciarPagina);
 
             function iniciarPagina() {
-                aplicacion.reproducirAudio(audio[0], ejercicioPag07, 1000);
+                aplicacion.reproducirAudio(audio[0], ejercicioPag07, 2000);
                 animacionEntrada(titulo, 'izquierda-derecha', 1, 1);
                 animacionEntrada(dialogo, 'izquierda-derecha', 1, 1);
                 animacionEntrada(drag1, 'arriba-abajo', 1, 1.5);
@@ -499,6 +499,8 @@
                 let dragSelect;
                 let dropCorrespondiente;
 
+                let aciertos = 0;
+
                 elementosDrag.draggable({
                     revert: true,
                     start: function (event, ui) {
@@ -516,19 +518,25 @@
                 });
 
                 function verificar() {
-                    if (dragSelect === dropCorrespondiente) {
-                        let dragActivo = $(`#drag${dragSelect}`);
-                        let dropActivo = $(`#drop${dropCorrespondiente}`);
+                  if (dragSelect === dropCorrespondiente) {
+                    let dragActivo = $(`#drag${dragSelect}`);
+                    let dropActivo = $(`#drop${dropCorrespondiente}`);
 
-                        dragActivo.draggable({
-                            revert: false,
-                        });
+                    dragActivo.draggable({
+                      revert: false,
+                    });
 
-                        dragActivo.draggable("disable");
-                        dragActivo.css({
-                            cursor: 'default'
-                        });
+                    dragActivo.draggable("disable");
+                    dragActivo.css({
+                      cursor: 'default'
+                    });
+
+                    aciertos++;
+
+                    if (aciertos == 6) {
+                      aplicacion.terminaPantalla();
                     }
+                  }
                 }
             } 
         });
