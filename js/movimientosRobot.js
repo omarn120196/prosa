@@ -1,5 +1,5 @@
 // Función flotar del lado derecho------------------------------------------
-
+let tl1;
 export function flotar(robot, lado){
 
     const brazoI = robot.find('#brazoIzquierdo');
@@ -10,7 +10,7 @@ export function flotar(robot, lado){
     const ojos = robot.find('#ojos');
     const boca = robot.find('#boca');
 
-    const tl1 = gsap.timeline({
+    tl1 = gsap.timeline({
         repeat: -1,
         yoyo: true
     });
@@ -101,8 +101,10 @@ export function flotar(robot, lado){
             ease: "power1.inOut"
         }, '<')
     }
-    
-    
+}
+
+export function detenerRobot(){
+    tl1.kill();
 }
 
 // Función Hablar-----------------------------------------------------------

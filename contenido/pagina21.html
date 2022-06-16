@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 21 | I4L</title>
+</head>
+<body>
+    <img class="elementos" id="titulo21" src="./img/pagina21/titulo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="personas" src="./img/pagina21/personas.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="esquema1" src="./img/pagina21/esquema1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="esquema2" src="./img/pagina21/esquema2.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="esquema3" src="./img/pagina21/esquema3.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="esquema4" src="./img/pagina21/esquema4.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="esquema5" src="./img/pagina21/esquema5.png" data-posX="0" data-posY="0" alt="">
+    
+
+
+    <!-- Script de la página -->
+    <script type="module">
+        import {aplicacion} from './js/app.js';
+        import {animacionEntrada, parpadea} from './js/animaciones.js';
+        import {cargando} from './js/funciones.js';
+
+        jQuery(function($){
+            
+            // Cargar Audios------------------------------------------------------
+            const audio = [
+                new Audio('./audios/Prosa_Integracion_21_01.mp3'),
+                new Audio('./audios/Prosa_Integracion_21_02.mp3'),
+                new Audio('./audios/Prosa_Integracion_21_03.mp3'),
+                new Audio('./audios/Prosa_Integracion_21_04.mp3'),
+                new Audio('./audios/Prosa_Integracion_21_05.mp3'),
+                new Audio('./audios/Prosa_Integracion_21_06.mp3'),
+            ]
+
+            //Crear Variables-----------------------------------------------------
+            const titulo = $('#titulo21');
+            const personas = $('#personas');
+            const esquema1 = $('#esquema1');
+            const esquema2 = $('#esquema2');
+            const esquema3 = $('#esquema3');
+            const esquema4 = $('#esquema4');
+            const esquema5 = $('#esquema5');
+
+            //Iniciar contenido de la página--------------------------------------
+            
+            cargando(iniciarPagina);
+
+            function iniciarPagina(){
+
+                aplicacion.reproducirAudio(audio[0], frase, 1000);
+                animacionEntrada(titulo, 'izquierda-derecha', 1, 1);
+                animacionEntrada(personas, 'derecha-izquierda', 1, 1);
+            }
+
+            function frase(){
+                aplicacion.reproducirAudio(audio[1], parrafo1, 1000);
+                animacionEntrada(esquema1, 'default', 1, 1);
+            }
+
+            function parrafo1(){
+                aplicacion.reproducirAudio(audio[2], parrafo2, 1000);
+                animacionEntrada(esquema2, 'default', 1, 1);
+            }
+
+            function parrafo2(){
+                aplicacion.reproducirAudio(audio[3], parrafo3, 1000);
+                animacionEntrada(esquema3, 'default', 1, 1);
+            }
+
+            function parrafo3(){
+                aplicacion.reproducirAudio(audio[4], parrafo4, 1000);
+                animacionEntrada(esquema4, 'default', 1, 1);
+            }
+
+            function parrafo4(){
+                aplicacion.reproducirAudio(audio[5], fin, 1000);
+                animacionEntrada(esquema5, 'default', 1, 1);
+            }
+
+            function fin(){
+                aplicacion.terminaPantalla();
+            }
+            
+            
+        });
+    </script>
+
+    <!-- Termina Script -->
+</body>
+</html>
