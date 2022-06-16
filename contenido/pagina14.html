@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 14 | I4L</title>
+</head>
+<body>
+
+
+    <img class="elementos" id="titulo" src="./img/pagina14/titulo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="dialogo" src="./img/pagina14/dialogo01.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="instrucciones" src="./img/pagina14/instrucciones.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="base" src="./img/pagina14/base.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="btn01" src="./img/pagina14/btn-AuditoriasI.png" data-posX="200" data-posY="331" alt="">
+    <img class="elementos" id="btn02" src="./img/pagina14/btn-Big10.png" data-posX="430" data-posY="350" alt="">
+    <img class="elementos" id="btn03" src="./img/pagina14/btn-EvaluacionD.png" data-posX="600" data-posY="331" alt="">
+    
+    <img class="elementos" id="info01" src="./img/pagina14/info-AuditoriasI.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info02" src="./img/pagina14/info-Big10.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info03" src="./img/pagina14/info-EvaluacionD.png" data-posX="0" data-posY="0" alt="">
+    
+    <img class="elementos" id="btnCerrar01" src="./img/pagina14/btn-CerrarAudi.png" data-posX="830" data-posY="110" alt="">
+    <img class="elementos" id="btnCerrar02" src="./img/pagina14/btn-CerrarBig.png" data-posX="830" data-posY="110" alt="">
+    <img class="elementos" id="btnCerrar03" src="./img/pagina14/btn-CerrarEvaluacion.png" data-posX="830" data-posY="110" alt="">
+
+ 
+    <!-- Script de la página -->
+    <script type="module">
+        import {aplicacion} from './js/app.js';
+        import {animacionEntrada, animacionSalida, parpadea} from './js/animaciones.js';
+        import {cargando} from './js/funciones.js';
+
+        jQuery(function($){
+            
+            // Cargar Audios------------------------------------------------------
+            const audio = [
+                new Audio('./audios/Prosa_Integracion_14_01.mp3'),
+                new Audio('./audios/Prosa_Integracion_14_02.mp3'),
+                new Audio('./audios/Prosa_Integracion_14_03.mp3'),
+                new Audio('./audios/Prosa_Integracion_14_04.mp3'),
+                new Audio('./audios/Prosa_Integracion_14_05.mp3'),
+            ]
+
+            //Crear Variables-----------------------------------------------------
+            const titulo = $('#titulo');
+            const dialogo = $('#dialogo');
+            const instrucciones = $('#instrucciones');
+            const base = $('#base');
+
+            const btn01 = $('#btn01');
+            const btn02 = $('#btn02');
+            const btn03 = $('#btn03');
+
+            const info01 = $('#info01');
+            const info02 = $('#info02');
+            const info03 = $('#info03');
+
+            const cerrar01 = $('#btnCerrar01');
+            const cerrar02 = $('#btnCerrar02');
+            const cerrar03 = $('#btnCerrar03');
+
+            //Iniciar contenido de la página--------------------------------------
+            
+            cargando(iniciarPagina);
+
+            function iniciarPagina(){
+
+                aplicacion.reproducirAudio(audio[0], terminaAudio, 1000);
+                animacionEntrada(titulo, 'izquierda-derecha', 1, 1);
+                animacionEntrada(dialogo, 'izquierda-derecha', 1, 3.5);   
+            }
+
+            function terminaAudio(){
+                aplicacion.reproducirAudio(audio[1], btnAzul, 1000);
+
+                animacionEntrada(instrucciones, 'izquierda-derecha', 1, 6);
+                animacionEntrada(base, 'izquierda-derecha', 1, 7);
+                animacionEntrada(btn01, 'arriba-abajo', 1, 6.5);
+
+                function btnAzul() {
+                    parpadea(btn01);
+                }
+            }
+
+            btn01.click(function () {
+                if (btn01.css('cursor') == 'pointer') {
+                    TweenMax.killTweensOf(btn01);
+                    btn01.css({
+                        'opacity': '1',
+                        'cursor': 'default'
+                    })
+                }
+
+                aplicacion.reproducirAudio(audio[2], terminaAudio01, 2000);
+                animacionEntrada(info01, 'default', 1, 1);
+
+                function terminaAudio01() {
+                    parpadea(cerrar01);
+                    cerrar01.click(function () {
+                        if (cerrar01.css('cursor') == 'pointer') {
+                            TweenMax.killTweensOf(cerrar01);
+                            cerrar01.css({
+                                'opacity': '1',
+                                'cursor': 'default'
+                            })
+                        }
+                        animacionSalida(info01, 'default', 1, .5);
+                        animacionSalida(cerrar01, 'default', 1, .5);
+                        parpadea(btn02);
+                    });
+                }
+            });
+
+
+            btn02.click(function () {
+                if (btn02.css('cursor') == 'pointer') {
+                    TweenMax.killTweensOf(btn02);
+                    btn02.css({
+                        'opacity': '1',
+                        'cursor': 'default'
+                    })
+                }
+                aplicacion.reproducirAudio(audio[3], terminaAudio02, 2000);
+                animacionEntrada(info02, 'default', 1, 1);
+
+                function terminaAudio02() {
+                    parpadea(cerrar02);
+                    cerrar02.click(function () {
+                        if (cerrar02.css('cursor') == 'pointer') {
+                            TweenMax.killTweensOf(cerrar02);
+                            cerrar02.css({
+                                'opacity': '1',
+                                'cursor': 'default'
+                            })
+                        }
+                        animacionSalida(info02, 'default', 1, .5);
+                        animacionSalida(cerrar02, 'default', 1, .5);
+                        parpadea(btn03);
+                    });
+                }
+            });
+            
+
+            btn03.click(function () {
+                if (btn03.css('cursor') == 'pointer') {
+                    TweenMax.killTweensOf(btn03);
+                    btn03.css({
+                        'opacity': '1',
+                        'cursor': 'default'
+                    })
+                }
+                aplicacion.reproducirAudio(audio[4], terminaAudio03, 2000);
+                animacionEntrada(info03, 'default', 1, 1);
+
+                function terminaAudio03() {
+                    parpadea(cerrar03);
+                    cerrar03.click(function () {
+                        if (cerrar03.css('cursor') == 'pointer') {
+                            TweenMax.killTweensOf(cerrar03);
+                            cerrar03.css({
+                                'opacity': '1',
+                                'cursor': 'default'
+                            })
+                        }
+                        animacionSalida(info03, 'default', 1, .5);
+                        animacionSalida(cerrar03, 'default', 1, .5);
+                    });
+
+                    aplicacion.terminaPantalla();
+                }
+            });
+        });
+    </script>
+
+    <!-- Termina Script -->
+</body>
+</html>
