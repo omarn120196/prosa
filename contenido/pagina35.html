@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 35 | I4L</title>
+</head>
+<body>
+    <img class="elementos" id="titulo35" src="./img/pagina35/titulo.png" data-posX="0" data-posY="0" alt="">
+            
+    <img class="elementos" id="texto" src="./img/pagina35/texto.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="infoVerde" src="./img/pagina35/infoVerde.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="infoAzul" src="./img/pagina35/infoAzul.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="btnVerde" src="./img/pagina35/btnVerde.png" data-posX="528" data-posY="175" alt="">
+    <img class="elementos" id="btnAzul" src="./img/pagina35/btnAzul.png" data-posX="116" data-posY="175" alt="">
+
+
+
+    <!-- Script de la página -->
+    <script type="module">
+        import {aplicacion} from './js/app.js';
+        import {animacionEntrada, parpadea, animacionSalida} from './js/animaciones.js';
+        import {cargando} from './js/funciones.js';
+        import {flotar, hablar, pausarHablar, reanudarHablar, pararHablar} from './js/movimientosRobot.js';
+
+        jQuery(function($){
+            
+            // Cargar Audios------------------------------------------------------
+            const audio = [
+                new Audio('./audios/Prosa_Integracion_35_01.mp3'),
+                new Audio('./audios/Prosa_Integracion_35_02.mp3'),
+                new Audio('./audios/Prosa_Integracion_35_03.mp3'),
+                new Audio('./audios/Prosa_Integracion_35_04.mp3'),
+                new Audio('./audios/Prosa_Integracion_35_05.mp3'),
+                new Audio('./audios/Prosa_Integracion_35_06.mp3'),
+                new Audio('./audios/Prosa_Integracion_35_07.mp3'),
+            ]
+
+            //Crear Variables-----------------------------------------------------
+            const titulo = $('#titulo35');
+            const texto = $('#texto');
+            const btnAzul = $('#btnAzul');
+            const btnVerde = $('#btnVerde');
+            const infoAzul = $('#infoAzul');
+            const infoVerde = $('#infoVerde');
+            
+            let observandoVerde = false;
+            let observandoAzul = false;
+
+            let abierto1 = false;
+            let abierto2 = false;
+
+            //Iniciar contenido de la página--------------------------------------
+            
+            cargando(iniciarPagina);
+
+            function iniciarPagina(){
+
+                aplicacion.reproducirAudio(audio[0], introTexto, 1500);
+                animacionEntrada(titulo, 'izquierda-derecha', 1, 1);
+            }
+
+            function introTexto(){
+                aplicacion.reproducirAudio(audio[1], info, 1000);
+                animacionEntrada(texto, 'derecha-izquierda', 1, 1);
+            }
+
+            function info(){
+                animacionEntrada(btnAzul, 'default', 1, 1);
+                animacionEntrada(btnVerde, 'default', 1, 1);
+                
+                setTimeout(()=>{
+                    parpadeaBoton();
+                }, 1500);
+            }
+
+            function parpadeaBoton(){
+                parpadea(btnAzul);
+            }
+
+            btnAzul.click(function(){
+                if(btnAzul.css('cursor') == 'pointer' && !observandoVerde){
+                    TweenMax.killTweensOf(btnAzul);
+                    btnAzul.css('opacity', '1');
+                    aplicacion.reproducirAudio(audio[2], describir, 1500);
+                    animacionSalida(infoVerde, 'default', 1, 1);
+                    animacionEntrada(infoAzul, 'default', 1, 1);
+                    observandoAzul = true;
+                }
+
+                function describir(){
+                    aplicacion.reproducirAudio(audio[3], fin, 1000);
+                }
+
+                function fin(){
+                    observandoAzul = false;
+                    if(!abierto1){
+                        abierto1 = true;
+                        parpadea(btnVerde);
+                    }
+                }
+            });
+
+            btnVerde.click(function(){
+                if(btnVerde.css('cursor') == 'pointer' && !observandoAzul){
+                    TweenMax.killTweensOf(btnVerde);
+                    btnVerde.css('opacity', '1');
+                    aplicacion.reproducirAudio(audio[4], describir, 1500);
+                    animacionSalida(infoAzul, 'default', 1, 1);
+                    animacionEntrada(infoVerde, 'default', 1, 1);
+                    observandoVerde = true;
+                }
+
+                function describir(){
+                    aplicacion.reproducirAudio(audio[5], esquema, 1000);
+                }
+
+                function esquema(){
+                    aplicacion.reproducirAudio(audio[6], fin, 1000);
+                }
+
+                function fin(){
+                    observandoVerde = false;
+                    if(!abierto2){
+                        abierto2 = true;
+                        aplicacion.terminaPantalla();
+                    }
+                }
+            });
+
+
+            
+            
+        });
+    </script>
+
+    <!-- Termina Script -->
+</body>
+</html>
