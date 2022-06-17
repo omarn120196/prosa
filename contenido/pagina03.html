@@ -390,6 +390,8 @@
     <img class="elementos" id="dialogo4" src="./img/pagina03/d4.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="dialogo5" src="./img/pagina03/d5.png" data-posX="0" data-posY="0" alt="">
 
+    <img class="elementos" id="instrucciones" src="./img/pagina03/instrucciones.png" data-posX="0" data-posY="0" alt="">
+
     <img class="elementos" id="alerta" src="./img/pagina03/alerta.png" data-posX="498" data-posY="392" alt="">
 
         <!-----------------------------Parte 2-------------------------------------->
@@ -773,6 +775,8 @@
     <img class="elementos" id="dialogo10" src="./img/pagina03/d10.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="dialogo11" src="./img/pagina03/d11.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="dialogo12" src="./img/pagina03/d12.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="dialogo13" src="./img/pagina03/d13.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="dialogo14" src="./img/pagina03/d14.png" data-posX="0" data-posY="0" alt="">
 
     <!-- Script de la página -->
     <script type="module">
@@ -798,6 +802,8 @@
                 new Audio('./audios/Prosa_Integracion_03_10.mp3'),
                 new Audio('./audios/Prosa_Integracion_03_11.mp3'),
                 new Audio('./audios/Prosa_Integracion_03_12.mp3'),
+                new Audio('./audios/Prosa_Integracion_03_13.mp3'),
+                new Audio('./audios/Prosa_Integracion_03_14.mp3'),
             ]
 
             //Crear Variables-----------------------------------------------------
@@ -817,6 +823,9 @@
             const d10 = $('#dialogo10');
             const d11 = $('#dialogo11');
             const d12 = $('#dialogo12');
+            const d13 = $('#dialogo13');
+            const d14 = $('#dialogo14');
+            const instrucciones = $('#instrucciones');
 
             const alerta = $('#alerta');
 
@@ -893,6 +902,7 @@
 
               setTimeout(()=>{
                 aplicacion.reproducirAudio(audio[5], parte2);
+                animacionEntrada(instrucciones, 'derecha-izquierda', 1, 10);
                 reanudarHablar();
               }, 1500);
             }
@@ -905,6 +915,7 @@
                 animacionSalida(robot, 'default', 1);
                 animacionSalida(fondo, 'default', 1);
                 animacionSalida(alerta, 'default', 1);
+                animacionSalida(instrucciones, 'default', 1);
 
                 setTimeout(()=>{
                   robot.remove();
@@ -971,7 +982,29 @@
               animacionEntrada(d12, 'default', 1, 1);
 
               setTimeout(()=>{
-                aplicacion.reproducirAudio(audio[12], terminaPagina);
+                aplicacion.reproducirAudio(audio[12], terminaD12);
+                reanudarHablar();
+              }, 1500);
+            }
+
+            function terminaD12(){
+              pausarHablar();
+              animacionSalida(d12, 'default', .5);
+              animacionEntrada(d13, 'default', 1, 1);
+
+              setTimeout(()=>{
+                aplicacion.reproducirAudio(audio[13], terminaD13);
+                reanudarHablar();
+              }, 1500);
+            }
+
+            function terminaD13(){
+              pausarHablar();
+              animacionSalida(d13, 'default', .5);
+              animacionEntrada(d14, 'default', 1, 1);
+
+              setTimeout(()=>{
+                aplicacion.reproducirAudio(audio[14], terminaPagina);
                 reanudarHablar();
               }, 1500);
             }
