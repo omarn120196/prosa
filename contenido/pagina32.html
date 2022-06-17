@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 32 | I4L</title>
+</head>
+<body>
+    <img class="elementos" id="titulo32" src="./img/pagina32/titulo.png" data-posX="0" data-posY="0" alt="">
+            
+    <img class="elementos" id="texto" src="./img/pagina32/texto.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="cuadro1" src="./img/pagina32/cuadro1.png" data-posX="0" data-posY="212" alt="">
+    <img class="elementos" id="cuadro2" src="./img/pagina32/cuadro2.png" data-posX="640" data-posY="212" alt="">
+    <img class="elementos" id="cuadro3" src="./img/pagina32/cuadro3.png" data-posX="0" data-posY="374" alt="">
+    <img class="elementos" id="cuadro4" src="./img/pagina32/cuadro4.png" data-posX="640" data-posY="374" alt="">
+
+    <img class="elementos" id="info1" src="./img/pagina32/info1.png" data-posX="252" data-posY="199" alt="">
+    <img class="elementos" id="info2" src="./img/pagina32/info2.png" data-posX="675" data-posY="209" alt="">
+    <img class="elementos" id="info3" src="./img/pagina32/info3.png" data-posX="252" data-posY="367" alt="">
+    <img class="elementos" id="info4" src="./img/pagina32/info4.png" data-posX="675" data-posY="368" alt="">
+
+
+    <!-- Script de la página -->
+    <script type="module">
+        import {aplicacion} from './js/app.js';
+        import {animacionEntrada, parpadea, animacionSalida} from './js/animaciones.js';
+        import {cargando} from './js/funciones.js';
+        import {flotar, hablar, pausarHablar, reanudarHablar, pararHablar} from './js/movimientosRobot.js';
+
+        jQuery(function($){
+            
+            // Cargar Audios------------------------------------------------------
+            const audio = [
+                new Audio('./audios/Prosa_Integracion_32_01.mp3'),
+                new Audio('./audios/Prosa_Integracion_32_02.mp3'),
+                new Audio('./audios/Prosa_Integracion_32_03.mp3'),
+                new Audio('./audios/Prosa_Integracion_32_04.mp3'),
+                new Audio('./audios/Prosa_Integracion_32_05.mp3')
+            ]
+
+            //Crear Variables-----------------------------------------------------
+            const titulo = $('#titulo32');
+            const texto = $('#texto');
+            const cuadro1 = $('#cuadro1');
+            const cuadro2 = $('#cuadro2');
+            const cuadro3 = $('#cuadro3');
+            const cuadro4 = $('#cuadro4');
+            const info1 = $('#info1');
+            const info2 = $('#info2');
+            const info3 = $('#info3');
+            const info4 = $('#info4');
+            
+
+            //Iniciar contenido de la página--------------------------------------
+            
+            cargando(iniciarPagina);
+
+            function iniciarPagina(){
+
+                aplicacion.reproducirAudio(audio[0], tarjetas, 1000);
+                animacionEntrada(titulo, 'izquierda-derecha', 1, 1);
+                animacionEntrada(texto, 'arriba-abajo', 1, 1);
+                animacionEntrada(cuadro1, 'arriba-abajo', 1, 1);
+                animacionEntrada(cuadro2, 'arriba-abajo', 1, 1);
+                animacionEntrada(cuadro3, 'arriba-abajo', 1, 1);
+                animacionEntrada(cuadro4, 'arriba-abajo', 1, 1);
+            }
+
+            function tarjetas(){
+                parpadea(cuadro1);
+            }
+
+            cuadro1.click(function(){
+                if(cuadro1.css('cursor') == 'pointer'){
+                    TweenMax.killTweensOf(cuadro1);
+                    cuadro1.css({
+                        'cursor': 'default',
+                        'opacity': '1'
+                    });
+                    aplicacion.reproducirAudio(audio[1], sig, 1000);
+                    animacionEntrada(info1, 'default', 1);
+
+                    function sig(){
+                        parpadea(cuadro2);
+                    }
+                }
+            });
+
+            cuadro2.click(function(){
+                if(cuadro2.css('cursor') == 'pointer'){
+                    TweenMax.killTweensOf(cuadro2);
+                    cuadro2.css({
+                        'cursor': 'default',
+                        'opacity': '1'
+                    });
+                    aplicacion.reproducirAudio(audio[2], sig, 1000);
+                    animacionEntrada(info2, 'default', 1);
+
+                    function sig(){
+                        parpadea(cuadro3);
+                    }
+                }
+            });
+
+            cuadro3.click(function(){
+                if(cuadro3.css('cursor') == 'pointer'){
+                    TweenMax.killTweensOf(cuadro3);
+                    cuadro3.css({
+                        'cursor': 'default',
+                        'opacity': '1'
+                    });
+                    aplicacion.reproducirAudio(audio[3], sig, 1000);
+                    animacionEntrada(info3, 'default', 1);
+
+                    function sig(){
+                        parpadea(cuadro4);
+                    }
+                }
+            });
+
+            cuadro4.click(function(){
+                if(cuadro4.css('cursor') == 'pointer'){
+                    TweenMax.killTweensOf(cuadro4);
+                    cuadro4.css({
+                        'cursor': 'default',
+                        'opacity': '1'
+                    });
+                    aplicacion.reproducirAudio(audio[4], sig, 1000);
+                    animacionEntrada(info4, 'default', 1);
+
+                    function sig(){
+                        aplicacion.terminaPantalla();
+                    }
+                }
+            });
+            
+        });
+    </script>
+
+    <!-- Termina Script -->
+</body>
+</html>
