@@ -886,11 +886,13 @@
             btn1.click(function(){
                 if(btn1.css('cursor') == 'pointer'){
                     TweenMax.killTweensOf(btn1);
+                    reanudarHablar();
                     btn1.css('opacity', '1');
                     animacionEntrada(globo1, 'default', 1);
                     aplicacion.reproducirAudio(audio[3], cerrarGlobo1, 1000);
 
                     function cerrarGlobo1(){
+                      pausarHablar();
                         animacionEntrada(cerrar1, 'default', 1);
                         setTimeout(()=>{
                             cerrar1.css({
@@ -915,11 +917,13 @@
             btn2.click(function(){
                 if(btn2.css('cursor') == 'pointer'){
                     TweenMax.killTweensOf(btn2);
+                    reanudarHablar();
                     btn2.css('opacity', '1');
                     animacionEntrada(globo2, 'default', 1);
                     aplicacion.reproducirAudio(audio[4], cerrarGlobo1, 1000);
 
                     function cerrarGlobo1(){
+                      pausarHablar();
                         animacionEntrada(cerrar2, 'deafault', 1);
                         setTimeout(()=>{
                             cerrar2.css({
@@ -944,11 +948,13 @@
             btn3.click(function(){
                 if(btn3.css('cursor') == 'pointer'){
                     TweenMax.killTweensOf(btn3);
+                    reanudarHablar();
                     btn3.css('opacity', '1');
                     animacionEntrada(globo3, 'default', 1);
                     aplicacion.reproducirAudio(audio[5], cerrarGlobo1, 1000);
 
                     function cerrarGlobo1(){
+                      pausarHablar();
                         animacionEntrada(cerrar3, 'deafault', 1);
                         setTimeout(()=>{
                             cerrar3.css({
@@ -973,11 +979,13 @@
             btn4.click(function(){
                 if(btn4.css('cursor') == 'pointer'){
                     TweenMax.killTweensOf(btn4);
+                    reanudarHablar();
                     btn4.css('opacity', '1');
                     animacionEntrada(globo4, 'default', 1);
                     aplicacion.reproducirAudio(audio[6], cerrarGlobo1, 1000);
 
                     function cerrarGlobo1(){
+                      pararHablar();
                         animacionEntrada(cerrar4, 'deafault', 1);
                         setTimeout(()=>{
                             cerrar4.css({
