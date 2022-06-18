@@ -62,20 +62,19 @@
             
             // Cargar Audios------------------------------------------------------
             const audio = [
-                new Audio('./audios/Prosa_Integracion_15_01.mp3'),
-                new Audio('./audios/Prosa_Integracion_15_02.mp3'),
-                new Audio('./audios/Prosa_Integracion_15_03.mp3'),
-                new Audio('./audios/Prosa_Integracion_15_04.mp3'),
-                new Audio('./audios/Prosa_Integracion_15_05.mp3'),
-                new Audio('./audios/Prosa_Integracion_15_06.mp3'),
-                new Audio('./audios/Prosa_Integracion_15_07.mp3'),
-                new Audio('./audios/Prosa_Integracion_15_08.mp3'),
-                new Audio('./audios/Prosa_Integracion_15_09.mp3'),
+                new Audio('./audios/Prosa_Integracion_16_01.mp3'),
+                new Audio('./audios/Prosa_Integracion_16_02.mp3'),
+                new Audio('./audios/Prosa_Integracion_16_03.mp3'),
+                new Audio('./audios/Prosa_Integracion_16_04.mp3'),
                 new Audio('./audios/Prosa_Integracion_16_05.mp3'),
-                new Audio('./audios/Prosa_Integracion_16_16.mp3'),
-                new Audio('./audios/Prosa_Integracion_02_01.mp3'),
-                new Audio('./audios/Prosa_Integracion_02_02.mp3'),
-                new Audio('./audios/Prosa_Integracion_02_03.mp3'),
+                new Audio('./audios/Prosa_Integracion_16_06.mp3'),
+                new Audio('./audios/Prosa_Integracion_16_07.mp3'),
+                new Audio('./audios/Prosa_Integracion_16_08.mp3'),
+                new Audio('./audios/Prosa_Integracion_16_09.mp3'),
+                new Audio('./audios/Prosa_Integracion_16_10.mp3'),
+                new Audio('./audios/Prosa_Integracion_16_11.mp3'),
+                new Audio('./audios/Prosa_Integracion_16_13.mp3'),
+                new Audio('./audios/Prosa_Integracion_16_14.mp3'),
 
             ]
 
@@ -127,23 +126,31 @@
             cargando(iniciarPagina);
 
             function iniciarPagina(){
-                aplicacion.reproducirAudio(audio[0], terminaAudio, 1000);
+                aplicacion.reproducirAudio(audio[0], terminaTitulo, 1000);
                 animacionEntrada(titulo, 'izquierda-derecha', .5);
+            }
+
+            function terminaTitulo(){
+                aplicacion.reproducirAudio(audio[1], terminaAudio, 1000);
                 animacionEntrada(cuadro01, 'arriba-abajo', 1, 1);
             }
 
             function terminaAudio(){
-                aplicacion.reproducirAudio(audio[1], terminaAudio01, 1000);
+                aplicacion.reproducirAudio(audio[2], terminaAudio01, 1000);
                 animacionEntrada(cuadro02, 'arriba-abajo', 1, .5);
             }
 
             function terminaAudio01(){
-                aplicacion.reproducirAudio(audio[2], terminaAudio02, 1000);
+                aplicacion.reproducirAudio(audio[3], terminaAudio02, 1000);
                 animacionEntrada(cuadro03, 'arriba-abajo', 1, .5);
             }
 
             function terminaAudio02(){
+                aplicacion.reproducirAudio(audio[4], terminaInstrucciones, 1000);
                 animacionEntrada(instrucciones, 'default', 1, .5);
+            }
+
+            function terminaInstrucciones(){
                 parpadea(btn01);
             }
 
@@ -156,7 +163,7 @@
                     })
                 }
 
-                aplicacion.reproducirAudio(audio[3], terminaAudio01, 1000);
+                aplicacion.reproducirAudio(audio[5], terminaAudio01, 1000);
                 animacionEntrada(info01, 'default', 1, .5);
                 
                 function terminaAudio01() {
@@ -185,7 +192,7 @@
                     })
                 }
 
-                aplicacion.reproducirAudio(audio[4], terminaAudio01, 1000);
+                aplicacion.reproducirAudio(audio[6], terminaAudio01, 1000);
                 animacionEntrada(info02, 'default', 1, .5);
                 
                 function terminaAudio01() {
@@ -214,7 +221,7 @@
                     })
                 }
 
-                aplicacion.reproducirAudio(audio[5], terminaAudio01, 1000);
+                aplicacion.reproducirAudio(audio[7], terminaAudio01, 1000);
                 animacionEntrada(info03, 'default', 1, .5);
                 
                 function terminaAudio01() {
@@ -243,7 +250,7 @@
                     })
                 }
 
-                aplicacion.reproducirAudio(audio[6], terminaAudio01, 1000);
+                aplicacion.reproducirAudio(audio[8], terminaAudio01, 1000);
                 animacionEntrada(info04, 'default', 1, .5);
                 
                 function terminaAudio01() {
@@ -272,7 +279,7 @@
                     })
                 }
 
-                aplicacion.reproducirAudio(audio[7], terminaAudio01, 1000);
+                aplicacion.reproducirAudio(audio[9], terminaAudio01, 1000);
                 animacionEntrada(info05, 'default', 1, .5);
                 
                 function terminaAudio01() {
@@ -301,7 +308,7 @@
                     })
                 }
 
-                aplicacion.reproducirAudio(audio[8], terminaAudio01, 1000);
+                aplicacion.reproducirAudio(audio[10], terminaAudio01, 1000);
                 animacionEntrada(info06, 'default', 1, .5);
                 
                 function terminaAudio01() {
@@ -330,7 +337,7 @@
                     })
                 }
 
-                aplicacion.reproducirAudio(audio[9], terminaAudio01, 1000);
+                aplicacion.reproducirAudio(audio[11], terminaAudio01, 1000);
                 animacionEntrada(info07, 'default', 1, .5);
                 
                 function terminaAudio01() {
@@ -359,7 +366,7 @@
                     })
                 }
 
-                aplicacion.reproducirAudio(audio[10], terminaAudio01, 1000);
+                aplicacion.reproducirAudio(audio[12], terminaAudio01, 1000);
                 animacionEntrada(info08, 'default', 1, .5);
                 
                 function terminaAudio01() {
@@ -388,7 +395,7 @@
                     })
                 }
 
-                aplicacion.reproducirAudio(audio[11], terminaAudio01, 1000);
+                aplicacion.reproducirAudio(audio[13], terminaAudio01, 1000);
                 animacionEntrada(info09, 'default', 1, .5);
                 
                 function terminaAudio01() {
@@ -415,7 +422,7 @@
                         'opacity': '1'
                     });
                 }
-                aplicacion.reproducirAudio(audio[12], terminaAudio, 1000);
+                aplicacion.reproducirAudio(audio[14], terminaAudio, 1000);
                 animacionEntrada(info10, "default", .5, 0.3);
 
                 function terminaAudio() {
@@ -432,7 +439,7 @@
                     });
                 }
 
-                aplicacion.reproducirAudio(audio[13], terminaAudio, 1000);
+                aplicacion.reproducirAudio(audio[15], terminaAudio, 1000);
                 animacionSalida(info10, "default", .5, 0.3);
                 animacionSalida(btnAdelante, "default", .5, 0.3);
                 animacionEntrada(info10_2, "default", .5, 0.3);
@@ -467,7 +474,7 @@
                     });
                 }
 
-                aplicacion.reproducirAudio(audio[12], 1000);
+                aplicacion.reproducirAudio(audio[16], 1000);
                 animacionSalida(info10_2, "default", .5, 0.2);
                 animacionSalida(btnCerrar10, "default", .5, 0.2);
                 animacionSalida(btnAtras, "default", .5, 0.2);

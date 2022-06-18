@@ -413,15 +413,24 @@
             
             // Cargar Audios------------------------------------------------------
             const audio = [
-                new Audio('./audios/Prosa_Integracion_10_01.mp3'),
-                new Audio('./audios/Prosa_Integracion_10_02.mp3'),
-                new Audio('./audios/Prosa_Integracion_10_03.mp3'),
-                new Audio('./audios/Prosa_Integracion_10_04.mp3'),
-                new Audio('./audios/Prosa_Integracion_10_05.mp3'),
-                new Audio('./audios/Prosa_Integracion_10_06.mp3'),
-                new Audio('./audios/Prosa_Integracion_10_07.mp3'),
-                new Audio('./audios/Prosa_Integracion_10_08.mp3'),
-                new Audio('./audios/Prosa_Integracion_10_09.mp3'),
+                new Audio('./audios/Prosa_Integracion_09_01.mp3'),
+                new Audio('./audios/Prosa_Integracion_09_02.mp3'),
+                new Audio('./audios/Prosa_Integracion_09_btn01.mp3'),
+                new Audio('./audios/Prosa_Integracion_09_info01.mp3'),
+                new Audio('./audios/Prosa_Integracion_09_btn02.mp3'),
+                new Audio('./audios/Prosa_Integracion_09_info02.mp3'),
+                new Audio('./audios/Prosa_Integracion_09_btn03.mp3'),
+                new Audio('./audios/Prosa_Integracion_09_info03.mp3'),
+                new Audio('./audios/Prosa_Integracion_09_btn04.mp3'),
+                new Audio('./audios/Prosa_Integracion_09_info04.mp3'),
+                new Audio('./audios/Prosa_Integracion_09_btn05.mp3'),
+                new Audio('./audios/Prosa_Integracion_09_info05.mp3'),
+                new Audio('./audios/Prosa_Integracion_09_btn06.mp3'),
+                new Audio('./audios/Prosa_Integracion_09_info06.mp3'),
+                new Audio('./audios/Prosa_Integracion_09_instrucciones.mp3'),
+                new Audio('./audios/Prosa_Integracion_09_16.mp3'),
+                new Audio('./audios/Prosa_Integracion_09_17.mp3'),
+                new Audio('./audios/Prosa_Integracion_09_18.mp3'),
             ]
 
             //Crear Variables-----------------------------------------------------
@@ -453,15 +462,8 @@
             cargando(iniciarPagina);
 
             function iniciarPagina(){
-                aplicacion.reproducirAudio(audio[0], terminaAudio, 2000);
+                aplicacion.reproducirAudio(audio[0], terminaTitulo, 2000);
                 animacionEntrada(titulo, 'izquierda-derecha', 1, 1);
-                animacionEntrada(esquema, 'izquierda-derecha', 1, 1);
-                animacionEntrada(btn01, 'izquierda-derecha', 1, 1);
-                animacionEntrada(btn02, 'izquierda-derecha', 1, 1);
-                animacionEntrada(btn03, 'izquierda-derecha', 1, 1);
-                animacionEntrada(btn04, 'izquierda-derecha', 1, 1);
-                animacionEntrada(btn05, 'izquierda-derecha', 1, 1);
-                animacionEntrada(btn06, 'izquierda-derecha', 1, 1);
                 animacionEntrada(robot, 'izquierda-derecha', 1, .5);
                 setTimeout(() => {
                     flotar(robot, 'i');
@@ -469,9 +471,16 @@
                 }, 2000); 
             }
 
-            function terminaAudio(){
-                pausarHablar();
-                animacionEntrada(dialogo, 'izquierda-derecha', 1, 1);
+            function terminaTitulo(){
+              pausarHablar();
+              animacionEntrada(dialogo, 'izquierda-derecha', 1, 1);
+                animacionEntrada(esquema, 'izquierda-derecha', 1, 1);
+                animacionEntrada(btn01, 'izquierda-derecha', 1, 1);
+                animacionEntrada(btn02, 'izquierda-derecha', 1, 1);
+                animacionEntrada(btn03, 'izquierda-derecha', 1, 1);
+                animacionEntrada(btn04, 'izquierda-derecha', 1, 1);
+                animacionEntrada(btn05, 'izquierda-derecha', 1, 1);
+                animacionEntrada(btn06, 'izquierda-derecha', 1, 1);
 
                 setTimeout(() => {
                     aplicacion.reproducirAudio(audio[1], clickBtn01);
@@ -498,15 +507,23 @@
                     reanudarHablar();
                 }, 1500);
 
-                animacionEntrada(info01, 'default', 1, .5);
-
                 function terminaAudioBtn01() {
-                    animacionSalida(info01, 'default', .5);
-                    pausarHablar();
-                    parpadea(btn02);
+                  pausarHablar();
+                  animacionEntrada(info01, 'default', 1, .5);
+                  setTimeout(() => {
+                    aplicacion.reproducirAudio(audio[3], terminaAudioInfo01);
+                    reanudarHablar();
+                  }, 1500);
+
+                }
+
+                function terminaAudioInfo01 (){
+                  animacionSalida(info01, 'default', .5);
+                  pausarHablar();
+                  parpadea(btn02);
                 }
             });
-
+            
             btn02.click(function () {
                 if (btn02.css('cursor') == 'pointer') {
                     TweenMax.killTweensOf(btn02);
@@ -516,15 +533,24 @@
                     });
                 }
                 setTimeout(() => {
-                    aplicacion.reproducirAudio(audio[3], terminaAudioBtn02);
+                    aplicacion.reproducirAudio(audio[4], terminaAudioBtn02);
                     reanudarHablar();
                 }, 1500);
-                animacionEntrada(info02, 'default', 1, .5);
 
                 function terminaAudioBtn02() {
-                    animacionSalida(info02, 'default', .5);
-                    pausarHablar();
-                    parpadea(btn03);
+                  pausarHablar();
+                  animacionEntrada(info02, 'default', 1, .5);
+                  setTimeout(() => {
+                    aplicacion.reproducirAudio(audio[5], terminaAudioInfo02);
+                    reanudarHablar();
+                  }, 1500);
+
+                }
+
+                function terminaAudioInfo02 (){
+                  animacionSalida(info02, 'default', .5);
+                  pausarHablar();
+                  parpadea(btn03);
                 }
             });
 
@@ -537,15 +563,24 @@
                     });
                 }
                 setTimeout(() => {
-                    aplicacion.reproducirAudio(audio[4], terminaAudioBtn03);
+                    aplicacion.reproducirAudio(audio[6], terminaAudioBtn03);
                     reanudarHablar();
                 }, 1500);
-                animacionEntrada(info03, 'default', 1, .5);
 
                 function terminaAudioBtn03() {
-                    animacionSalida(info03, 'default', .5);
-                    pausarHablar();
-                    parpadea(btn04);
+                  pausarHablar();
+                  animacionEntrada(info03, 'default', 1, .5);
+                  setTimeout(() => {
+                    aplicacion.reproducirAudio(audio[7], terminaAudioInfo03);
+                    reanudarHablar();
+                  }, 1500);
+
+                }
+
+                function terminaAudioInfo03 (){
+                  animacionSalida(info03, 'default', .5);
+                  pausarHablar();
+                  parpadea(btn04);
                 }
             });
 
@@ -558,15 +593,24 @@
                     });
                 }
                 setTimeout(() => {
-                    aplicacion.reproducirAudio(audio[5], terminaAudioBtn04);
+                    aplicacion.reproducirAudio(audio[8], terminaAudioBtn04);
                     reanudarHablar();
                 }, 1500);
-                animacionEntrada(info04, 'default', 1, .5);
 
                 function terminaAudioBtn04() {
-                    animacionSalida(info04, 'default', .5);
-                    pausarHablar();
-                    parpadea(btn05);
+                  pausarHablar();
+                  animacionEntrada(info04, 'default', 1, .5);
+                  setTimeout(() => {
+                    aplicacion.reproducirAudio(audio[9], terminaAudioInfo04);
+                    reanudarHablar();
+                  }, 1500);
+
+                }
+
+                function terminaAudioInfo04 (){
+                  animacionSalida(info04, 'default', .5);
+                  pausarHablar();
+                  parpadea(btn05);
                 }
             });
 
@@ -579,15 +623,24 @@
                     });
                 }
                 setTimeout(() => {
-                    aplicacion.reproducirAudio(audio[6], terminaAudioBtn05);
+                    aplicacion.reproducirAudio(audio[10], terminaAudioBtn05);
                     reanudarHablar();
                 }, 1500);
-                animacionEntrada(info05, 'default', 1, .5);
 
                 function terminaAudioBtn05() {
-                    animacionSalida(info05, 'default', .5);
-                    pausarHablar();
-                    parpadea(btn06);
+                  pausarHablar();
+                  animacionEntrada(info05, 'default', 1, .5);
+                  setTimeout(() => {
+                    aplicacion.reproducirAudio(audio[11], terminaAudioInfo05);
+                    reanudarHablar();
+                  }, 1500);
+
+                }
+
+                function terminaAudioInfo05 (){
+                  animacionSalida(info05, 'default', .5);
+                  pausarHablar();
+                  parpadea(btn06);
                 }
             });
 
@@ -600,19 +653,33 @@
                     });
                 }
                 setTimeout(() => {
-                    aplicacion.reproducirAudio(audio[7], terminaAudioBtn06);
+                    aplicacion.reproducirAudio(audio[12], terminaAudioBtn06);
                     reanudarHablar();
                 }, 1500);
-                animacionEntrada(info06, 'default', 1, .5);
 
                 function terminaAudioBtn06() {
-                    animacionSalida(info06, 'default', .5);
-                    animacionEntrada(pulsa, 'default', 1, 1);
-                    pararHablar();
+                  pausarHablar();
+                  animacionEntrada(info06, 'default', 1, .5);
+                  setTimeout(() => {
+                    aplicacion.reproducirAudio(audio[13], terminaAudioInfo06);
+                    reanudarHablar();
+                  }, 1500);
+
+                }
+
+                function terminaAudioInfo06 (){
+                  animacionSalida(info06, 'default', .5);
+                  pausarHablar();
+                  parpadea(pulsa);
+                  setTimeout(() => {
+                    aplicacion.reproducirAudio(audio[14], instrucciones);
+                    reanudarHablar();
+                  }, 1500);
                 }
             });
 
-            pulsa.click(function () {
+            function instrucciones (){
+              pulsa.click(function () {
                 if (pulsa.css('cursor') == 'pointer') {
                     TweenMax.killTweensOf(pulsa);
                     pulsa.css({
@@ -620,8 +687,15 @@
                         'cursor': 'default'
                     });
                 }
-                aplicacion.reproducirAudio(audio[8], terminaAudio, 1000);
+                aplicacion.reproducirAudio(audio[15], terminaAudio1, 1000);
                 animacionEntrada(pop, 'default', 1, 1);
+
+                function terminaAudio1(){
+                  aplicacion.reproducirAudio(audio[17], terminaAudio1, 1000);
+                }
+                function terminaAudio1(){
+                  aplicacion.reproducirAudio(audio[16], terminaAudio, 1000);
+                }
 
                 function terminaAudio() {
                     parpadea(cerrar);
@@ -639,6 +713,8 @@
                     });
                 }
             });
+
+            }
         });
     </script>
 
