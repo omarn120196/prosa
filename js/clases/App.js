@@ -166,6 +166,7 @@ export class App{
 
     detenerAudios(){
         this.audio.pause();
+        this.audio.currentTime = 0;
     }
 
     //Guardar Calificacion-------------------------------------------------------
