@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 36 | I4L</title>
+</head>
+<body>
+    <img class="elementos" id="titulo" src="./img/pagina36/titulo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="dialogo" src="./img/pagina36/dialogo.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="circulo01" src="./img/pagina36/circulo01.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="circulo02" src="./img/pagina36/circulo02.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="circulo03" src="./img/pagina36/circulo03.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="circulo04" src="./img/pagina36/circulo04.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="circulo05" src="./img/pagina36/circulo05.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="circulo06" src="./img/pagina36/circulo06.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="info01" src="./img/pagina36/info01.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info02" src="./img/pagina36/info02.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info03" src="./img/pagina36/info03.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info04" src="./img/pagina36/info04.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info05" src="./img/pagina36/info05.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info06" src="./img/pagina36/info06.png" data-posX="0" data-posY="0" alt="">
+
+
+
+
+    <!-- Script de la página -->
+    <script type="module">
+        import {aplicacion} from './js/app.js';
+        import {animacionEntrada} from './js/animaciones.js';
+        import {cargando} from './js/funciones.js';
+
+        jQuery(function($){
+            
+            // Cargar Audios------------------------------------------------------
+            const audio = [
+                new Audio('./audios/Prosa_Integracion_36_01.mp3'),
+                new Audio('./audios/Prosa_Integracion_36_02.mp3'),
+                new Audio('./audios/Prosa_Integracion_36_03.mp3'),
+
+            ]
+
+            //Crear Variables-----------------------------------------------------
+            const titulo = $('#titulo');
+            const dialogo = $('#dialogo');
+
+            const circulo01 = $('#circulo01');
+            const circulo02 = $('#circulo02');
+            const circulo03 = $('#circulo03');
+            const circulo04 = $('#circulo04');
+            const circulo05 = $('#circulo05');
+            const circulo06 = $('#circulo06');
+
+            const info01 = $('#info01');
+            const info02 = $('#info02');
+            const info03 = $('#info03');
+            const info04 = $('#info04');
+            const info05 = $('#info05');
+            const info06 = $('#info06');
+
+            //Iniciar contenido de la página--------------------------------------
+            
+            cargando(iniciarPagina);
+
+            function iniciarPagina(){
+                aplicacion.reproducirAudio(audio[0], terminaAudio, 1000);
+                animacionEntrada(titulo, 'izquierda-derecha', 1, .5);
+            }
+
+            function terminaAudio(){
+                aplicacion.reproducirAudio(audio[1], terminaAudio1, 1000);
+                animacionEntrada(dialogo, 'izquierda-derecha', 1, .5);
+            }
+
+            function terminaAudio1(){
+                aplicacion.reproducirAudio(audio[2], terminaPagina, 1000);
+                animacionEntrada(circulo01, 'arriba-abajo', 1, .5);
+                animacionEntrada(info01, 'arriba-abajo', 1, .7);
+
+                animacionEntrada(circulo02, 'arriba-abajo', 1, 4);
+                animacionEntrada(info02, 'arriba-abajo', 1, 4.2);
+
+                animacionEntrada(circulo03, 'arriba-abajo', 1, 9);
+                animacionEntrada(info03, 'arriba-abajo', 1, 9.2);
+
+                animacionEntrada(circulo04, 'arriba-abajo', 1, 10.5);
+                animacionEntrada(info04, 'arriba-abajo', 1, 10.7);
+
+                animacionEntrada(circulo05, 'arriba-abajo', 1, 15);
+                animacionEntrada(info05, 'arriba-abajo', 1, 15.2);
+
+                animacionEntrada(circulo06, 'arriba-abajo', 1, 26);
+                animacionEntrada(info06, 'arriba-abajo', 1, 26.2);
+            }
+
+            
+
+            function terminaPagina(){
+                aplicacion.terminaPantalla();
+            }
+        });
+    </script>
+
+    <!-- Termina Script -->
+</body>
+</html>

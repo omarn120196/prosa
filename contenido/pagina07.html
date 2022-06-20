@@ -395,12 +395,12 @@
     <div class="elementos drop" id="drop6" data-id="6" data-posX="600" data-posY="420" style="width:15px;  height:38px;"></div>
     <div class="elementos drop" id="drop5" data-id="5" data-posX="600" data-posY="500" style="width:15px;  height:38px;"></div>
 
-    <img class="elementos drag" id="drag1" data-id="1" src="./img/pagina07/cuadro01.png" data-posX="300" data-posY="96.455" alt="">
-    <img class="elementos drag" id="drag2" data-id="2" src="./img/pagina07/cuadro02.png" data-posX="300" data-posY="175.32" alt="">
-    <img class="elementos drag" id="drag3" data-id="3" src="./img/pagina07/cuadro03.png" data-posX="300" data-posY="254.184" alt="">
-    <img class="elementos drag" id="drag4" data-id="4" src="./img/pagina07/cuadro04.png" data-posX="300" data-posY="333.049" alt="">
-    <img class="elementos drag" id="drag5" data-id="5" src="./img/pagina07/cuadro05.png" data-posX="300" data-posY="400" alt="">
-    <img class="elementos drag" id="drag6" data-id="6" src="./img/pagina07/cuadro06.png" data-posX="300" data-posY="490.777" alt="">
+    <img class="elementos drag" id="drag1" data-id="1" src="./img/pagina07/cuadro01.png" data-posX="100" data-posY="96.455" alt="">
+    <img class="elementos drag" id="drag2" data-id="2" src="./img/pagina07/cuadro02.png" data-posX="100" data-posY="175.32" alt="">
+    <img class="elementos drag" id="drag3" data-id="3" src="./img/pagina07/cuadro03.png" data-posX="100" data-posY="254.184" alt="">
+    <img class="elementos drag" id="drag4" data-id="4" src="./img/pagina07/cuadro04.png" data-posX="100" data-posY="333.049" alt="">
+    <img class="elementos drag" id="drag5" data-id="5" src="./img/pagina07/cuadro05.png" data-posX="100" data-posY="400" alt="">
+    <img class="elementos drag" id="drag6" data-id="6" src="./img/pagina07/cuadro06.png" data-posX="100" data-posY="490.777" alt="">
 
     <img class="elementos" id="dialogo" src="./img/pagina07/dialogo01.png" data-posX="0" data-posY="0" alt="">
       
@@ -416,7 +416,8 @@
 
             // Cargar Audios------------------------------------------------------
             const audio = [
-                new Audio('./audios/Prosa_Integracion_04_01.mp3'),
+                new Audio('./audios/Prosa_Integracion_07_01.mp3'),
+                new Audio('./audios/Prosa_Integracion_07_02.mp3'),
             ]
 
             //Crear Variables-----------------------------------------------------
@@ -453,29 +454,8 @@
             cargando(iniciarPagina);
 
             function iniciarPagina() {
-                aplicacion.reproducirAudio(audio[0], ejercicioPag07, 2000);
+                aplicacion.reproducirAudio(audio[0], terminaAudio, 2000);
                 animacionEntrada(titulo, 'izquierda-derecha', 1, 1);
-                animacionEntrada(dialogo, 'izquierda-derecha', 1, 1);
-                animacionEntrada(drag1, 'arriba-abajo', 1, 1.5);
-                animacionEntrada(drag2, 'arriba-abajo', 1, 2);
-                animacionEntrada(drag3, 'arriba-abajo', 1, 2.5);
-                animacionEntrada(drag4, 'arriba-abajo', 1, 3);
-                animacionEntrada(drag5, 'arriba-abajo', 1, 3.5);
-                animacionEntrada(drag6, 'arriba-abajo', 1, 4);
-
-                animacionEntrada(info01, 'arriba-abajo', 1, 1.5);
-                animacionEntrada(info02, 'arriba-abajo', 1, 2);
-                animacionEntrada(info03, 'arriba-abajo', 1, 2.5);
-                animacionEntrada(info04, 'arriba-abajo', 1, 3);
-                animacionEntrada(info05, 'arriba-abajo', 1, 3.5);
-                animacionEntrada(info06, 'arriba-abajo', 1, 4);
-
-                animacionEntrada(drop1, 'default', 1, 1);
-                animacionEntrada(drop2, 'default', 1, 1);
-                animacionEntrada(drop3, 'default', 1, 1);
-                animacionEntrada(drop4, 'default', 1, 1);
-                animacionEntrada(drop5, 'default', 1, 1);
-                animacionEntrada(drop6, 'default', 1, 1);
 
                 animacionEntrada(robot, 'arriba-abajo', 1, 1);
                 setTimeout(() => {
@@ -485,9 +465,43 @@
 
             }
 
+            function terminaAudio(){
+              pausarHablar();
+
+                animacionEntrada(dialogo, 'izquierda-derecha', 1, 1);
+
+                setTimeout(() => {
+                    aplicacion.reproducirAudio(audio[1], ejercicioPag07);
+                    reanudarHablar();
+                }, 1500);
+            }
+
             function ejercicioPag07() {
                 pararHablar();
                 animacionSalida(dialogo, 'default', .5);
+                animacionSalida(robot, 'default', .5);
+
+                animacionEntrada(drag1, 'arriba-abajo', 1, 1);
+                animacionEntrada(drag2, 'arriba-abajo', 1, 1.5);
+                animacionEntrada(drag3, 'arriba-abajo', 1, 2);
+                animacionEntrada(drag4, 'arriba-abajo', 1, 2.5);
+                animacionEntrada(drag5, 'arriba-abajo', 1, 3);
+                animacionEntrada(drag6, 'arriba-abajo', 1, 3.5);
+
+                animacionEntrada(info01, 'arriba-abajo', 1, 1);
+                animacionEntrada(info02, 'arriba-abajo', 1, 1.5);
+                animacionEntrada(info03, 'arriba-abajo', 1, 2);
+                animacionEntrada(info04, 'arriba-abajo', 1, 2.5);
+                animacionEntrada(info05, 'arriba-abajo', 1, 3);
+                animacionEntrada(info06, 'arriba-abajo', 1, 3.5);
+
+                animacionEntrada(drop1, 'default', 1, 1);
+                animacionEntrada(drop2, 'default', 1, 1);
+                animacionEntrada(drop3, 'default', 1, 1);
+                animacionEntrada(drop4, 'default', 1, 1);
+                animacionEntrada(drop5, 'default', 1, 1);
+                animacionEntrada(drop6, 'default', 1, 1);
+
                 relacionar();
             }
 

@@ -393,12 +393,13 @@
     <img class="elementos" id="dialogo04" src="./img/pagina04/dialogo04.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="dialogo05" src="./img/pagina04/dialogo05.png" data-posX="0" data-posY="0" alt="">
 
-    <div class="elementos" id="drop" data-id="1" data-posX="400" data-posY="450" style="width:170px; height:80px;"></div>
+    <div class="elementos" id="drop" data-id="1" data-posX="400" data-posY="430" style="width:190px; height:100px;"></div>
     <div class="elementos" id="tarjeta" data-id="1" data-posX="17" data-posY="236.257">
         <img src="./img/pagina04/tarjeta.png" alt="">
     </div>
 
     <img class="elementos" id="paloma" src="./img/pagina04/paloma.png" data-posX="450" data-posY="356" alt="">
+
 
     <!-- Script de la página -->
     <script type="module">
@@ -412,10 +413,11 @@
             // Cargar Audios------------------------------------------------------
             const audio = [
                 new Audio('./audios/Prosa_Integracion_04_01.mp3'),
-                new Audio('./audios/Prosa_Integracion_07_01.mp3'),
-                new Audio('./audios/Prosa_Integracion_07_02.mp3'),
-                new Audio('./audios/Prosa_Integracion_07_03.mp3'),
-                new Audio('./audios/Prosa_Integracion_07_04.mp3'),
+                new Audio('./audios/Prosa_Integracion_04_02.mp3'),
+                new Audio('./audios/Prosa_Integracion_04_03.mp3'),
+                new Audio('./audios/Prosa_Integracion_04_04.mp3'),
+                new Audio('./audios/Prosa_Integracion_04_05.mp3'),
+                new Audio('./audios/s_bien.mp3'),
             ]
 
             //Crear Variables-----------------------------------------------------
@@ -547,9 +549,13 @@
                         });
 
                         animacionSalida(tarjeta, 'default', .5);
-                        animacionEntrada(paloma, 'arriba-abajo', 1, 1);
-                        aplicacion.terminaPantalla();
+                        animacionEntrada(paloma, 'arriba-abajo', 1, .5);
+                        aplicacion.reproducirAudio(audio[5], terminaPagina);
                     }
+                }
+
+                function terminaPagina(){
+                  aplicacion.terminaPantalla();
                 }
             }
         });
