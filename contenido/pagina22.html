@@ -404,9 +404,10 @@
             const audio = [
                 new Audio('./audios/Prosa_Integracion_22_01.mp3'),
                 new Audio('./audios/Prosa_Integracion_22_02.mp3'),
+                new Audio('./audios/Prosa_Integracion_22_03.mp3'),
                 new Audio('./audios/Prosa_Integracion_22_04.mp3'),
-                new Audio('./audios/Prosa_Integracion_01_01.mp3'),
-                new Audio('./audios/Prosa_Integracion_02_01.mp3'),
+                new Audio('./audios/Prosa_Integracion_22_05.mp3'),
+
             ]
 
             //Crear Variables-----------------------------------------------------
@@ -470,15 +471,14 @@
 
             function checa() {
                 if (i == 3) {
-                    btnSiguiente.hide();
-
+                  animacionSalida(btnSiguiente, "default", 0);
                 }
                 if (i == 1) {
-                    btnRegresar.hide();
-                    setTimeout(() => {
-                        aplicacion.reproducirAudio(audio[2], siguiente);
-                        reanudarHablar();
-                    }, 1500);
+                  animacionSalida(btnRegresar, "default", 0);
+                  setTimeout(() => {
+                      aplicacion.reproducirAudio(audio[2], 1000);
+                      reanudarHablar();
+                  }, 1500);
 
                 }
             }
@@ -492,32 +492,33 @@
                 }
                 salen();
                 i += 1;
-                animacionEntrada($("#info" + i), 'derecha-izquierda', .5, 0.3);
+                animacionEntrada($("#info" + i), 'derecha-izquierda', 1, 1.5);
 
                 if (i == 2) {
                     pausarHablar();
-                    animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', .5, 3, atras);
-
                     setTimeout(() => {
                         aplicacion.reproducirAudio(audio[3], siguiente);
                         reanudarHablar();
                     }, 1500);
-
+                    
+                    animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, 1.5, atras);
                 }
                 if (i == 3) {
                     pausarHablar();
-                    animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', .5, 3, atras);
-
                     setTimeout(() => {
                         aplicacion.reproducirAudio(audio[4], terminaPantalla);
                         reanudarHablar();
                     }, 1500);
+
+                    animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, 1.5);
+
                 }
                 checa();
 
             });
 
             function terminaPantalla() {
+                pararHablar();
                 aplicacion.terminaPantalla();
             }
 
@@ -530,38 +531,46 @@
                 }
                 i -= 1;
                 salen();
-                animacionEntrada($("#info" + i), 'izquierda-derecha', .5, 0.3)
+                animacionEntrada($("#info" + i), 'derecha-izquierda', 1, 1.5)
                 if (i == 2) {
                     pausarHablar();
-                    animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', .5, 3, atras);
-
                     setTimeout(() => {
                         aplicacion.reproducirAudio(audio[3], siguiente);
                         reanudarHablar();
                     }, 1500);
+
+                    animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, 1.5, atras);
                 }
                 if (i == 3) {
                     pausarHablar();
-                    animacionEntrada($("#info" + i), 'izquierda-derecha', .5, 0.3);
-                    
                     setTimeout(() => {
                         aplicacion.reproducirAudio(audio[4], atras);
                         reanudarHablar();
                     }, 1500);
+                    animacionEntrada($("#info" + i), 'derecha-izquierda', 1, 1.5);
+                    
+                    
                 }
                 checa();
 
             });
 
             function siguiente() {
-                parpadea(btnSiguiente);
+              parpadea(btnSiguiente);
+              btnRegresar.css({
+                'display': 'block',
+                'opacity': '1'
+              });
             }
 
             function atras() {
-                btnRegresar.css({
-                    'cursor': 'pointer',
-                    'opacity': 1,
-                });
+              btnRegresar.css({
+                'display': 'block',
+                'opacity': '1'
+              });
+              btnRegresar.css({
+                'cursor': 'pointer',
+              });
 
             }
         });
