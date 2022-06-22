@@ -12,8 +12,8 @@
     <img class="elementos" id="btnCajero" src="./img/pagina37/btnCajero.png" data-posX="250" data-posY="150" alt="">
     <img class="elementos" id="btnTerminal" src="./img/pagina37/btnTerminal.png" data-posX="500" data-posY="150" alt="">
 
-    <img class="elementos" id="infoCajero" src="./img/pagina37/infoCajero.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos" id="infoTerminal" src="./img/pagina37/infoTerminal.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="infoCajero" src="./img/pagina37/infoCajero.png" data-posX="30" data-posY="100" alt="">
+    <img class="elementos" id="infoTerminal" src="./img/pagina37/infoTerminal.png" data-posX="670" data-posY="100" alt="">
 
 
     <!-- Script de la página -->
@@ -70,7 +70,16 @@
                 animacionEntrada(infoCajero, 'default', 1, 1);
 
                 function terminaAudio01() {
-                    animacionSalida(infoCajero, 'default', 1, .5);
+                    infoCajero.click(function () {
+                        if (infoCajero.css('cursor') == 'pointer') {
+                            TweenMax.killTweensOf(infoCajero);
+                            infoCajero.css({
+                                'opacity': '1',
+                                'cursor': 'default'
+                            })
+                        }
+                        animacionSalida(infoCajero, 'default', 1, .2);
+                    });
                     parpadea(btnTerminal)
                 }
             });
@@ -89,7 +98,16 @@
                 animacionEntrada(infoTerminal, 'default', 1, 1);
 
                 function terminaAudio02() {
-                    animacionSalida(infoTerminal, 'default', 1, .5, terminaPantalla);
+                    infoTerminal.click(function () {
+                        if (infoTerminal.css('cursor') == 'pointer') {
+                            TweenMax.killTweensOf(infoTerminal);
+                            infoTerminal.css({
+                                'opacity': '1',
+                                'cursor': 'default'
+                            })
+                        }
+                        animacionSalida(infoTerminal, 'default', 1, .2);
+                    });
                 }
             });
 

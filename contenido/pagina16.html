@@ -75,6 +75,7 @@
                 new Audio('./audios/Prosa_Integracion_16_11.mp3'),
                 new Audio('./audios/Prosa_Integracion_16_13.mp3'),
                 new Audio('./audios/Prosa_Integracion_16_14.mp3'),
+                new Audio('./audios/Prosa_Integracion_16_16.mp3'),
 
             ]
 
@@ -148,6 +149,16 @@
             function terminaAudio02(){
                 aplicacion.reproducirAudio(audio[4], terminaInstrucciones, 1000);
                 animacionEntrada(instrucciones, 'default', 1, .5);
+                animacionEntrada(btn01, 'default', 1, .5);
+                animacionEntrada(btn02, 'default', 1, .5);
+                animacionEntrada(btn03, 'default', 1, .5);
+                animacionEntrada(btn04, 'default', 1, .5);
+                animacionEntrada(btn05, 'default', 1, .5);
+                animacionEntrada(btn06, 'default', 1, .5);
+                animacionEntrada(btn07, 'default', 1, .5);
+                animacionEntrada(btn08, 'default', 1, .5);
+                animacionEntrada(btn09, 'default', 1, .5);
+                animacionEntrada(btn10, 'default', 1, .5);
             }
 
             function terminaInstrucciones(){
@@ -337,7 +348,7 @@
                     })
                 }
 
-                aplicacion.reproducirAudio(audio[11], terminaAudio01, 1000);
+                aplicacion.reproducirAudio(audio[13], terminaAudio01, 1000);
                 animacionEntrada(info07, 'default', 1, .5);
                 
                 function terminaAudio01() {
@@ -366,7 +377,7 @@
                     })
                 }
 
-                aplicacion.reproducirAudio(audio[12], terminaAudio01, 1000);
+                aplicacion.reproducirAudio(audio[11], terminaAudio01, 1000);
                 animacionEntrada(info08, 'default', 1, .5);
                 
                 function terminaAudio01() {
@@ -395,7 +406,7 @@
                     })
                 }
 
-                aplicacion.reproducirAudio(audio[13], terminaAudio01, 1000);
+                aplicacion.reproducirAudio(audio[12], terminaAudio01, 1000);
                 animacionEntrada(info09, 'default', 1, .5);
                 
                 function terminaAudio01() {

@@ -384,8 +384,8 @@
   <img class="elementos" id="btnPlay" src="./img/pagina34/btnPlay.png" data-posX="710" data-posY="217" alt="">
 
   <img class="elementos" id="fondoNegro" src="./img/pagina34/fondoNegro.png" data-posX="0" data-posY="0" alt="">
-  <video class="elementos" id="video03" data-posX="0" data-posY="100" style="width:1024px;height:450px;" autobuffer controls controlsList="nodownload">
-    <source src="videos/Video3.mp4" type="video/mp4" />
+  <video class="elementos" id="video02" data-posX="0" data-posY="100" style="width:1024px;height:450px;" autobuffer controls controlsList="nodownload">
+    <source src="videos/Video2.mp4" type="video/mp4" />
   </video>
 
     <!-- Script de la página -->
@@ -410,7 +410,7 @@
             const btnPlay = $('#btnPlay');
             const robot = $('#robot34');
             const fondoNegro = $('#fondoNegro');
-            const video = $('#video03');
+            const video = $('#video02');
 
 
             //Iniciar contenido de la página--------------------------------------
@@ -467,7 +467,7 @@
                   'display': 'block'
               });
 
-              document.getElementById("video03").play();
+              document.getElementById("video02").play();
               video.on("ended", function() {
                 aplicacion.terminaPantalla();
               });

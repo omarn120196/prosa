@@ -513,6 +513,7 @@
 
             function ejercicioPag04() {
                 pararHablar();
+                parpadea(tarjeta);
                 pasarTarjeta();
             }
 
@@ -555,7 +556,7 @@
                 }
 
                 function terminaPagina(){
-                  aplicacion.terminaPantalla();
+                  aplicacion.nextPag();
                 }
             }
         });
