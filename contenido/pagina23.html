@@ -434,11 +434,15 @@
             function esquemaSig(){
                 pausarHablar();
                 setTimeout(()=>{
-                    aplicacion.reproducirAudio(audio[2], aplicacion.terminaPantalla, 0);
+                    aplicacion.reproducirAudio(audio[2], terminaPagina, 0);
                     animacionEntrada(esquema2, 'default', 1, 1);
                     animacionEntrada(esquema3, 'default', 1, 17);
                     reanudarHablar();
                 }, 1000);
+            }
+
+            function terminaPagina(){
+              aplicacion.terminaPantalla();
             }
         });
     </script>
