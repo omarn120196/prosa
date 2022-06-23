@@ -505,7 +505,7 @@
                 btn1.click(function() {
                 if ($(this).css('cursor') == 'pointer'){
                   TweenMax.killTweensOf($(this));
-                   $(this).hide();
+                   btn2.hide();
                   $(this).css({
                       'cursor': 'default',
                       'opacity': '1'
@@ -615,7 +615,7 @@
                 btn2.click(function() {
                 if ($(this).css('cursor') == 'pointer'){
                   TweenMax.killTweensOf($(this));
-                   $(this).hide();
+                  btn1.hide();
                   $(this).css({
                       'cursor': 'default',
                       'opacity': '1'
@@ -651,7 +651,8 @@
                         //salen();
                          // parpadea($("#tip"), .5);           
                         //animacionEntrada($("#imagen3"), "izq_der", 0.7, 0); 
-                        aplicacion.terminaPantalla()
+                        aplicacion.terminaPantalla();
+                        //btn1.show();
                         //volverAbrir();
 
                   }
