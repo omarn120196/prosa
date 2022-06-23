@@ -217,6 +217,8 @@ button img{
 
 .cont-temas{
     padding: 20px 10px;
+    height: 570px;
+    overflow-y: scroll;
 }
 
 .temas{
@@ -263,6 +265,7 @@ button img{
     border-bottom-right-radius: 10px;
     box-shadow: 2px 1px 5px 0px rgba(0,0,0,0.75);
     cursor: pointer;
+    z-index: 100;
 }
 
 .cerrar i{

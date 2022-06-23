@@ -379,7 +379,7 @@
         </g>
     </svg>            
     <img class="elementos" id="d1" src="./img/pagina20/d1.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos" id="oreja" src="./img/pagina20/oreja.png" data-posX="142" data-posY="170" alt="">
+    <img class="elementos" id="oreja" src="./img/pagina20/oreja.png" data-posX="142" data-posY="173" alt="">
     
     <!-- Parte 2 -->
     <svg class="elementos" id="robot20_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="620" viewBox="0 0 1024 620">
@@ -814,9 +814,10 @@
             function orejaEntrada(){
                 pararHablar();
                 detenerRobot();
-                animacionEntrada(oreja, 'default', 1);
+                parpadea(oreja);
                 oreja.css('cursor', 'pointer');
                 oreja.click(function(){
+                    TweenMax.killTweensOf(oreja);
                     animacionSalida(robot1, 'default', 1);
                     animacionSalida(d1, 'default', 1);
                     animacionSalida(oreja, 'default', 1);
