@@ -196,5 +196,10 @@ export class App{
     //Metodo para aumentar intentos de evaluación--------------------------------
     siguienteIntento(){
         this.intento++;
-    }    
+    }
+    
+    //Metodo para reiniciar intentos
+    reiniciarIntentos(){
+        this.intento = 1;
+    }
 }
