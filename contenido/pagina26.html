@@ -62,7 +62,7 @@
     <!-- <img class="elementos" id="dialogo" src="./img/pagina26/dialogo01.png" data-posX="0" data-posY="0" alt=""> -->
       <style>
     .boton {
-        background-color: rgba(167, 255, 108, .5);
+        background-color: rgba(167, 255, 108, 0);
     }
 
     </style>
@@ -133,7 +133,8 @@
 
             var bloque1 = false;
             var bloque2 = false;
-
+            var contador1= 0;
+            var contador2= 0;
 
 
             //Iniciar contenido de la página--------------------------------------
@@ -218,7 +219,17 @@
                 });
 
                 function verificar() {
-                  parpadea(botonValidar);  
+                  contador1++;
+                  contador2++;
+                   if (contador1 >= 6) {
+                       parpadea(botonValidar);
+                       
+                    }
+                    // if (contador2 >= 11) {
+                    //    parpadea(botonValidar);
+                       
+                    // }
+                  //parpadea(botonValidar);  
                   if (dragSelect === dropCorrespondiente) {
                     let dragActivo = $(`#drag${dragSelect}`);
                     let dropActivo = $(`#drop${dropCorrespondiente}`);
@@ -230,15 +241,10 @@
                     dragActivo.css({
                       cursor: 'default'
                     });
-
+                    
                     aciertos++;
                      console.log("tengo: " + aciertos+ "aciertos");
-                    if (aciertos >= 6) {
-                       parpadea(botonValidar);
-                       
-                    }else{                               
-                         parpadea(botonValidar);   
-                    }
+                   
                    
                   }
                 }
@@ -306,6 +312,7 @@
                               'cursor': 'default',
                               'opacity': '1'
                           });
+                          contador1=0;
                           bloque1=true;                         
                           document.getElementById('avanzar').src = "./img/pagina26/botonVerificar.png";
 
@@ -330,6 +337,7 @@
 
             function preguntasbloque2(){
                
+                animacionEntrada(info05, 'arriba-abajo', 1, 1);
                 animacionEntrada(drag7, 'arriba-abajo', 1, 1);
                 animacionEntrada(drag8, 'arriba-abajo', 1, 1.5);
                 animacionEntrada(drag9, 'arriba-abajo', 1, 2);
