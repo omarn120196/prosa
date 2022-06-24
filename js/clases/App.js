@@ -92,10 +92,15 @@ export class App{
         if(this.noPagina > 0){
             this.noPagina--;
 
+            this.bloquearNavegacion();
             asignarLocacion(this.noPagina);
             this.detenerAudios();
             actualizarPorcentaje(this.noPagina, this.totalPaginas);
             cargarPagina(this.noPagina, this.paginasActivas);
+
+            setTimeout(()=>{
+                this.activarNavegacion();
+            }, 4000);
         }
         else{
             console.log('Estas en la primer página');
@@ -140,9 +145,10 @@ export class App{
             this.audio.muted = false;
         }
 
+        
         setTimeout(()=>{
             this.audio.play();
-          
+            
             this.audio.addEventListener("ended", () => {
                 funcion();
             });
