@@ -390,6 +390,7 @@
     <img class="elementos" id="info3" src="./img/pagina40/info03.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="info4" src="./img/pagina40/info04.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="info5" src="./img/pagina40/info05.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info6" src="./img/pagina40/info06.png" data-posX="0" data-posY="0" alt="">
 
     <img class="elementos" id="btnSiguiente" src="./img/pagina40/btnSiguiente.png" data-posX="980" data-posY="150" alt="">
     <img class="elementos" id="btnAtras" src="./img/pagina40/btnAtras.png" data-posX="980" data-posY="200" alt="">
@@ -433,6 +434,7 @@
             const info3 = $('#info3');
             const info4 = $('#info4');
             const info5 = $('#info5');
+            const info6 = $('#info6');
             const btnSiguiente = $('#btnSiguiente');
             const btnAtras = $('#btnAtras');
 
@@ -501,10 +503,11 @@
                 animacionSalida("#info3", "default", 0);
                 animacionSalida("#info4", "default", 0);
                 animacionSalida("#info5", "default", 0);
+                animacionSalida("#info6", "default", 0);
             }
 
             function checa() {
-                if (i == 5) {
+                if (i == 6) {
                   animacionSalida(btnSiguiente, "default", 0);
                 }
                 if (i == 1) {
@@ -527,6 +530,8 @@
 
                 if (i == 2) {
                     pausarHablar();
+                    animacionSalida(btnSiguiente, "default", 0);
+
                     setTimeout(() => {
                         aplicacion.reproducirAudio(audio[5], siguiente);
                         reanudarHablar();
@@ -536,6 +541,8 @@
                 }
                 if (i == 3) {
                     pausarHablar();
+                    animacionSalida(btnSiguiente, "default", 0);
+
                     setTimeout(() => {
                         aplicacion.reproducirAudio(audio[6], siguiente);
                         reanudarHablar();
@@ -545,6 +552,8 @@
                 }
                 if (i == 4) {
                     pausarHablar();
+                    animacionSalida(btnSiguiente, "default", 0);
+
                     setTimeout(() => {
                         aplicacion.reproducirAudio(audio[7], siguiente);
                         reanudarHablar();
@@ -554,8 +563,20 @@
                 }
                 if (i == 5) {
                     pausarHablar();
+                    animacionSalida(btnSiguiente, "default", 0);
+                    
                     setTimeout(() => {
-                        aplicacion.reproducirAudio(audio[8], terminaPantalla);
+                        aplicacion.reproducirAudio(audio[8], siguiente);
+                        reanudarHablar();
+                    }, 1500);
+                    
+                    animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, 1.5, atras);
+                }
+
+                if (i == 6) {
+                    pausarHablar();
+                    setTimeout(() => {
+                        aplicacion.reproducirAudio(audio[9], terminaPantalla);
                         reanudarHablar();
                     }, 1500);
 
@@ -580,41 +601,56 @@
                 }
                 i -= 1;
                 salen();
-                animacionEntrada($("#info" + i), 'derecha-izquierda', 1, 1.5)
+                aplicacion.detenerAudios();
+                animacionEntrada($("#info" + i), 'derecha-izquierda', 1, .5)
                 if (i == 2) {
+                  aplicacion.detenerAudios();
                     pausarHablar();
                     setTimeout(() => {
                         aplicacion.reproducirAudio(audio[5], siguiente);
                         reanudarHablar();
                     }, 1500);
 
-                    animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, 1.5, atras);
+                    animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, .5, atras);
                 }
                 if (i == 3) {
+                  aplicacion.detenerAudios();
                     pausarHablar();
                     setTimeout(() => {
                         aplicacion.reproducirAudio(audio[6], siguiente);
                         reanudarHablar();
                     }, 1500);
 
-                    animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, 1.5, atras);
+                    animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, .5, atras);
                 }
                 if (i == 4) {
+                  aplicacion.detenerAudios();
                     pausarHablar();
                     setTimeout(() => {
                         aplicacion.reproducirAudio(audio[7], siguiente);
                         reanudarHablar();
                     }, 1500);
 
-                    animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, 1.5, atras);
+                    animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, .5, atras);
                 }
                 if (i == 5) {
+                  aplicacion.detenerAudios();
                     pausarHablar();
                     setTimeout(() => {
-                        aplicacion.reproducirAudio(audio[8], atras);
+                        aplicacion.reproducirAudio(audio[8], siguiente);
                         reanudarHablar();
                     }, 1500);
-                    animacionEntrada($("#info" + i), 'derecha-izquierda', 1, 1.5);
+
+                    animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, .5, atras);
+                }
+                if (i == 6) {
+                  aplicacion.detenerAudios();
+                    pausarHablar();
+                    setTimeout(() => {
+                        aplicacion.reproducirAudio(audio[9], atras);
+                        reanudarHablar();
+                    }, 1500);
+                    animacionEntrada($("#info" + i), 'derecha-izquierda', 1, .5);
                     
                     
                 }

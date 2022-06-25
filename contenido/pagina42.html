@@ -28,7 +28,7 @@
     <img class="elementos" id="btnSiguiente" src="./img/pagina42/btnSiguiente.png" data-posX="900" data-posY="170" alt="">
     <img class="elementos" id="btnAtras" src="./img/pagina42/btnAtras.png" data-posX="900" data-posY="230" alt="">
 
-    <img class="elementos" id="btnAudio" src="./img/pagina42/btnAudio.png" data-posX="470" data-posY="480" alt="">
+    <img class="elementos" id="btnAudio" src="./img/pagina42/btnAudio.png" data-posX="450" data-posY="480" alt="">
 
     <!-- Script de la página -->
     <script type="module">
@@ -166,15 +166,16 @@
                     }
                     salen();
                     i += 1;
-                    animacionEntrada($("#info" + i), 'derecha-izquierda', 1, .5);
+                    animacionEntrada($("#info" + i), 'derecha-izquierda', 1, .2);
 
                     if (i == 2) {
+                        animacionSalida(btnSiguiente, "default", 0);
                         aplicacion.reproducirAudio(audio[2], siguiente);
-                        animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, .5, atras);
+                        animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, .2, atras);
                     }
                     if (i == 3) {
                         aplicacion.reproducirAudio(audio[3], reproducirAudio);
-                        animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, .5);
+                        animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, .2);
 
                     }
                     checa();
@@ -209,12 +210,16 @@
                     }
                     i -= 1;
                     salen();
+                    aplicacion.detenerAudios();
                     animacionEntrada($("#info" + i), 'derecha-izquierda', 1, .5)
                     if (i == 2) {
+                        aplicacion.detenerAudios();
+                        animacionSalida(btnAudio, "default", 0);
                         aplicacion.reproducirAudio(audio[2], siguiente);;
                         animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, .5, atras);
                     }
                     if (i == 3) {
+                        aplicacion.detenerAudios();
                         plicacion.reproducirAudio(audio[3], atras);
                         animacionEntrada($("#info" + i), 'derecha-izquierda', 1, .5);
 
