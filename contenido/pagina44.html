@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 44 | I4L</title>
+</head>
+<body>
+    <img class="elementos" id="titulo44" src="./img/pagina44/titulo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="instrucciones" src="./img/pagina44/instrucciones.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="robot" src="./img/pagina44/robot.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="flechas" src="./img/pagina44/flechas.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="texto1" src="./img/pagina44/texto1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="texto2" src="./img/pagina44/texto2.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="texto3" src="./img/pagina44/texto3.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="texto4" src="./img/pagina44/texto4.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="uno" src="./img/pagina44/uno.png" data-posX="72" data-posY="251" alt="">
+    <img class="elementos" id="dos" src="./img/pagina44/dos.png" data-posX="266" data-posY="142" alt="">
+    <img class="elementos" id="tres" src="./img/pagina44/tres.png" data-posX="506" data-posY="251" alt="">
+    <img class="elementos" id="cuatro" src="./img/pagina44/cuatro.png" data-posX="721" data-posY="142" alt="">
+
+    
+
+    <img class="elementos" id="btn-cable" src="./img/pagina10/boton_cable.png" data-posX="708" data-posY="175" alt="">
+
+
+    <!-- Script de la página -->
+    <script type="module">
+        import {aplicacion} from './js/app.js';
+        import {animacionEntrada, parpadea} from './js/animaciones.js';
+        import {cargando} from './js/funciones.js';
+
+        jQuery(function($){
+            
+            // Cargar Audios------------------------------------------------------
+            const audio = [
+                new Audio('./audios/Prosa_Integracion_44_01.mp3'),
+                new Audio('./audios/Prosa_Integracion_44_02.mp3'),
+                new Audio('./audios/Prosa_Integracion_44_03.mp3'),
+                new Audio('./audios/Prosa_Integracion_44_04.mp3'),
+                new Audio('./audios/Prosa_Integracion_44_05.mp3'),
+                new Audio('./audios/Prosa_Integracion_44_06.mp3'),
+            ]
+
+            //Crear Variables-----------------------------------------------------
+            const titulo = $('#titulo44');
+            const robot = $('#robot');
+            const instrucciones = $('#instrucciones');
+            const uno = $('#uno');
+            const dos = $('#dos');
+            const tres = $('#tres');
+            const cuatro = $('#cuatro');
+            const flechas = $('#flechas');
+            const texto1 = $('#texto1');
+            const texto2 = $('#texto2');
+            const texto3 = $('#texto3');
+            const texto4 = $('#texto4');
+
+            //Iniciar contenido de la página--------------------------------------
+            
+            cargando(iniciarPagina);
+
+            function iniciarPagina(){
+
+                aplicacion.reproducirAudio(audio[0], sigAudio, 1000);
+                animacionEntrada(titulo, 'izquierda-derecha', 1, 1);
+                animacionEntrada(robot, 'izquierda-derecha', 1, 1);
+                animacionEntrada(flechas, 'derecha-izquierda', 1, 1);
+            }
+
+            function sigAudio(){
+                aplicacion.reproducirAudio(audio[1], inst, 1000);
+            }
+
+            function inst(){
+                animacionEntrada(instrucciones, 'derecha-izquierda', 1);
+                parpadea(uno);
+                uno.click(function(){
+                    if(uno.css('cursor') == 'pointer'){
+                        TweenMax.killTweensOf(uno);
+                        uno.css({
+                            'cursor': 'default', 
+                            'opacity': '1'
+                        });
+
+                        aplicacion.reproducirAudio(audio[2], parpadea2, 1000);
+                        animacionEntrada(texto1, 'default', 1);
+                    }
+                });
+            }
+
+            function parpadea2(){
+                parpadea(dos);
+                dos.click(function(){
+                    if(dos.css('cursor') == 'pointer'){
+                        TweenMax.killTweensOf(dos);
+                        dos.css({
+                            'cursor': 'default', 
+                            'opacity': '1'
+                        });
+
+                        aplicacion.reproducirAudio(audio[3], parpadea3, 1000);
+                        animacionEntrada(texto2, 'default', 1);
+                    }
+                });
+            }
+
+            function parpadea3(){
+                parpadea(tres);
+                tres.click(function(){
+                    if(tres.css('cursor') == 'pointer'){
+                        TweenMax.killTweensOf(tres);
+                        tres.css({
+                            'cursor': 'default', 
+                            'opacity': '1'
+                        });
+
+                        aplicacion.reproducirAudio(audio[4], parpadea4, 1000);
+                        animacionEntrada(texto3, 'default', 1);
+                    }
+                });
+            }
+
+            function parpadea4(){
+                parpadea(cuatro);
+                cuatro.click(function(){
+                    if(cuatro.css('cursor') == 'pointer'){
+                        TweenMax.killTweensOf(cuatro);
+                        cuatro.css({
+                            'cursor': 'default', 
+                            'opacity': '1'
+                        });
+
+                        aplicacion.reproducirAudio(audio[5], final, 1000);
+                        animacionEntrada(texto4, 'default', 1);
+                    }
+                });
+            }
+
+            function final(){
+                aplicacion.terminaPantalla();
+            }
+        });
+    </script>
+
+    <!-- Termina Script -->
+</body>
+</html>
