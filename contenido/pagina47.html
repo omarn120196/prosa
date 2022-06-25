@@ -546,20 +546,23 @@ jQuery(function($){
 
                 function introTexto(){ 
                     animacionSalida(robot, 'arriba-abajo', 1, 1);
-                    animacionSalida(fondo, 'arriba-abajo', 1, 1);
+                   // animacionSalida(fondo, 'arriba-abajo', 1, 1);
                     animacionSalida(imagen00, 'arriba-abajo', 1, 1);
-                aplicacion.reproducirAudio(audio[1], parpadeaLed1, 1500);                  
+                    aplicacion.reproducirAudio(audio[1], parpadeaLed1, 1500);                  
                    animacionEntrada(pleca, 'izquierda-derecha', 1, 1);
                     animacionEntrada(imagen1, 'izquierda-derecha', 1, 2);
                     animacionEntrada(imagen2, 'izquierda-derecha', 1, 3);
                      animacionEntrada(imagen4, 'derecha-izquierda', 1, 11);
+                      animacionSalida(imagen1, 'default', 1, 15);
+                      animacionSalida(imagen2, 'default', 1, 15);
+                      animacionSalida(imagen4, 'default', 1, 15);
                     //parpadeaLed();
                 }
 
 
 
 function parpadeaLed1(){
-  animacionEntrada(escenario, 'derecha-izquierda', 1, 1);
+  animacionEntrada(escenario, 'default', 1, 1);
   parpadea(ledOn1);
   ledOn1.click(function(){
     if ($(this).css('cursor') == 'pointer') {
@@ -581,45 +584,350 @@ function preguntas1(){
 
   resp1_1.click(function(){ 
   aciertos++
-  aplicacion.reproducirAudio(audio[3], parpadeaCerrar1, 500);//bien A
+  aplicacion.reproducirAudio(audio[4], parpadeaCerrar1, 500);//bien A
   bloqueoOpcionesP1();
-  resp1_1.css({ 'opacity': '1' });
+  ledOn1.css({ 'opacity': '1' });
+  ledOn1.show();
  });
 
   resp1_2.click(function(){  
-  aplicacion.reproducirAudio(audio[4], parpadeaCerrar1, 500);//mal B
+  aplicacion.reproducirAudio(audio[5], parpadeaCerrar1, 500);//mal B
   bloqueoOpcionesP1();
  });
   resp1_3.click(function(){  
-  aplicacion.reproducirAudio(audio[4], parpadeaCerrar1, 500);//mal C
+  aplicacion.reproducirAudio(audio[5], parpadeaCerrar1, 500);//mal C
   bloqueoOpcionesP1();
  });
 
 function bloqueoOpcionesP1(){
-  resp1_1.css({ 'cursor': 'default'  });
-  resp1_2.css({ 'cursor': 'default'  });
-  resp1_3.css({ 'cursor': 'default'  });
+  console.log("entre a bloqueos ")
+  // resp1_1.css({ 'cursor': 'default'  });
+  // resp1_2.css({ 'cursor': 'default'  });
+  // resp1_3.css({ 'cursor': 'default'  });
+  resp1_1.hide(); 
+  resp1_2.hide(); 
+  resp1_3.hide(); 
 }
 
 function parpadeaCerrar1(){
   parpadea(cerrar1);
   cerrar1.click(function(){
     desaparecePreg1();
-
+    cerrar1.hide(); 
   });
 }
 
 function desaparecePreg1(){
 animacionSalida(pregunta1, 'default', 1, 1);
-animacionSalida(resp1_1, 'default', 1, 1);
-animacionSalida(resp1_2, 'default', 1, 1);
-animacionSalida(resp1_3, 'default', 1, 1);
-//parpadeaLed2();
+parpadeaLed2();
 }
 
 
 
 }////// fin preguntas1
+
+/////////////////////////////////////////////
+
+function parpadeaLed2(){
+  
+  parpadea(ledOn2);
+  ledOn2.click(function(){
+    if ($(this).css('cursor') == 'pointer') {
+    TweenMax.killTweensOf($(this));
+     $(this).hide();           
+    animacionEntrada(pregunta2, 'izquierda-derecha', 1, 1);
+    animacionEntrada(resp2_1, 'izquierda-derecha', 1, 1);
+    animacionEntrada(resp2_2, 'izquierda-derecha', 1, 1);
+    animacionEntrada(resp2_3, 'izquierda-derecha', 1, 1);
+    preguntas2();
+   }  
+    });
+}/////fin parpadealed1
+
+function preguntas2(){
+  resp2_1.css({ 'cursor': 'pointer'  });
+  resp2_2.css({ 'cursor': 'pointer'  });
+  resp2_3.css({ 'cursor': 'pointer'  });
+
+  resp2_1.click(function(){ 
+  
+  aplicacion.reproducirAudio(audio[5], parpadeaCerrar2, 500);//mal A
+  bloqueoOpcionesP2();
+ });
+
+  resp2_2.click(function(){  
+  aciertos++
+  aplicacion.reproducirAudio(audio[4], parpadeaCerrar2, 500);//bien B
+  bloqueoOpcionesP2();
+  ledOn2.css({ 'opacity': '1' });
+  ledOn2.show();
+ });
+  resp2_3.click(function(){  
+  aplicacion.reproducirAudio(audio[5], parpadeaCerrar2, 500);//mal C
+  bloqueoOpcionesP2();
+ });
+
+function bloqueoOpcionesP2(){
+  console.log("entre a bloqueos ")
+  // resp1_1.css({ 'cursor': 'default'  });
+  // resp1_2.css({ 'cursor': 'default'  });
+  // resp1_3.css({ 'cursor': 'default'  });
+  resp2_1.hide(); 
+  resp2_2.hide(); 
+  resp2_3.hide(); 
+}
+
+function parpadeaCerrar2(){
+  cerrar1.hide();
+  parpadea(cerrar2);
+  cerrar2.click(function(){
+    desaparecePreg2();
+    cerrar2.hide(); 
+  });
+}
+
+function desaparecePreg2(){
+animacionSalida(pregunta2, 'default', 1, 1);
+parpadeaLed3();
+}
+
+
+
+}////// fin preguntas2
+
+///////////////////////////////////////////////////////////////
+
+
+function parpadeaLed3(){
+  
+  parpadea(ledOn3);
+  ledOn3.click(function(){
+    if ($(this).css('cursor') == 'pointer') {
+    TweenMax.killTweensOf($(this));
+     $(this).hide();           
+    animacionEntrada(pregunta3, 'izquierda-derecha', 1, 1);
+    animacionEntrada(resp3_1, 'izquierda-derecha', 1, 1);
+    animacionEntrada(resp3_2, 'izquierda-derecha', 1, 1);
+    animacionEntrada(resp3_3, 'izquierda-derecha', 1, 1);
+    preguntas3();
+   }  
+    });
+}/////fin parpadealed3
+
+function preguntas3(){
+  resp3_1.css({ 'cursor': 'pointer'  });
+  resp3_2.css({ 'cursor': 'pointer'  });
+  resp3_3.css({ 'cursor': 'pointer'  });
+
+  resp3_1.click(function(){ 
+  
+  aplicacion.reproducirAudio(audio[5], parpadeaCerrar3, 500);//mal A
+  bloqueoOpcionesP3();
+ });
+
+  resp3_2.click(function(){  
+ aplicacion.reproducirAudio(audio[5], parpadeaCerrar3, 500);//mal B
+  bloqueoOpcionesP3();
+ });
+  resp3_3.click(function(){   
+  aciertos++
+  aplicacion.reproducirAudio(audio[4], parpadeaCerrar3, 500);//bien C
+  bloqueoOpcionesP3();
+  ledOn3.css({ 'opacity': '1' });
+  ledOn3.show();
+ });
+
+function bloqueoOpcionesP3(){
+  console.log("entre a bloqueos ")
+  // resp1_1.css({ 'cursor': 'default'  });
+  // resp1_2.css({ 'cursor': 'default'  });
+  // resp1_3.css({ 'cursor': 'default'  });
+  resp3_1.hide(); 
+  resp3_2.hide(); 
+  resp3_3.hide(); 
+}
+
+function parpadeaCerrar3(){
+  cerrar1.hide();
+  cerrar2.hide();
+  parpadea(cerrar3);
+  cerrar3.click(function(){
+    desaparecePreg3();
+    cerrar3.hide(); 
+  });
+}
+
+function desaparecePreg3(){
+animacionSalida(pregunta3, 'default', 1, 1);
+parpadeaLed4();
+}
+
+
+
+}////// fin preguntas3
+
+
+////////////////////////////////////////////////////////
+
+function parpadeaLed4(){
+ 
+  parpadea(ledOn4);
+  ledOn4.click(function(){
+    if ($(this).css('cursor') == 'pointer') {
+    TweenMax.killTweensOf($(this));
+     $(this).hide();           
+    animacionEntrada(pregunta4, 'izquierda-derecha', 1, 1);
+    animacionEntrada(resp4_1, 'izquierda-derecha', 1, 1);
+    animacionEntrada(resp4_2, 'izquierda-derecha', 1, 1);
+    animacionEntrada(resp4_3, 'izquierda-derecha', 1, 1);
+    preguntas4();
+   }  
+    });
+}/////fin parpadealed4
+
+function preguntas4(){
+  resp4_1.css({ 'cursor': 'pointer'  });
+  resp4_2.css({ 'cursor': 'pointer'  });
+  resp4_3.css({ 'cursor': 'pointer'  });
+
+  resp4_1.click(function(){ 
+  aciertos++
+  aplicacion.reproducirAudio(audio[4], parpadeaCerrar4, 500);//bien A
+  bloqueoOpcionesP4();
+  ledOn4.css({ 'opacity': '1' });
+  ledOn4.show();
+ });
+
+  resp4_2.click(function(){  
+  aplicacion.reproducirAudio(audio[5], parpadeaCerrar4, 500);//mal B
+  bloqueoOpcionesP4();
+ });
+  resp4_3.click(function(){  
+  aplicacion.reproducirAudio(audio[5], parpadeaCerrar4, 500);//mal C
+  bloqueoOpcionesP4();
+ });
+
+function bloqueoOpcionesP4(){
+  console.log("entre a bloqueos ")
+  // resp1_1.css({ 'cursor': 'default'  });
+  // resp1_2.css({ 'cursor': 'default'  });
+  // resp1_3.css({ 'cursor': 'default'  });
+  resp4_1.hide(); 
+  resp4_2.hide(); 
+  resp4_3.hide(); 
+}
+
+function parpadeaCerrar4(){
+  cerrar1.hide();
+  cerrar2.hide();
+  cerrar3.hide();
+  parpadea(cerrar4);
+  cerrar4.click(function(){
+    desaparecePreg4();
+    cerrar4.hide(); 
+  });
+}
+
+function desaparecePreg4(){
+animacionSalida(pregunta4, 'default', 1, 1);
+parpadeaLed5();
+}
+
+
+
+}////// fin preguntas4
+
+
+/////////////////////////////////////////////////////////////
+
+
+
+
+function parpadeaLed5(){
+  
+  parpadea(ledOn5);
+  ledOn5.click(function(){
+    if ($(this).css('cursor') == 'pointer') {
+    TweenMax.killTweensOf($(this));
+     $(this).hide();           
+    animacionEntrada(pregunta5, 'izquierda-derecha', 1, 1);
+    animacionEntrada(resp5_1, 'izquierda-derecha', 1, 1);
+    animacionEntrada(resp5_2, 'izquierda-derecha', 1, 1);
+    animacionEntrada(resp5_3, 'izquierda-derecha', 1, 1);
+    preguntas5();
+   }  
+    });
+}/////fin parpadealed5
+
+function preguntas5(){
+  resp5_1.css({ 'cursor': 'pointer'  });
+  resp5_2.css({ 'cursor': 'pointer'  });
+  resp5_3.css({ 'cursor': 'pointer'  });
+
+  resp5_1.click(function(){ 
+  
+  aplicacion.reproducirAudio(audio[5], parpadeaCerrar5, 500);//mal A
+  bloqueoOpcionesP5();
+ });
+
+  resp5_2.click(function(){  
+  aciertos++
+  aplicacion.reproducirAudio(audio[4], parpadeaCerrar5, 500);//bien B
+  bloqueoOpcionesP5();
+  ledOn5.css({ 'opacity': '1' });
+  ledOn5.show();
+ });
+  resp5_3.click(function(){  
+  aplicacion.reproducirAudio(audio[5], parpadeaCerrar5, 500);//mal C
+  bloqueoOpcionesP5();
+ });
+
+function bloqueoOpcionesP5(){
+  console.log("entre a bloqueos ")
+  // resp1_1.css({ 'cursor': 'default'  });
+  // resp1_2.css({ 'cursor': 'default'  });
+  // resp1_3.css({ 'cursor': 'default'  });
+  resp5_1.hide(); 
+  resp5_2.hide(); 
+  resp5_3.hide(); 
+}
+
+function parpadeaCerrar5(){
+  cerrar1.hide();
+  cerrar2.hide();
+  cerrar3.hide();
+  cerrar4.hide();
+  parpadea(cerrar5);
+  cerrar5.click(function(){
+    desaparecePreg5();
+    cerrar5.hide(); 
+  });
+}
+
+function desaparecePreg5(){
+animacionSalida(pregunta5, 'default', 1, 1);
+//parpadeaLed6();
+retroAlimenta();
+}
+
+
+
+}////// fin preguntas2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
