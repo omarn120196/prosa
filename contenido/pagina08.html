@@ -455,18 +455,23 @@
             cargando(iniciarPagina);
 
             function iniciarPagina(){
-              aplicacion.reproducirAudio(audio[1], terminaD1, 2000);
+              aplicacion.reproducirAudio(audio[0], terminaD0, 2000);
               animacionEntrada(titulo, 'izquierda-derecha', 1, 1);
-              animacionEntrada(fondo, 'derecha-izquierda', 1, 1);
+              animacionEntrada(fondo, 'derecha-izquierda', 1, 1);             
+            }
+            function terminaD0(){
+              aplicacion.reproducirAudio(audio[1], terminaD1, 2000);              
               animacionEntrada(robot, 'arriba-abajo', 1, 1);
-              animacionEntrada(d1, 'default', 1, 2);
-              
-              
+              animacionEntrada(d1, 'default', 1, 2);              
               setTimeout(()=>{
                 flotar(robot, 'i');
                 hablar(robot, 'i');
               }, 2000);
+
             }
+
+
+
             function terminaD1(){
               pausarHablar();
               animacionSalida(d1, 'default', .5);
@@ -484,15 +489,25 @@
 
 
           function salen() {
-              animacionSalida(carrousel_01, 'default', 0);
-              animacionSalida(carrousel_02, 'default', 0);
-              animacionSalida(carrousel_03, 'default', 0);
-              animacionSalida(carrousel_04, 'default', 0);
-              animacionSalida(btn_adelante1,'default', 0);
-              animacionSalida(btn_adelante2,'default', 0);
-              animacionSalida(btn_atras2,   'default', 0);
-              animacionSalida(btn_atras3,   'default', 0);            
-             
+              animacionSalida(carrousel_01, 'default', 1,0);
+              animacionSalida(carrousel_02, 'default', 1,0);
+              animacionSalida(carrousel_03, 'default', 1,0);
+              animacionSalida(carrousel_04, 'default', 1,0);
+              animacionSalida(btn_adelante1,'default', 1,0);
+              animacionSalida(btn_adelante2,'default', 1,0);
+              animacionSalida(btn_atras2,   'default', 1,0);
+              animacionSalida(btn_atras3,   'default', 1,0); 
+                         
+              // carrousel_01.hide();
+              // carrousel_02.hide();
+              // carrousel_03.hide();
+              // carrousel_04.hide();
+              // carrousel_05.hide();
+              // btn_adelante1.hide();
+              // btn_adelante2.hide();
+              // btn_atras2.hide();
+              // btn_atras3.hide();
+
           }
 
           function botoneras(){ 
@@ -520,12 +535,10 @@
           }
 
            function pops1(){
-              salen();        
-
+              salen(); 
               setTimeout(()=>{
-
                  animacionEntrada(carrousel_01, 'default', 1, 0);
-                   aplicacion.reproducirAudio(audio[2],continua1,0);
+                  aplicacion.reproducirAudio(audio[2],continua1,0);
                   
                   function continua1(){
                      aplicacion.reproducirAudio(audio[3],adelante,0);
@@ -537,27 +550,14 @@
                     }) 
                   }
                 
-              }, 1000) 
-                  
-                  
-
+              }, 1500)                
                  
           }
 
-           function pops2(){
-              
-               salen();
-
-              setTimeout(()=>{
-                animacionEntrada(btn_atras2, 'derecha-izquierda', 1, 0);             
-               animacionEntrada(carrousel_02, 'default', 1, 0);
-              btn_atras2.css('cursor', 'pointer');
-
-              btn_atras2.click(function () {  
-               // parent.stopAll();
-                pops1();
-              })
-
+           function pops2(){              
+              salen();
+              setTimeout(()=>{                         
+              animacionEntrada(carrousel_02, 'default', 1, 0);           
                aplicacion.reproducirAudio(audio[4], audio2);
 
               function audio2(){  
@@ -565,10 +565,11 @@
               }
 
               function audio3(){
-                 aplicacion.reproducirAudio(audio[6], adelante);
+              aplicacion.reproducirAudio(audio[6], adelante);
               }
 
               function adelante(){
+                  //animacionEntrada(btn_atras2, 'derecha-izquierda', 1, 0);    
                   parpadea(btn_adelante2, .5);
                   btn_adelante2.click(function(){
                     pops3();
@@ -577,26 +578,17 @@
 
               }, 1000);
 
-              
+              btn_atras2.css('cursor', 'pointer');
+              btn_atras2.click(function () { 
+              pops1();              
+              })              
                
-           }
-
+           }/////////////
            function pops3(){
             salen();
-
-
-            setTimeout(()=>{
-              
-              animacionEntrada(carrousel_03, "default", 1, 0);
-              animacionEntrada(btn_atras3, "derecha-izquierda", 1, 0);
-              btn_atras3.css('cursor', 'pointer');
-
-              btn_atras3.click(function () {  
-                //parent.stopAll();
-                pops2();
-              })
-
-               aplicacion.reproducirAudio(audio[7], audio2);
+            setTimeout(()=>{              
+              animacionEntrada(carrousel_03, "default", 1, 0);             
+             aplicacion.reproducirAudio(audio[7], audio2);
 
               function audio2(){  
                  aplicacion.reproducirAudio(audio[8], audio3);
@@ -611,6 +603,7 @@
               }
 
               function internacional(){
+                //animacionEntrada(btn_atras3, "derecha-izquierda", 1, 0);
                 parpadea(btn2);
                 btn2.click(function() {
                 if ($(this).css('cursor') == 'pointer'){
@@ -620,15 +613,17 @@
                       'cursor': 'default',
                       'opacity': '1'
                   });
-
                   pops4();
-                }
-              
+                }              
               });
               }
 
               }, 1000);
-
+              btn_atras3.css('cursor', 'pointer');
+              btn_atras3.click(function () {  
+                //parent.stopAll();                            
+                 pops2();              
+              })
              
 
 
@@ -636,8 +631,6 @@
 
            function pops4(){
              salen();
-
-
              setTimeout(()=>{
               animacionEntrada(carrousel_04, "default", 1, 0);
               aplicacion.reproducirAudio(audio[11], checa);
@@ -652,7 +645,8 @@
                          // parpadea($("#tip"), .5);           
                         //animacionEntrada($("#imagen3"), "izq_der", 0.7, 0); 
                         aplicacion.terminaPantalla();
-                        //btn1.show();
+                        // btn1.show();
+                        // btn1.css('cursor', 'pointer');
                         //volverAbrir();
 
                   }

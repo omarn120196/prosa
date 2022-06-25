@@ -22,7 +22,7 @@
             <img id="ledOn3"    class="elementos" data-posX="406.833" data-posY="233.843" src="./img/pagina47/ledOn.png"></img>        
             <img id="ledOn4"    class="elementos" data-posX="557.833" data-posY="344.843" src="./img/pagina47/ledOn.png"></img>
             <img id="ledOn5"    class="elementos" data-posX="721.833" data-posY="233.843" src="./img/pagina47/ledOn.png"></img>
-        <svg class="elementos" id="robot47" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="620" viewBox="0 0 1024 620">
+<svg class="elementos" id="robot47" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="620" viewBox="0 0 1024 620">
         <defs>
           <style>
             .cls-1 {
@@ -392,6 +392,7 @@
           </g>
         </g>
          </svg>
+
             <!--pregunta 1 -->
             <img id="pregunta1" class="elementos"       data-posX="0"       data-posY="0"       src="./img/pagina47/pregunta1.png"></img>
             <div id="resp1_1"   class="elementos boton" data-posX="214.345" data-posY="289.522" style="width:160.834px; height:14.264px;"></div>
@@ -520,7 +521,13 @@ jQuery(function($){
                 const btnReintentar = $('#btnReintentar');
                            
                 var contLed = 1;
-
+                var aciertos = 0;
+                var minimo = 100;
+                var puntuacion = 0;
+                var cuantasPreguntas = 5;
+               var NoCase =0;
+               var contador=0;
+               var noPregunta=0;
                 //Iniciar contenido de la página--------------------------------------
                 
                 cargando(iniciarPagina);
@@ -541,7 +548,7 @@ jQuery(function($){
                     animacionSalida(robot, 'arriba-abajo', 1, 1);
                     animacionSalida(fondo, 'arriba-abajo', 1, 1);
                     animacionSalida(imagen00, 'arriba-abajo', 1, 1);
-                aplicacion.reproducirAudio(audio[1], parpadeaLed, 1500);                  
+                aplicacion.reproducirAudio(audio[1], parpadeaLed1, 1500);                  
                    animacionEntrada(pleca, 'izquierda-derecha', 1, 1);
                     animacionEntrada(imagen1, 'izquierda-derecha', 1, 2);
                     animacionEntrada(imagen2, 'izquierda-derecha', 1, 3);
@@ -551,261 +558,81 @@ jQuery(function($){
 
 
 
-          function parpadeaLed(){
-                console.log("LedOn",contLed);
-                if(contLed <= 1){
-                 animacionEntrada(escenario, 'derecha-izquierda', 1, 1);
-                 parpadea($("#ledOn"+contLed),0.5);
-                     /////////////// botonIniciar ////////////////
-                    $("#ledOn"+contLed).click(function() {
-                        if ($(this).css('cursor') == 'pointer') {
-                                TweenMax.killTweensOf($(this));
-                                $(this).hide();                              
-                               
-                                pregunta(contLed);
-                        }        
-                    });
-                }else if(contLed >= 2 && contLed <= 5){
-                    parpadea($("#ledOn"+contLed),0.5);
-                     /////////////// botonIniciar ////////////////
-                    $("#ledOn"+contLed).click(function() {
-                        if ($(this).css('cursor') == 'pointer') {
-                                TweenMax.killTweensOf($(this));
-                                $(this).hide();  
-                                pregunta(contLed);
-                        }        
-                    });
-                }else{
-                    parpadea(btnVerificar);
-                }    
-            }
+function parpadeaLed1(){
+  animacionEntrada(escenario, 'derecha-izquierda', 1, 1);
+  parpadea(ledOn1);
+  ledOn1.click(function(){
+    if ($(this).css('cursor') == 'pointer') {
+    TweenMax.killTweensOf($(this));
+     $(this).hide();           
+    animacionEntrada(pregunta1, 'izquierda-derecha', 1, 1);
+    animacionEntrada(resp1_1, 'izquierda-derecha', 1, 1);
+    animacionEntrada(resp1_2, 'izquierda-derecha', 1, 1);
+    animacionEntrada(resp1_3, 'izquierda-derecha', 1, 1);
+    preguntas1();
+   }  
+    });
+}/////fin parpadealed1
+
+function preguntas1(){
+  resp1_1.css({ 'cursor': 'pointer'  });
+  resp1_2.css({ 'cursor': 'pointer'  });
+  resp1_3.css({ 'cursor': 'pointer'  });
+
+  resp1_1.click(function(){ 
+  aciertos++
+  aplicacion.reproducirAudio(audio[3], parpadeaCerrar1, 500);//bien A
+  bloqueoOpcionesP1();
+  resp1_1.css({ 'opacity': '1' });
+ });
+
+  resp1_2.click(function(){  
+  aplicacion.reproducirAudio(audio[4], parpadeaCerrar1, 500);//mal B
+  bloqueoOpcionesP1();
+ });
+  resp1_3.click(function(){  
+  aplicacion.reproducirAudio(audio[4], parpadeaCerrar1, 500);//mal C
+  bloqueoOpcionesP1();
+ });
+
+function bloqueoOpcionesP1(){
+  resp1_1.css({ 'cursor': 'default'  });
+  resp1_2.css({ 'cursor': 'default'  });
+  resp1_3.css({ 'cursor': 'default'  });
+}
+
+function parpadeaCerrar1(){
+  parpadea(cerrar1);
+  cerrar1.click(function(){
+    desaparecePreg1();
+
+  });
+}
+
+function desaparecePreg1(){
+animacionSalida(pregunta1, 'default', 1, 1);
+animacionSalida(resp1_1, 'default', 1, 1);
+animacionSalida(resp1_2, 'default', 1, 1);
+animacionSalida(resp1_3, 'default', 1, 1);
+//parpadeaLed2();
+}
+
+
+
+}////// fin preguntas1
 
 
 
 
-            /*function entraPregunta(){
-                pregunta(ledOn);
-            }*/
-            var aciertos = 0;
-            var minimo = 100;
-            var puntuacion = 0;
-            var cuantasPreguntas = 5;
-            var NoCase =0;
-            var contador=0;
-            var noPregunta=0;
-            function pregunta(noPregunta){
-                let count= noPregunta;
-                console.log('noPregunta',noPregunta);
-               
-                switch (noPregunta) {
-                  case 1:
-                        preguntaDosResp(count);
-                    break;
-                  case 2:
-                        //desaparecePregunta((count-1));    
-                        preguntaDosResp(count);
-                    break;
-                  case 3:
-                        //desaparecePregunta((count-1)); 
-                        preguntaDosResp(count);
-                    break;
-                  case 4:
-                        //desaparecePregunta((count-1)); 
-                        preguntaDosResp(count);
-                    break;
-                  case 5:
-                        //desaparecePregunta((count-1));
-                        preguntaDosResp(count);
-                    break;
-
-                  default:  
-                        desaparecePregunta((count-1));
-                        //intermedio();
-                        retroAlimenta();
-                    
-                }
-            }
-function desaparecePregunta(contador){               
-                animacionSalida($("#pregunta"+contador), "desaparece", 0,0);
-                animacionSalida($("#resp"+contador+"_1"), "desaparece", 0,0);
-                animacionSalida($("#resp"+contador+"_2"), "desaparece", 0,0);
-                animacionSalida($("#resp"+contador+"_3"), "desaparece", 0,0);
-    }
-
-    function preguntaDosResp(contador){
-                    console.log('Entra en función preguntaDosResp');
-                    animacionEntrada($("#pregunta"+contador), "der_izq", .7,1,entraResp);
-                    NoCase = contador + 1;
-                    $("#resp"+contador+"_1").css({ 'cursor': 'pointer'  });
-                    $("#resp"+contador+"_2").css({ 'cursor': 'pointer'  });
-                    $("#resp"+contador+"_3").css({ 'cursor': 'pointer'  });
-                    function entraResp(){
-                        animacionEntrada($("#resp"+contador+"_1"), "izq_der", .7, .5);
-                        animacionEntrada($("#resp"+contador+"_2"), "izq_der", .7, .5);
-                        animacionEntrada($("#resp"+contador+"_3"), "izq_der", .7, .5);
-                    }
-    }
-
-  $("#resp"+contador+"_1").click(function() {
-                        if ($(this).css('cursor') == 'pointer') {
-                               
-                                $("#resp"+contador+"_1").css({ 'cursor': 'default'  });
-                                $("#resp"+contador+"_2").css({ 'cursor': 'default'  });
-                                $("#resp"+contador+"_3").css({ 'cursor': 'default'  });
-                               
-                                if(contador == 1){
-                                  
-                                  //animacion_entrada($("#paloma"+contador),"default",0,0);
-                                  
-                                  aplicacion.reproducirAudio(audio[4], parpadeaCerrar, 500);
-                                  
-                                }
-                                if(contador == 2){
-                                  //animacion_entrada($("#paloma"+contador),"default",0,0);
-                                  aciertos++;
-                                  aplicacion.reproducirAudio(audio[3], parpadeaCerrar, 500);
-                                  animacionEntrada(ledOn2, "default", 1,0);
-                                  
-                                }
-                                if(contador == 3){
-                                    //animacion_entrada($("#tache"+contador),"default",0,0);                              
-                                   aplicacion.reproducirAudio(audio[4], parpadeaCerrar, 500);
-                                  
-                                }
-                                if(contador == 4){
-                                   //animacion_entrada($("#paloma"+contador),"default",0,0);
-                                   aciertos++;
-                                    aplicacion.reproducirAudio(audio[3], parpadeaCerrar, 500);                               
-                                    animacionEntrada(ledOn4, "default", 1,0);
-                                  
-                                }
-                                if(contador == 5){
-                                  //animacion_entrada($("#tache"+contador),"default",0,0);  
-                                  aplicacion.reproducirAudio(audio[4], parpadeaCerrar, 500);
-                                  
-                                }
-                               
-                              
-                        }
-                  
-                    });
-
-
-                $("#resp"+contador+"_2").click(function() {
-                        if ($(this).css('cursor') == 'pointer') {
-                          
-                            $("#resp"+contador+"_1").css({ 'cursor': 'default'  });
-                            $("#resp"+contador+"_2").css({ 'cursor': 'default'  });
-                            $("#resp"+contador+"_3").css({ 'cursor': 'default'  });
-                                if(contador == 1){
-                                    aciertos++;
-                                    //animacion_entrada($("#tache"+contador),"default",0,0);
-                                    aplicacion.reproducirAudio(audio[3], parpadeaCerrar, 500);
-                                     animacionEntrada(ledOn1, "default", 1,0);
-                                  
-                                }
-                                if(contador == 2){                              
-                                 aplicacion.reproducirAudio(audio[4], parpadeaCerrar, 500);
-                                
-                                }
-                                if(contador == 3){
-                                  aplicacion.reproducirAudio(audio[4], parpadeaCerrar, 500);
-                                  
-                                  
-                                }
-                                if(contador == 4){
-                                  aplicacion.reproducirAudio(audio[4], parpadeaCerrar, 500);
-                                 
-                                  
-                                }
-                                if(contador == 5){
-                                  //animacion_entrada($("#tache"+contador),"default",0,0); 
-                                  aciertos++; 
-                                 aplicacion.reproducirAudio(audio[3], parpadeaCerrar, 500);                               
-                                   animacionEntrada(ledOn5, "default", 1,0);
-                                  
-                                }
-                               
-                        }
-                
-                    });
-
-
-    $("#resp"+contador+"_3").click(function() {
-                        if ($(this).css('cursor') == 'pointer') {
-
-                          
-                            $("#resp"+contador+"_1").css({ 'cursor': 'default'  });
-                            $("#resp"+contador+"_2").css({ 'cursor': 'default'  });
-                            $("#resp"+contador+"_3").css({ 'cursor': 'default'  });
-
-                                if(contador == 1){
-                                    //animacion_entrada($("#tache"+contador),"default",0,0);
-                                    aplicacion.reproducirAudio(audio[4], parpadeaCerrar, 500);                               
-                                   
-                                  
-                                }
-                                if(contador == 2){                           
-                                                               
-                                 aplicacion.reproducirAudio(audio[4], parpadeaCerrar, 500); 
-                                
-                                }
-
-                                if(contador == 3){
-                               
-                                  aciertos++;
-                                  aplicacion.reproducirAudio(audio[3], parpadeaCerrar, 500); 
-                                    
-                                    animacionEntrada(ledOn3, "default", 1,0);
-                                }
-                                if(contador == 4){
-                                  //animacion_entrada($("#paloma"+contador),"default",0,0);
-                                   
-                                  aplicacion.reproducirAudio(audio[4], parpadeaCerrar, 500); 
-                                 
-                                  
-                                }
-                                if(contador == 5){
-                                  //animacion_entrada($("#tache"+contador),"default",0,0);  
-                                 aplicacion.reproducirAudio(audio[4], parpadeaCerrar, 500); 
-                                 
-                                  
-                                }
-                               
-                        }
-                
-                    });
 
 
 
 
-                function parpadeaCerrar(){
-                        parpadea($("#cerrar"+contLed),0);
-                        $("#cerrar"+contLed).click(function() {
-                            if ($(this).css('cursor') == 'pointer') {
-                                TweenMax.killTweensOf($(this));
-                                $(this).hide();
-                                $(this).css({
-                                    'cursor': 'default',
-                                    'opacity': '1'
-                                });
-                                desaparecePregunta(contLed)
-                                contLed++;
-                                
-                                parpadeaLed();
-                                //pregunta(NoCase);
-                            }    
-                        });
-                    }
 
-
-            function retroAlimenta(){
-                console.log("Entra en retroAlimenta");
-                
+function retroAlimenta(){
+                console.log("Entra en retroAlimenta");                
                  puntuacion = Math.round((aciertos * 100) / cuantasPreguntas);
-                console.log("puntuacion:", puntuacion);        
-
-
+                console.log("puntuacion:", puntuacion);
                 if (puntuacion >= minimo) {              
                     animacionEntrada(retroBien, "default", 1,0);
                    aplicacion.reproducirAudio(audio[2], aplicacion.terminaPantalla, 500);                
@@ -813,11 +640,12 @@ function desaparecePregunta(contador){
                 } else {
                      animacionEntrada(retroMal, "default", 1,0);                    
                      aplicacion.reproducirAudio(audio[3], aplicacion.terminaPantalla, 500);
-                     
-                }
-            
+                   } 
+ }
 
-            }
+
+
+
    });
         </script>
 
