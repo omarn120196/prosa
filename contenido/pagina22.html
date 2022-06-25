@@ -496,6 +496,8 @@
 
                 if (i == 2) {
                     pausarHablar();
+                    animacionSalida(btnSiguiente, "default", 0);
+
                     setTimeout(() => {
                         aplicacion.reproducirAudio(audio[3], siguiente);
                         reanudarHablar();
@@ -505,12 +507,13 @@
                 }
                 if (i == 3) {
                     pausarHablar();
+
                     setTimeout(() => {
                         aplicacion.reproducirAudio(audio[4], terminaPantalla);
                         reanudarHablar();
                     }, 1500);
 
-                    animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, 1.5);
+                    animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, 1.5, atras);
 
                 }
                 checa();
@@ -523,6 +526,7 @@
             }
 
             btnRegresar.click(function () {
+
                 if (btnRegresar.css('cursor') == 'pointer') {
                     TweenMax.killTweensOf(btnRegresar);
                     btnRegresar.css({
@@ -531,9 +535,12 @@
                 }
                 i -= 1;
                 salen();
+                aplicacion.detenerAudios();
                 animacionEntrada($("#info" + i), 'derecha-izquierda', 1, 1.5)
                 if (i == 2) {
+                    aplicacion.detenerAudios();
                     pausarHablar();
+
                     setTimeout(() => {
                         aplicacion.reproducirAudio(audio[3], siguiente);
                         reanudarHablar();
@@ -542,6 +549,7 @@
                     animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, 1.5, atras);
                 }
                 if (i == 3) {
+                  aplicacion.detenerAudios();
                     pausarHablar();
                     setTimeout(() => {
                         aplicacion.reproducirAudio(audio[4], atras);
