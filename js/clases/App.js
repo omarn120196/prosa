@@ -92,10 +92,15 @@ export class App{
         if(this.noPagina > 0){
             this.noPagina--;
 
+            this.bloquearNavegacion();
             asignarLocacion(this.noPagina);
             this.detenerAudios();
             actualizarPorcentaje(this.noPagina, this.totalPaginas);
             cargarPagina(this.noPagina, this.paginasActivas);
+
+            setTimeout(()=>{
+                this.activarNavegacion();
+            }, 4000);
         }
         else{
             console.log('Estas en la primer página');
@@ -140,9 +145,10 @@ export class App{
             this.audio.muted = false;
         }
 
+        
         setTimeout(()=>{
             this.audio.play();
-          
+            
             this.audio.addEventListener("ended", () => {
                 funcion();
             });
@@ -167,7 +173,6 @@ export class App{
     detenerAudios(){
         this.audio.pause();
         this.audio.currenTime = 0;
-
     }
 
     //Guardar Calificacion-------------------------------------------------------
@@ -197,5 +202,10 @@ export class App{
     //Metodo para aumentar intentos de evaluación--------------------------------
     siguienteIntento(){
         this.intento++;
-    }    
+    }
+    
+    //Metodo para reiniciar intentos
+    reiniciarIntentos(){
+        this.intento = 1;
+    }
 }

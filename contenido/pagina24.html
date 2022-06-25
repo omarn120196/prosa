@@ -389,6 +389,7 @@
     <img class="elementos vidrios" id="vidrio5" src="./img/pagina24/vidrio5.png" data-posX="643" data-posY="256" alt="">
     <img class="elementos vidrios" id="vidrio6" src="./img/pagina24/vidrio6.png" data-posX="522" data-posY="179" alt="">
     <img class="elementos vidrios" id="vidrio7" src="./img/pagina24/vidrio7.png" data-posX="522" data-posY="329" alt="">
+    <img class="elementos" id="vidrioRoto" src="./img/pagina24/vidrioRoto.png" data-posX="0" data-posY="0" alt="">
 
     <!-- Script de la página -->
     <script type="module">
@@ -418,6 +419,7 @@
             const vidrio5 = $('#vidrio5');
             const vidrio6 = $('#vidrio6');
             const vidrio7 = $('#vidrio7');
+            const vidrioRoto = $('#vidrioRoto');
 
             const vidriosT = $('.vidrios');
 
@@ -457,6 +459,7 @@
                 $(this).click(function(){
                     if($(this).attr('id') == 'vidrio5'){
                         aplicacion.reproducirAudio(audio[1], siguiente, 0);
+                        animacionEntrada(vidrioRoto, 'default', .1);
                     }
                     else{
                         aplicacion.reproducirAudio(audio[2], fallido, 0);
@@ -471,7 +474,7 @@
             function siguiente(){
                 setTimeout(()=>{
                     aplicacion.nextPag();    
-                }, 1000);
+                }, 3000);
             }
 
             

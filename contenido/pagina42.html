@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 42 | I4L</title>
+</head>
+
+<body>
+    <img class="elementos" id="fondo" src="./img/pagina42/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="titulo" src="./img/pagina42/titulo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="dialogo" src="./img/pagina42/dialogo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="enchufe" src="./img/pagina42/enchufe.png" data-posX="0" data-posY="0" alt="">
+    
+    <div class="elementos" id="drop"  data-id="1" data-posX="500" data-posY="310" style="width:30px; height:85px; "></div>
+
+    <div class="elementos" id="cable" data-id="1" data-posX="0" data-posY="310">
+        <img src="./img/pagina42/cable.png" alt="">
+    </div>
+
+    <img class="elementos" id="carrusel" src="./img/pagina42/carrusel.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info1" src="./img/pagina42/info01.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info2" src="./img/pagina42/info02.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info3" src="./img/pagina42/info03.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="btnSiguiente" src="./img/pagina42/btnSiguiente.png" data-posX="900" data-posY="170" alt="">
+    <img class="elementos" id="btnAtras" src="./img/pagina42/btnAtras.png" data-posX="900" data-posY="230" alt="">
+
+    <img class="elementos" id="btnAudio" src="./img/pagina42/btnAudio.png" data-posX="450" data-posY="480" alt="">
+
+    <!-- Script de la página -->
+    <script type="module">
+        import { aplicacion } from './js/app.js';
+        import { animacionEntrada, animacionSalida, parpadea } from './js/animaciones.js';
+        import { cargando } from './js/funciones.js';
+
+        jQuery(function ($) {
+
+            // Cargar Audios------------------------------------------------------
+            const audio = [
+                new Audio('./audios/Prosa_Integracion_42_01.mp3'),
+                new Audio('./audios/Prosa_Integracion_42_02.mp3'),
+                new Audio('./audios/Prosa_Integracion_42_03.mp3'),
+                new Audio('./audios/Prosa_Integracion_42_04.mp3'),
+                new Audio('./audios/Prosa_Integracion_42_05.mp3'),
+
+            ]
+
+            //Crear Variables-----------------------------------------------------
+            const fondo = $('#fondo');
+            const titulo = $('#titulo');
+            const dialogo = $('#dialogo');
+            const enchufe = $('#enchufe');
+            const drop = $('#drop');
+            const cable = $('#cable');
+
+            const carrusel = $('#carrusel');
+            const info1 = $('#info1');
+            const info2 = $('#info2');
+            const info3 = $('#info3');
+            const btnSiguiente = $('#btnSiguiente');
+            const btnAtras = $('#btnAtras');
+            const btnAudio = $('#btnAudio');
+
+
+            var i = 1;
+
+
+            //Iniciar contenido de la página--------------------------------------
+
+            cargando(iniciarPagina);
+
+            function iniciarPagina() {
+                aplicacion.reproducirAudio(audio[0], ejercicioPag42, 2000);
+                animacionEntrada(fondo, 'izquierda-derecha', 1, .2);
+                animacionEntrada(titulo, 'izquierda-derecha', 1, .2);
+                animacionEntrada(dialogo, 'izquierda-derecha', 1, 1);
+                animacionEntrada(enchufe, 'izquierda-derecha', 1, 5);
+                animacionEntrada(drop, 'izquierda-derecha', 1, 5);
+                animacionEntrada(cable, 'izquierda-derecha', 1, 5);
+
+            }
+
+            function ejercicioPag42() {
+                parpadea(cable);
+                juntarCable();
+            }
+
+
+            function juntarCable() {
+                const elementoDrag = $('#cable');
+                const elementoDrop = $('#drop');
+
+                let dragSelect;
+                let dropCorrespondiente;
+
+                elementoDrag.draggable({
+                    revert: true,
+                    opacity: 1,
+                    start: function (event, ui) {
+                        dragSelect = $(this).attr('data-id');
+                    }
+                });
+
+
+                elementoDrop.droppable({
+                    accept: "#cable",
+                    tolerance: "touch",
+                    drop: function (event, ui) {
+                        dropCorrespondiente = $(this).attr('data-id');
+                        verificar();
+                    }
+                });
+
+                function verificar() {
+                    if (dragSelect === dropCorrespondiente) {
+
+                        cable.draggable({
+                            revert: false,
+                        });
+
+                        animacionSalida(cable, 'default', .5);
+                        animacionSalida(dialogo, 'default', .5);
+                        animacionSalida(enchufe, 'default', .5);
+                        animacionSalida(drop, 'default', .5, entraCarrusel);
+
+                    }
+                }
+            }
+
+
+            function entraCarrusel() {
+                aplicacion.reproducirAudio(audio[1], terminaAudio, 1000);
+                animacionEntrada(carrusel, 'izquierda-derecha', 1, 1);
+                animacionEntrada(info1, 'izquierda-derecha', 1, 1);
+
+                function terminaAudio() {
+                    parpadea(btnSiguiente);
+                }
+
+                function salen() {
+                    animacionSalida("#info1", "default", 0);
+                    animacionSalida("#info2", "default", 0);
+                    animacionSalida("#info3", "default", 0);
+                }
+
+                function checa() {
+                    if (i == 3) {
+                        animacionSalida(btnSiguiente, "default", 0);
+                    }
+                    if (i == 1) {
+                        animacionSalida(btnAtras, "default", 0);
+                        aplicacion.reproducirAudio(audio[1], 1000);
+
+                    }
+                }
+
+                btnSiguiente.click(function () {
+                    if (btnSiguiente.css('cursor') == 'pointer') {
+                        TweenMax.killTweensOf(btnSiguiente);
+                        btnSiguiente.css({
+                            'opacity': '1'
+                        });
+                    }
+                    salen();
+                    i += 1;
+                    animacionEntrada($("#info" + i), 'derecha-izquierda', 1, .2);
+
+                    if (i == 2) {
+                        animacionSalida(btnSiguiente, "default", 0);
+                        aplicacion.reproducirAudio(audio[2], siguiente);
+                        animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, .2, atras);
+                    }
+                    if (i == 3) {
+                        aplicacion.reproducirAudio(audio[3], reproducirAudio);
+                        animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, .2);
+
+                    }
+                    checa();
+
+                });
+
+                function reproducirAudio() {
+                    parpadea(btnAudio);
+
+                    btnAudio.click(function () {
+                        if (btnAudio.css('cursor') == 'pointer') {
+                            TweenMax.killTweensOf(btnAudio);
+                            btnAudio.css({
+                                'opacity': '1',
+                                'cursor': 'default'
+                            });
+                            aplicacion.reproducirAudio(audio[4], terminaPantalla, 1000);
+                        }
+                    });
+                }
+
+                function terminaPantalla() {
+                    aplicacion.terminaPantalla();
+                }
+
+                btnAtras.click(function () {
+                    if (btnAtras.css('cursor') == 'pointer') {
+                        TweenMax.killTweensOf(btnAtras);
+                        btnAtras.css({
+                            'opacity': '1'
+                        });
+                    }
+                    i -= 1;
+                    salen();
+                    aplicacion.detenerAudios();
+                    animacionEntrada($("#info" + i), 'derecha-izquierda', 1, .5)
+                    if (i == 2) {
+                        aplicacion.detenerAudios();
+                        animacionSalida(btnAudio, "default", 0);
+                        aplicacion.reproducirAudio(audio[2], siguiente);;
+                        animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, .5, atras);
+                    }
+                    if (i == 3) {
+                        aplicacion.detenerAudios();
+                        plicacion.reproducirAudio(audio[3], atras);
+                        animacionEntrada($("#info" + i), 'derecha-izquierda', 1, .5);
+
+
+                    }
+                    checa();
+
+                });
+
+                function siguiente() {
+                    parpadea(btnSiguiente);
+                    btnAtras.css({
+                        'display': 'block',
+                        'opacity': '1'
+                    });
+                }
+
+                function atras() {
+                    btnAtras.css({
+                        'display': 'block',
+                        'opacity': '1'
+                    });
+                    btnAtras.css({
+                        'cursor': 'pointer',
+                    });
+
+                }
+            }
+        });
+    </script>
+
+    <!-- Termina Script -->
+</body>
+
+</html>
