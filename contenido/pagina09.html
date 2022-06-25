@@ -396,6 +396,7 @@
     <img class="elementos" id="info-ServiciosE" src="./img/pagina09/info-ServiciosE.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="info-Carnet" src="./img/pagina09/info-Carnet.png" data-posX="0" data-posY="0" alt="">
 
+    <img class="elementos" id="carnet" src="./img/pagina09/carnet.png" data-posX="868" data-posY="240" alt="">
     <img class="elementos" id="instrucciones" src="./img/pagina09/instrucciones.png" data-posX="900" data-posY="390" alt="">
     <img class="elementos" id="pop" src="./img/pagina09/pop-Carnet.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="cerrar" src="./img/pagina09/btn-Cerrar.png" data-posX="850" data-posY="100" alt="">
@@ -445,6 +446,7 @@
             const btn04 = $('#btn-NegocioA');
             const btn05 = $('#btn-ServiciosE');
             const btn06 = $('#btn-Carnet');
+            const carnet = $('#carnet');
             
             const info01 = $('#info-BOS');
             const info02 = $('#info-CamaraDC');
@@ -481,6 +483,7 @@
                 animacionEntrada(btn04, 'izquierda-derecha', 1, 1);
                 animacionEntrada(btn05, 'izquierda-derecha', 1, 1);
                 animacionEntrada(btn06, 'izquierda-derecha', 1, 1);
+                animacionEntrada(carnet, 'izquierda-derecha', 1, 1);
 
                 setTimeout(() => {
                     aplicacion.reproducirAudio(audio[1], clickBtn01);
@@ -670,7 +673,7 @@
                 function terminaAudioInfo06 (){
                   animacionSalida(info06, 'default', .5);
                   pausarHablar();
-                  parpadea(pulsa);
+                  animacionEntrada(pulsa, 'default', 1, .5);
                   setTimeout(() => {
                     aplicacion.reproducirAudio(audio[14], instrucciones);
                     reanudarHablar();
@@ -679,22 +682,23 @@
             });
 
             function instrucciones (){
-              pulsa.click(function () {
-                if (pulsa.css('cursor') == 'pointer') {
-                    TweenMax.killTweensOf(pulsa);
-                    pulsa.css({
+              parpadea(carnet);
+              carnet.click(function () {
+                if (carnet.css('cursor') == 'pointer') {
+                    TweenMax.killTweensOf(carnet);
+                    carnet.css({
                         'opacity': '1',
                         'cursor': 'default'
                     });
                 }
-                aplicacion.reproducirAudio(audio[15], terminaAudio1, 1000);
+                aplicacion.reproducirAudio(audio[15], terminaAudioCarnet, 1000);
                 animacionEntrada(pop, 'default', 1, 1);
 
-                function terminaAudio1(){
-                  aplicacion.reproducirAudio(audio[17], terminaAudio1, 1000);
+                function terminaAudioCarnet(){
+                  aplicacion.reproducirAudio(audio[16], terminaAudioCarnet2, 1000);
                 }
-                function terminaAudio1(){
-                  aplicacion.reproducirAudio(audio[16], terminaAudio, 1000);
+                function terminaAudioCarnet2(){
+                  aplicacion.reproducirAudio(audio[17], terminaAudio, 1000);
                 }
 
                 function terminaAudio() {
