@@ -49,7 +49,9 @@
 
     <!-- Final -->
     <img class="elementos" id="final" src="./img/pagina49/retroFinal.png" data-posX="0" data-posY="0" alt="">
-    
+
+    <img class="elementos" id="mercado" src="./img/pagina49/mercado.png" data-posX="0" data-posY="0" alt="">
+  
     <svg class="elementos" id="robot49" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="620" viewBox="0 0 1024 620">
       <defs>
         <style>
@@ -482,6 +484,7 @@
             const positiva = $('#positiva');
             const robot = $('#robot49');
             const promedio = $('#promedio');
+            const mercado = $('#mercado');
             const d1 = $('#d1');
             const d2 = $('#d2');
             const d3 = $('#d3');
@@ -721,11 +724,9 @@
                     pausarHablar();
                     aplicacion.reproducirAudio(audio[1], dialogo4, 2000);
                     animacionSalida(d2, 'deafult', 1);
+                    animacionSalida(promedio, 'deafult', 1);
+                    animacionEntrada(mercado, 'default', 1, 1);
                     animacionEntrada(d3, 'default', 1, 1);
-
-                    setTimeout(()=>{
-                        reanudarHablar();
-                    }, 1000);
                 }
 
                 function dialogo4(){

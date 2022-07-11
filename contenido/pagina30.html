@@ -395,7 +395,7 @@
 
     <img class="elementos" id="btnCerrar1" src="./img/pagina30/btnCerrar.png" data-posX="680" data-posY="284" alt="">
     <img class="elementos" id="btnCerrar2" src="./img/pagina30/btnCerrar.png" data-posX="870" data-posY="248" alt="">
-    <img class="elementos" id="btnCerrar3" src="./img/pagina30/btnCerrar.png" data-posX="1000" data-posY="112" alt="">
+    <img class="elementos" id="btnCerrar3" src="./img/pagina30/btnCerrar.png" data-posX="990" data-posY="105" alt="">
 
 
 
@@ -490,13 +490,12 @@
 
                     function cerrar(){
                         pausarHablar();
-                        animacionEntrada(btnCerrar1, 'default', 1);
-                        setTimeout(()=>{
-                            btnCerrar1.css({
+                        btnCerrar1.css({
                                 'cursor': 'pointer', 
-                                'opacity': '1'
-                            });
-                        }, 1000);
+                                'opacity': '1',
+                                'transition': 'all .3s ease',
+                                'display': 'block'
+                        });
                         btnCerrar1.click(function(){
                             animacionSalida(globo1, 'default', 1);
                             animacionSalida(btnCerrar1, 'default', 1);
@@ -520,14 +519,13 @@
                     reanudarHablar();
 
                     function cerrar(){
-                        animacionEntrada(btnCerrar2, 'default', 1);
-                        pausarHablar();
-                        setTimeout(()=>{
-                            btnCerrar2.css({
+                      btnCerrar2.css({
                                 'cursor': 'pointer', 
-                                'opacity': '1'
-                            });
-                        }, 1000);
+                                'opacity': '1',
+                                'transition': 'all .3s ease',
+                                'display': 'block'
+                        });
+                        pausarHablar();
                         btnCerrar2.click(function(){
                             animacionSalida(globo2, 'default', 1);
                             animacionSalida(btnCerrar2, 'default', 1);
@@ -551,14 +549,13 @@
                     reanudarHablar();
 
                     function cerrar(){
-                        animacionEntrada(btnCerrar3, 'default', 1);
-                        pararHablar();
-                        setTimeout(()=>{
-                            btnCerrar3.css({
+                      btnCerrar3.css({
                                 'cursor': 'pointer', 
-                                'opacity': '1'
-                            });
-                        }, 1000);
+                                'opacity': '1',
+                                'transition': 'all .3s ease',
+                                'display': 'block'
+                        });
+                        pararHablar();
                         btnCerrar3.click(function(){
                             animacionSalida(globo3, 'default', 1);
                             animacionSalida(btnCerrar3, 'default', 1);
