@@ -438,6 +438,9 @@
                 animacionEntrada(robot, 'derecha-izquierda', 1, 3.5);
                 animacionEntrada(d1, 'default', 1, 4.5);
                 animacionEntrada(instrucciones, 'izquierda-derecha', 1, 16);
+
+                rojo.css('cursor', 'pointer');
+                azul.css('cursor', 'pointer');
                 
                 setTimeout(()=>{
                     flotar(robot, 'd');
@@ -456,6 +459,14 @@
                     aplicacion.nextPag();
                 });
             }
+
+            rojo.click(function(){
+                aplicacion.irPagina(6);
+            });
+
+            azul.click(function(){
+                aplicacion.irPagina(13);
+            });
         });
     </script>
 
