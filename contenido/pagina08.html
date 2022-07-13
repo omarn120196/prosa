@@ -393,6 +393,7 @@
      <img id="btn_adelante1" class="elementos" data-posX="954.955"   data-posY="132.781" src="./img/pagina08/btn_adelante.png"></img>
       <img  class="elementos" id="btn_adelante2" data-posX="954.955"   data-posY="132.781" src="./img/pagina08/btn_adelante.png"></img>       
        <img  class="elementos" id="btn_adelante2" data-posX="954.955"   data-posY="190.781" src="./img/pagina08/btn_atras.png"></img>       
+      <img  class="elementos" id="btn_atras1" data-posX="954.955"   data-posY="190.781" src="./img/pagina08/btn_atras.png"></img>       
       <img  class="elementos" id="btn_atras2" data-posX="954.955"   data-posY="190.781" src="./img/pagina08/btn_atras.png"></img>       
      <img  class="elementos" id="btn_atras3" data-posX="954.955"   data-posY="190.781" src="./img/pagina08/btn_atras.png"></img>  
 
@@ -441,6 +442,7 @@
             const btn_adelante2 = $('#btn_adelante2');
             const btn_adelante3 = $('#btn_adelante3');
             const btn_adelante4 = $('#btn_adelante4');
+            const btn_atras1 = $('#btn_atras1');
             const btn_atras2 = $('#btn_atras2');
             const btn_atras3 = $('#btn_atras3');
             
@@ -486,14 +488,15 @@
 
 
           function salen() {
-              animacionSalida(carrousel_01, 'default', 1,0);
-              animacionSalida(carrousel_02, 'default', 1,0);
-              animacionSalida(carrousel_03, 'default', 1,0);
-              animacionSalida(carrousel_04, 'default', 1,0);
-              animacionSalida(btn_adelante1,'default', 1,0);
-              animacionSalida(btn_adelante2,'default', 1,0);
-              animacionSalida(btn_atras2,   'default', 1,0);
-              animacionSalida(btn_atras3,   'default', 1,0); 
+              animacionSalida(carrousel_01, 'default', .3,0);
+              animacionSalida(carrousel_02, 'default', .3,0);
+              animacionSalida(carrousel_03, 'default', .3,0);
+              animacionSalida(carrousel_04, 'default', .3,0);
+              animacionSalida(btn_adelante1,'default', .3,0);
+              animacionSalida(btn_adelante2,'default', .3,0);
+              animacionSalida(btn_atras1,   'default', .3,0);
+              animacionSalida(btn_atras2,   'default', .3,0);
+              animacionSalida(btn_atras3,   'default', .3,0); 
                          
               // carrousel_01.hide();
               // carrousel_02.hide();
@@ -532,9 +535,9 @@
           }
 
            function pops1(){
-              salen(); 
+              
               setTimeout(()=>{
-                 animacionEntrada(carrousel_01, 'default', 1, 0);
+                 animacionEntrada(carrousel_01, 'default', 0, 0);
                   aplicacion.reproducirAudio(audio[2],continua1,0);
                   
                   function continua1(){
@@ -543,18 +546,24 @@
                    function adelante(){
                     parpadea(btn_adelante1);                    
                     btn_adelante1.click(function(){
-                      pops2();
+                      salen();
+                      setTimeout(()=>{  pops2();  }, 500) 
+                      
+
                     }) 
+                   
+                     
                   }
                 
-              }, 1500)                
+              },1500)                
                  
           }
 
+
            function pops2(){              
-              salen();
+              
               setTimeout(()=>{                         
-              animacionEntrada(carrousel_02, 'default', 1, 0);           
+              animacionEntrada(carrousel_02, 'default', 0, 0);           
                aplicacion.reproducirAudio(audio[4], audio2);
 
               function audio2(){  
@@ -566,25 +575,26 @@
               }
 
               function adelante(){
-                  //animacionEntrada(btn_atras2, 'derecha-izquierda', 1, 0);    
                   parpadea(btn_adelante2, .5);
                   btn_adelante2.click(function(){
-                    pops3();
-                  }) 
+                    salen();
+                   setTimeout(()=>{  pops3();  }, 500) 
+                    
+                  })
+                   parpadea(btn_atras1);                    
+                    btn_atras1.click(function(){
+                      salen();
+                      pops1();
+                    }) 
               }
 
-              }, 1000);
-
-              btn_atras2.css('cursor', 'pointer');
-              btn_atras2.click(function () { 
-              pops1();              
-              })              
+              }, 1500);                           
                
            }/////////////
            function pops3(){
-            salen();
+           
             setTimeout(()=>{              
-              animacionEntrada(carrousel_03, "default", 1, 0);             
+              animacionEntrada(carrousel_03, "default", 0, 0);             
              aplicacion.reproducirAudio(audio[7], audio2);
 
               function audio2(){  
@@ -613,23 +623,22 @@
                   pops4();
                 }              
               });
+
+                    parpadea(btn_atras3);                    
+                    btn_atras3.click(function(){
+                      salen();
+                      pops2();
+                    })
               }
 
-              }, 1000);
-              btn_atras3.css('cursor', 'pointer');
-              btn_atras3.click(function () {  
-                //parent.stopAll();                            
-                 pops2();              
-              })
+              }, 1500);            
              
-
-
            }
 
            function pops4(){
              salen();
              setTimeout(()=>{
-              animacionEntrada(carrousel_04, "default", 1, 0);
+              animacionEntrada(carrousel_04, "default", 0, 0);
               aplicacion.reproducirAudio(audio[11], checa);
               }, 1000);
 
@@ -642,28 +651,31 @@
                          // parpadea($("#tip"), .5);           
                         //animacionEntrada($("#imagen3"), "izq_der", 0.7, 0); 
                         aplicacion.terminaPantalla();
-                        // btn1.show();
+                        
                         // btn1.css('cursor', 'pointer');
-                        //volverAbrir();
+                        volverAbrir();
 
                   }
           
-          //   function volverAbrir () {
-          //       animacionEntrada($(".btn_alcance"), "default", .5, 0);
+            function volverAbrir () {
+                animacionEntrada($(".btn_alcance"), "default", .5, 0);
 
-          //       $(".btn_alcance").css({
-          //       'cursor': 'pointer'
-          //     });
+              //   $(".btn_alcance").css({
+              //   'cursor': 'pointer'
+              // });
 
-          //     $("#boton1").click(function(){
-          //       pop1();
-          //     })
-
-          //     $("#boton2").click(function(){
-          //       pop4();
-          //     })
+               btn1.show();
+              btn1.css('cursor', 'pointer');
+              btn1.click(function(){
+                salen();
+                pop1();
+              })
+              btn2.css('cursor', 'pointer');
+              btn2.click(function(){
+                pop4();
+              })
                 
-          //   }
+            }
 
 
 

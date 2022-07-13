@@ -435,7 +435,7 @@
 
             <img id="cerrar1" class="elementos" data-posX="503.155" data-posY="196.972" src="./img/pagina47/btnCerrar.png"></img>
             <img id="cerrar2" class="elementos" data-posX="648.155" data-posY="318.972" src="./img/pagina47/btnCerrar.png"></img>
-            <img id="cerrar3" class="elementos" data-posX="871.155" data-posY="197.972" src="./img/pagina47/btnCerrar.png"></img>
+            <img id="cerrar3" class="elementos" data-posX="700" data-posY="197.972" src="./img/pagina47/btnCerrar.png"></img>
             <img id="cerrar4" class="elementos" data-posX="930.155" data-posY="271.972" src="./img/pagina47/btnCerrar.png"></img>
             <img id="cerrar5" class="elementos" data-posX="669.155" data-posY="203.972" src="./img/pagina47/btnCerrar.png"></img>
 
@@ -621,7 +621,7 @@ function parpadeaCerrar1(){
 }
 
 function desaparecePreg1(){
-animacionSalida(pregunta1, 'default', 1, 1);
+animacionSalida(pregunta1, 'default', 1, 0);
 parpadeaLed2();
 }
 
@@ -690,7 +690,7 @@ function parpadeaCerrar2(){
 }
 
 function desaparecePreg2(){
-animacionSalida(pregunta2, 'default', 1, 1);
+animacionSalida(pregunta2, 'default', 1, 0);
 parpadeaLed3();
 }
 
@@ -761,7 +761,7 @@ function parpadeaCerrar3(){
 }
 
 function desaparecePreg3(){
-animacionSalida(pregunta3, 'default', 1, 1);
+animacionSalida(pregunta3, 'default', 1, 0);
 parpadeaLed4();
 }
 
@@ -832,7 +832,7 @@ function parpadeaCerrar4(){
 }
 
 function desaparecePreg4(){
-animacionSalida(pregunta4, 'default', 1, 1);
+animacionSalida(pregunta4, 'default', 1, 0);
 parpadeaLed5();
 }
 
@@ -908,7 +908,7 @@ function parpadeaCerrar5(){
 }
 
 function desaparecePreg5(){
-animacionSalida(pregunta5, 'default', 1, 1);
+animacionSalida(pregunta5, 'default', 1, 0);
 //parpadeaLed6();
 retroAlimenta();
 }
@@ -951,10 +951,20 @@ function retroAlimenta(){
                 } else {
                      animacionEntrada(retroMal, "default", 1,0);                    
                      aplicacion.reproducirAudio(audio[3], aplicacion.terminaPantalla, 500);
+                     parpadea(btnReintentar);
+
+
+
                    } 
  }
 
-
+ btnReintentar.click(function(){
+    if ($(this).css('cursor') == 'pointer') {
+    TweenMax.killTweensOf($(this));
+     $(this).hide();           
+    aplicacion.recargarPag();
+   }  
+    });
 
 
    });
