@@ -9,6 +9,7 @@
 <body>
     <img class="elementos" id="titulo" src="./img/pagina09/titulo.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="esquema" src="./img/pagina09/esquema.png" data-posX="0" data-posY="0" alt="">
+    
     <svg class="elementos" id="robot9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1023" height="620" viewBox="0 0 1023 620">
         <defs>
           <style>
@@ -389,15 +390,15 @@
 
     <img class="elementos" id="dialogo" src="./img/pagina09/dialogo01.png" data-posX="0" data-posY="0" alt="">
 
-    <img class="elementos" id="info-BOS" src="./img/pagina09/info-BOS.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos" id="info-CamaraDC" src="./img/pagina09/info-CamaraDC.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos" id="info-NegocioE" src="./img/pagina09/info-NegocioE.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos" id="info-NegocioA" src="./img/pagina09/info-NegocioA.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos" id="info-ServiciosE" src="./img/pagina09/info-ServiciosE.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos" id="info-Carnet" src="./img/pagina09/info-Carnet.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info-BOS" src="./img/pagina09/info-BOS.png" data-posX="10" data-posY="430" alt="">
+    <img class="elementos" id="info-CamaraDC" src="./img/pagina09/info-CamaraDC.png" data-posX="260" data-posY="100" alt="">
+    <img class="elementos" id="info-NegocioE" src="./img/pagina09/info-NegocioE.png" data-posX="590" data-posY="450" alt="">
+    <img class="elementos" id="info-NegocioA" src="./img/pagina09/info-NegocioA.png" data-posX="470" data-posY="100" alt="">
+    <img class="elementos" id="info-ServiciosE" src="./img/pagina09/info-ServiciosE.png" data-posX="820" data-posY="450" alt="">
+    <img class="elementos" id="info-Carnet" src="./img/pagina09/info-Carnet.png" data-posX="720" data-posY="100" alt="">
 
     <img class="elementos" id="carnet" src="./img/pagina09/carnet.png" data-posX="868" data-posY="240" alt="">
-    <img class="elementos" id="instrucciones" src="./img/pagina09/instrucciones.png" data-posX="900" data-posY="390" alt="">
+    <img class="elementos" id="instrucciones" src="./img/pagina09/instrucciones.png" data-posX="900" data-posY="330" alt="">
     <img class="elementos" id="pop" src="./img/pagina09/pop-Carnet.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="cerrar" src="./img/pagina09/btn-Cerrar.png" data-posX="850" data-posY="100" alt="">
     
@@ -459,6 +460,13 @@
             const pop = $('#pop');
             const cerrar = $('#cerrar');
 
+            let abrirBtn01 = false;
+            let abrirBtn02 = false;
+            let abrirBtn03 = false;
+            let abrirBtn04 = false;
+            let abrirBtn05 = false;
+            let abrirBtn06 = false;
+
             //Iniciar contenido de la página--------------------------------------
             
             cargando(iniciarPagina);
@@ -476,14 +484,14 @@
             function terminaTitulo(){
               pausarHablar();
               animacionEntrada(dialogo, 'izquierda-derecha', 1, 1);
-                animacionEntrada(esquema, 'izquierda-derecha', 1, 1);
-                animacionEntrada(btn01, 'izquierda-derecha', 1, 1);
-                animacionEntrada(btn02, 'izquierda-derecha', 1, 1);
-                animacionEntrada(btn03, 'izquierda-derecha', 1, 1);
-                animacionEntrada(btn04, 'izquierda-derecha', 1, 1);
-                animacionEntrada(btn05, 'izquierda-derecha', 1, 1);
-                animacionEntrada(btn06, 'izquierda-derecha', 1, 1);
-                animacionEntrada(carnet, 'izquierda-derecha', 1, 1);
+                animacionEntrada(esquema, 'izquierda-derecha', 1, 2.5);
+                animacionEntrada(btn01, 'izquierda-derecha', 1, 2.5);
+                animacionEntrada(btn02, 'izquierda-derecha', 1, 2.5);
+                animacionEntrada(btn03, 'izquierda-derecha', 1, 2.5);
+                animacionEntrada(btn04, 'izquierda-derecha', 1, 2.5);
+                animacionEntrada(btn05, 'izquierda-derecha', 1, 2.5);
+                animacionEntrada(btn06, 'izquierda-derecha', 1, 2.5);
+                animacionEntrada(carnet, 'izquierda-derecha', 1, 2.5);
 
                 setTimeout(() => {
                     aplicacion.reproducirAudio(audio[1], clickBtn01);
@@ -502,29 +510,37 @@
                     TweenMax.killTweensOf(btn01);
                     btn01.css({
                         'opacity': '1',
-                        'cursor': 'default'
                     });
-                }
-                setTimeout(() => {
-                    aplicacion.reproducirAudio(audio[2], terminaAudioBtn01);
-                    reanudarHablar();
-                }, 1500);
 
-                function terminaAudioBtn01() {
-                  pausarHablar();
-                  animacionEntrada(info01, 'default', 1, .5);
-                  setTimeout(() => {
-                    aplicacion.reproducirAudio(audio[3], terminaAudioInfo01);
-                    reanudarHablar();
-                  }, 1500);
+                    setTimeout(() => {
+                        aplicacion.reproducirAudio(audio[2], terminaAudioBtn01);
+                        reanudarHablar();
+                    }, 1500);
 
+                    function terminaAudioBtn01() {
+                        pausarHablar();
+                        if(abrirBtn01 === true){
+                            info01.css({
+                                'opacity': '1',
+                            });
+                        } else{
+                            animacionEntrada(info01, 'default', 1, .2);
+                        }
+                        setTimeout(() => {
+                            aplicacion.reproducirAudio(audio[3], terminaAudioInfo01);
+                            reanudarHablar();
+                        }, 1500);
+                    }
+
+                    function terminaAudioInfo01 (){
+                        pausarHablar();
+                        if(!abrirBtn01){
+                            abrirBtn01 = true;
+                            parpadea(btn02);
+                        }
+                    }
                 }
 
-                function terminaAudioInfo01 (){
-                  animacionSalida(info01, 'default', .5);
-                  pausarHablar();
-                  parpadea(btn02);
-                }
             });
             
             btn02.click(function () {
@@ -532,29 +548,37 @@
                     TweenMax.killTweensOf(btn02);
                     btn02.css({
                         'opacity': '1',
-                        'cursor': 'default'
                     });
-                }
-                setTimeout(() => {
-                    aplicacion.reproducirAudio(audio[4], terminaAudioBtn02);
-                    reanudarHablar();
-                }, 1500);
 
-                function terminaAudioBtn02() {
-                  pausarHablar();
-                  animacionEntrada(info02, 'default', 1, .5);
-                  setTimeout(() => {
-                    aplicacion.reproducirAudio(audio[5], terminaAudioInfo02);
-                    reanudarHablar();
-                  }, 1500);
+                    setTimeout(() => {
+                        aplicacion.reproducirAudio(audio[4], terminaAudioBtn02);
+                        reanudarHablar();
+                    }, 1500);
 
+                    function terminaAudioBtn02() {
+                        pausarHablar();
+                        if(abrirBtn02 === true){
+                            info02.css({
+                                'opacity': '1',
+                            });
+                        } else {
+                            animacionEntrada(info02, 'default', 1, .5);
+                        }
+                        setTimeout(() => {
+                            aplicacion.reproducirAudio(audio[5], terminaAudioInfo02);
+                            reanudarHablar();
+                        }, 1500);
+                    }
+
+                    function terminaAudioInfo02 (){
+                        pausarHablar();
+                        if(!abrirBtn02){
+                            abrirBtn02 = true;
+                            parpadea(btn03);
+                        }
+                    }
                 }
 
-                function terminaAudioInfo02 (){
-                  animacionSalida(info02, 'default', .5);
-                  pausarHablar();
-                  parpadea(btn03);
-                }
             });
 
             btn03.click(function () {
@@ -562,28 +586,35 @@
                     TweenMax.killTweensOf(btn03);
                     btn03.css({
                         'opacity': '1',
-                        'cursor': 'default'
                     });
-                }
-                setTimeout(() => {
-                    aplicacion.reproducirAudio(audio[6], terminaAudioBtn03);
-                    reanudarHablar();
-                }, 1500);
 
-                function terminaAudioBtn03() {
-                  pausarHablar();
-                  animacionEntrada(info03, 'default', 1, .5);
-                  setTimeout(() => {
-                    aplicacion.reproducirAudio(audio[7], terminaAudioInfo03);
-                    reanudarHablar();
-                  }, 1500);
+                    setTimeout(() => {
+                        aplicacion.reproducirAudio(audio[6], terminaAudioBtn03);
+                        reanudarHablar();
+                    }, 1500);
 
-                }
+                    function terminaAudioBtn03() {
+                        pausarHablar();
+                        if(abrirBtn03 === true){
+                            info03.css({
+                                'opacity': '1',
+                            });
+                        } else{
+                            animacionEntrada(info03, 'default', 1, .5);
+                        }
+                        setTimeout(() => {
+                            aplicacion.reproducirAudio(audio[7], terminaAudioInfo03);
+                            reanudarHablar();
+                        }, 1500);
+                    }
 
-                function terminaAudioInfo03 (){
-                  animacionSalida(info03, 'default', .5);
-                  pausarHablar();
-                  parpadea(btn04);
+                    function terminaAudioInfo03 (){
+                        pausarHablar();
+                        if(!abrirBtn03){
+                            abrirBtn03 = true;
+                            parpadea(btn04);
+                        }
+                    }
                 }
             });
 
@@ -592,28 +623,35 @@
                     TweenMax.killTweensOf(btn04);
                     btn04.css({
                         'opacity': '1',
-                        'cursor': 'default'
                     });
-                }
-                setTimeout(() => {
-                    aplicacion.reproducirAudio(audio[8], terminaAudioBtn04);
-                    reanudarHablar();
-                }, 1500);
 
-                function terminaAudioBtn04() {
-                  pausarHablar();
-                  animacionEntrada(info04, 'default', 1, .5);
-                  setTimeout(() => {
-                    aplicacion.reproducirAudio(audio[9], terminaAudioInfo04);
-                    reanudarHablar();
-                  }, 1500);
+                    setTimeout(() => {
+                        aplicacion.reproducirAudio(audio[8], terminaAudioBtn04);
+                        reanudarHablar();
+                    }, 1500);
 
-                }
+                    function terminaAudioBtn04() {
+                        pausarHablar();
+                        if(abrirBtn04 === true){
+                            info04.css({
+                                'opacity': '1',
+                            });
+                        } else{
+                            animacionEntrada(info04, 'default', 1, .5);
+                        }
+                        setTimeout(() => {
+                            aplicacion.reproducirAudio(audio[9], terminaAudioInfo04);
+                            reanudarHablar();
+                        }, 1500);
+                    }
 
-                function terminaAudioInfo04 (){
-                  animacionSalida(info04, 'default', .5);
-                  pausarHablar();
-                  parpadea(btn05);
+                    function terminaAudioInfo04 (){
+                        pausarHablar();
+                        if(!abrirBtn04){
+                            abrirBtn04 = true;
+                            parpadea(btn05);
+                        }
+                    }
                 }
             });
 
@@ -622,29 +660,38 @@
                     TweenMax.killTweensOf(btn05);
                     btn05.css({
                         'opacity': '1',
-                        'cursor': 'default'
                     });
-                }
-                setTimeout(() => {
-                    aplicacion.reproducirAudio(audio[10], terminaAudioBtn05);
-                    reanudarHablar();
-                }, 1500);
 
-                function terminaAudioBtn05() {
-                  pausarHablar();
-                  animacionEntrada(info05, 'default', 1, .5);
-                  setTimeout(() => {
-                    aplicacion.reproducirAudio(audio[11], terminaAudioInfo05);
-                    reanudarHablar();
-                  }, 1500);
+                    setTimeout(() => {
+                        aplicacion.reproducirAudio(audio[10], terminaAudioBtn05);
+                        reanudarHablar();
+                    }, 1500);
 
+                    function terminaAudioBtn05() {
+                        pausarHablar();
+                        if(abrirBtn05 === true){
+                            info05.css({
+                              'opacity': '1',
+                            });
+                        } else{
+                            animacionEntrada(info05, 'default', 1, .5);
+                        }
+                        setTimeout(() => {
+                            aplicacion.reproducirAudio(audio[11], terminaAudioInfo05);
+                            reanudarHablar();
+                        }, 1500);
+
+                    }
+
+                    function terminaAudioInfo05 (){
+                        pausarHablar();
+                        if(!abrirBtn05){
+                            abrirBtn05 = true;
+                            parpadea(btn06);
+                        }
+                    }
                 }
 
-                function terminaAudioInfo05 (){
-                  animacionSalida(info05, 'default', .5);
-                  pausarHablar();
-                  parpadea(btn06);
-                }
             });
 
             btn06.click(function () {
@@ -652,73 +699,80 @@
                     TweenMax.killTweensOf(btn06);
                     btn06.css({
                         'opacity': '1',
-                        'cursor': 'default'
                     });
-                }
-                setTimeout(() => {
-                    aplicacion.reproducirAudio(audio[12], terminaAudioBtn06);
-                    reanudarHablar();
-                }, 1500);
 
-                function terminaAudioBtn06() {
-                  pausarHablar();
-                  animacionEntrada(info06, 'default', 1, .5);
-                  setTimeout(() => {
-                    aplicacion.reproducirAudio(audio[13], terminaAudioInfo06);
-                    reanudarHablar();
-                  }, 1500);
+                    setTimeout(() => {
+                        aplicacion.reproducirAudio(audio[12], terminaAudioBtn06);
+                        reanudarHablar();
+                    }, 1500);
 
-                }
+                    function terminaAudioBtn06() {
+                        pausarHablar();
+                        if(abrirBtn06 === true){
+                            info06.css({
+                                'opacity': '1',
+                            });
+                        } else{
+                            animacionEntrada(info06, 'default', 1, .5);
+                        }
+                        setTimeout(() => {
+                            aplicacion.reproducirAudio(audio[13], terminaAudioInfo06);
+                            reanudarHablar();
+                        }, 1500);
+                    }
 
-                function terminaAudioInfo06 (){
-                  animacionSalida(info06, 'default', .5);
-                  pausarHablar();
-                  animacionEntrada(pulsa, 'default', 1, .5);
-                  setTimeout(() => {
-                    aplicacion.reproducirAudio(audio[14], instrucciones);
-                    reanudarHablar();
-                  }, 1500);
+                    function terminaAudioInfo06 (){
+                        pausarHablar();
+                        if(abrirBtn06 === true){
+                            pulsa.css({
+                                'opacity': '1',
+                            });
+                        } else{
+                            animacionEntrada(pulsa, 'default', 1, .5);
+                        }
+                        setTimeout(() => {
+                            aplicacion.reproducirAudio(audio[14], instrucciones);
+                            reanudarHablar();
+                        }, 1500);
+                    }
+
+                    function instrucciones (){
+                        if(!abrirBtn06){
+                            abrirBtn06 = true;
+                            parpadea(carnet);
+                        }
+                    }
                 }
             });
 
-            function instrucciones (){
-              parpadea(carnet);
-              carnet.click(function () {
+            carnet.click(function () {
                 if (carnet.css('cursor') == 'pointer') {
                     TweenMax.killTweensOf(carnet);
                     carnet.css({
                         'opacity': '1',
-                        'cursor': 'default'
                     });
-                }
-                aplicacion.reproducirAudio(audio[15], terminaAudioCarnet, 1000);
-                animacionEntrada(pop, 'default', 1, 1);
 
+                    aplicacion.reproducirAudio(audio[15], terminaAudioCarnet, 1000);
+                    animacionEntrada(pop, 'default', 1, 1);
+                }
+                
                 function terminaAudioCarnet(){
-                  aplicacion.reproducirAudio(audio[16], terminaAudioCarnet2, 1000);
+                    aplicacion.reproducirAudio(audio[16], terminaAudioCarnet2, 1000);
                 }
                 function terminaAudioCarnet2(){
-                  aplicacion.reproducirAudio(audio[17], terminaAudio, 1000);
+                    aplicacion.reproducirAudio(audio[17], terminaAudio, 1000);
                 }
 
                 function terminaAudio() {
                     parpadea(cerrar);
                     cerrar.click(function () {
-                        if (cerrar.css('cursor') == 'pointer') {
-                            TweenMax.killTweensOf(cerrar);
-                            cerrar.css({
-                                'opacity': '1',
-                                'cursor': 'default'
-                            });
-                        }
+                        TweenMax.killTweensOf(cerrar);
                         animacionSalida(pop, 'desaparece', .5, .5);
                         animacionSalida(cerrar, 'desaparece', .5, .5);
-                        aplicacion.terminaPantalla();
+                        aplicacion.terminaPantalla();                        
                     });
                 }
             });
-
-            }
         });
     </script>
 

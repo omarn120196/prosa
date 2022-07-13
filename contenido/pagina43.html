@@ -384,11 +384,20 @@
     </svg>
 
     <img class="elementos" id="dialogo01" src="./img/pagina43/dialogo01.png" data-posX="0" data-posY="0" alt="">
+
     <img class="elementos" id="base" src="./img/pagina43/base.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos" id="esquema" src="./img/pagina43/esquema.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos" id="cuadros" src="./img/pagina43/camara-empresa.png" data-posX="0" data-posY="0" alt="">
-    <img class="elementos" id="info" src="./img/pagina43/info.png" data-posX="0" data-posY="0" alt="">
-      
+
+    <img class="elementos" id="esquema01" src="./img/pagina43/camaraCompensacion-esquema.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="cc-info01" src="./img/pagina43/cc-info01.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="cc-info02" src="./img/pagina43/cc-info02.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="cc-info03" src="./img/pagina43/cc-info03.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="esquema02" src="./img/pagina43/empresaEspecializada-esquema.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="ee-info01" src="./img/pagina43/ee-info01.png" data-posX="0" data-posY="0" alt=""> 
+    <img class="elementos" id="ee-info02" src="./img/pagina43/ee-info02.png" data-posX="0" data-posY="0" alt=""> 
+    <img class="elementos" id="ee-info03" src="./img/pagina43/ee-info03.png" data-posX="0" data-posY="0" alt=""> 
+    <img class="elementos" id="ee-info04" src="./img/pagina43/ee-info04.png" data-posX="0" data-posY="0" alt=""> 
+    <img class="elementos" id="ee-info05" src="./img/pagina43/ee-info05.png" data-posX="0" data-posY="0" alt=""> 
     <!-- Script de la página -->
     <script type="module">
         import { aplicacion } from './js/app.js';
@@ -410,9 +419,19 @@
             const dialogo01 = $('#dialogo01');
             const dialogo02 = $('#dialogo02');
             const base = $('#base');
-            const cuadros = $('#cuadros');
-            const info = $('#info');
-            const esquema = $('#esquema');
+
+            const esquema01 = $('#esquema01');
+            const info01 = $('#cc-info01');
+            const info02 = $('#cc-info02');
+            const info03 = $('#cc-info03');
+
+            const esquema02 = $('#esquema02');
+            const info04 = $('#ee-info01');
+            const info05 = $('#ee-info02');
+            const info06 = $('#ee-info03');
+            const info07 = $('#ee-info04');
+            const info08 = $('#ee-info05');
+            
 
             //Iniciar contenido de la página--------------------------------------
 
@@ -422,7 +441,6 @@
                 aplicacion.reproducirAudio(audio[0], terminaAudio, 2000);
                 animacionEntrada(titulo, 'izquierda-derecha', 1, .2);
                 animacionEntrada(dialogo01, 'izquierda-derecha', 1, .2);
-                animacionEntrada(dialogo02, 'izquierda-derecha', 1, 9);
                 animacionEntrada(robot, 'arriba-abajo', 1, .2);
                 setTimeout(() => {
                     flotar(robot, 'i');
@@ -438,10 +456,20 @@
                 animacionSalida(robot, 'default', .5);
 
                 aplicacion.reproducirAudio(audio[1], terminaPantalla, 1000);
-                animacionEntrada(base, 'izquierda-derecha', 1, 1);
-                animacionEntrada(esquema, 'izquierda-derecha', 1, 1);
-                animacionEntrada(cuadros, 'arriba-abajo', 1, 1.5);
-                animacionEntrada(info, 'arriba-abajo', 1, 1.5);
+                animacionEntrada(base, 'izquierda-derecha', 1, .2);
+
+                animacionEntrada(esquema01, 'izquierda-derecha', 1, .8);
+                animacionEntrada(info01, 'izquierda-derecha', 1, 5);
+                animacionEntrada(info02, 'izquierda-derecha', 1, 10);
+                animacionEntrada(info03, 'izquierda-derecha', 1, 18);
+
+                animacionEntrada(esquema02, 'izquierda-derecha', 1, 28);
+                animacionEntrada(info04, 'izquierda-derecha', 1, 35);
+                animacionEntrada(info05, 'izquierda-derecha', 1, 45);
+                animacionEntrada(info06, 'izquierda-derecha', 1, 60);
+                animacionEntrada(info07, 'izquierda-derecha', 1, 75);
+                animacionEntrada(info08, 'izquierda-derecha', 1, 90);
+                
             }
 
             function terminaPantalla(){
