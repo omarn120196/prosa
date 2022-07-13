@@ -60,6 +60,9 @@ export class App{
             actualizarTemario(this.noPagina);
             actualizarPorcentaje(this.noPagina, this.totalPaginas);
             cargarPagina(this.noPagina, this.paginasActivas);
+            setTimeout(()=>{
+                this.recargarPag();
+            }, 500);
         }
         else{
             console.log('Esa página no existe');
