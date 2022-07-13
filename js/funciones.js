@@ -373,6 +373,9 @@ export function actualizarTemario(noPagina){
             if($(this).hasClass('tema-activo')){
                 $(this).click(function(){
                     aplicacion.irPagina(pagina);
+                    setTimeout(()=>{
+                        aplicacion.recargarPag();
+                    }, 500);
                 });
             }
         }

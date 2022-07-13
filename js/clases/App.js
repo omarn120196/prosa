@@ -27,6 +27,8 @@ export class App{
 
     constructor(){
         this.audio;
+        this.delayAudio;
+        this.audiosActivos = true;
         this.muteado = false;
         this.noPagina = verificarLocacion();
         this.paginasActivas = 0;
@@ -61,8 +63,8 @@ export class App{
             actualizarPorcentaje(this.noPagina, this.totalPaginas);
             cargarPagina(this.noPagina, this.paginasActivas);
             setTimeout(()=>{
-                this.recargarPag();
-            }, 500);
+                this.audiosActivos = true;
+            }, 1500);
         }
         else{
             console.log('Esa página no existe');
@@ -70,7 +72,7 @@ export class App{
     }
 
     //Metodos de botones----------------------------------------------------------
- 
+
     nextPag(){
         if(this.noPagina < this.totalPaginas - 1){
             
@@ -113,6 +115,9 @@ export class App{
     recargarPag(){
         this.detenerAudios();
         cargarPagina(this.noPagina, this.paginasActivas);
+        setTimeout(()=>{
+            this.audiosActivos = true;
+        }, 1500);
     }
 
     desplegarMenu(){
@@ -138,9 +143,8 @@ export class App{
     //Metodos para reproducir y silenciar audios---------------------------------
 
     reproducirAudio(audio, funcion, delay = 0){
-
         this.audio = audio;
-
+        
         if(this.muteado){
             this.audio.muted = true;
         }
@@ -148,13 +152,16 @@ export class App{
             this.audio.muted = false;
         }
 
-        
-        setTimeout(()=>{
-            this.audio.play();
+        this.delayAudio = setTimeout(()=>{
             
-            this.audio.addEventListener("ended", () => {
-                funcion();
-            });
+            if(this.audiosActivos){
+                this.audio.play();
+            
+                this.audio.addEventListener("ended", () => {
+                    funcion();
+                });
+            }
+            
         }, delay);
     }
 
@@ -174,6 +181,8 @@ export class App{
     }
 
     detenerAudios(){
+        this.audiosActivos = false;
+        clearTimeout(this.delayAudio);
         this.audio.pause();
         this.audio.currenTime = 0;
     }
