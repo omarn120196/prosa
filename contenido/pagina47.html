@@ -23,7 +23,7 @@
             <img id="ledOn3"    class="elementos" data-posX="406.833" data-posY="233.843" src="./img/pagina47/ledOn.png"></img>        
             <img id="ledOn4"    class="elementos" data-posX="557.833" data-posY="344.843" src="./img/pagina47/ledOn.png"></img>
             <img id="ledOn5"    class="elementos" data-posX="721.833" data-posY="233.843" src="./img/pagina47/ledOn.png"></img>
-<svg class="elementos" id="robot47" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="620" viewBox="0 0 1024 620">
+      <svg class="elementos" id="robot47" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="620" viewBox="0 0 1024 620">
         <defs>
           <style>
             .cls-1 {
@@ -449,7 +449,7 @@
             <style>
                 .boton{
                     cursor: pointer;
-                    background-color: rgba(193, 39, 45, .5);
+                    background-color: rgba(193, 39, 45, 0);
                 }
                 #sim1,#sim2,#sim3,#sim4,#sim5,#sim6,#sim7,#sim8,#botonInstrucciones{
                     cursor: pointer;
@@ -574,7 +574,7 @@ function parpadeaLed1(){
     animacionEntrada(pregunta1, 'izquierda-derecha', 1, 1);
     animacionEntrada(resp1_1, 'izquierda-derecha', 1, 1);
     animacionEntrada(resp1_2, 'izquierda-derecha', 1, 1);
-    animacionEntrada(resp1_3, 'izquierda-derecha', 1, 1);
+   // animacionEntrada(resp1_3, 'izquierda-derecha', 1, 1);
     preguntas1();
    }  
     });
@@ -597,10 +597,10 @@ function preguntas1(){
   aplicacion.reproducirAudio(audio[5], parpadeaCerrar1, 500);//mal B
   bloqueoOpcionesP1();
  });
-  resp1_3.click(function(){  
-  aplicacion.reproducirAudio(audio[5], parpadeaCerrar1, 500);//mal C
-  bloqueoOpcionesP1();
- });
+ //  resp1_3.click(function(){  
+ //  aplicacion.reproducirAudio(audio[5], parpadeaCerrar1, 500);//mal C
+ //  bloqueoOpcionesP1();
+ // });
 
 function bloqueoOpcionesP1(){
   console.log("entre a bloqueos ")
@@ -856,7 +856,7 @@ function parpadeaLed5(){
     animacionEntrada(pregunta5, 'izquierda-derecha', 1, 1);
     animacionEntrada(resp5_1, 'izquierda-derecha', 1, 1);
     animacionEntrada(resp5_2, 'izquierda-derecha', 1, 1);
-    animacionEntrada(resp5_3, 'izquierda-derecha', 1, 1);
+    //animacionEntrada(resp5_3, 'izquierda-derecha', 1, 1);
     preguntas5();
    }  
     });
