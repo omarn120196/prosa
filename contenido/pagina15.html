@@ -88,6 +88,14 @@
             const pop = $('#pop');
             const btnCerrar = $('#btnCerrar');
 
+            let abrirBtn01 = false;
+            let abrirBtn02 = false;
+            let abrirBtn03 = false;
+            let abrirBtn04 = false;
+            let abrirBtn05 = false;
+            let abrirBtn06 = false;
+            let abrirBtn07 = false;
+
 
             //Iniciar contenido de la página--------------------------------------
 
@@ -113,7 +121,9 @@
                 animacionEntrada(btn07, 'arriba-abajo', 1, 18.5);
 
                 function parpadeaBtn01() {
-                    parpadea(btn01);
+                    setTimeout(()=>{
+                        parpadea(btn01);
+                    }, 1000);
                 }
 
             }
@@ -123,78 +133,57 @@
                     TweenMax.killTweensOf(btn01);
                     btn01.css({
                         'opacity': '1',
-                        'cursor': 'default'
-                    })
+                    });
+
+                    aplicacion.reproducirAudio(audio[2], 1000);
+                    animacionEntrada(info01, 'default', 1, .2);
+                    
+                    if(!abrirBtn01){
+                        abrirBtn01 = true;
+                        setTimeout(()=>{
+                            parpadea(btn02);
+                        }, 2000);
+                    }
                 }
-
-                aplicacion.reproducirAudio(audio[2], 1000);
-                animacionEntrada(info01, 'default', 1, .2);
-                parpadea(btn02);
-
-                // function terminaAudio01() {
-                //     info01.click(function () {
-                //         if (info01.css('cursor') == 'pointer') {
-                //             TweenMax.killTweensOf(info01);
-                //             info01.css({
-                //                 'opacity': '1',
-                //                 'cursor': 'default'
-                //             })
-                //         }
-                //         animacionSalida(info01, 'default', 1, .2);
-                //     });
-                // }
             });
+
             btn02.click(function () {
                 if (btn02.css('cursor') == 'pointer') {
                     TweenMax.killTweensOf(btn02);
                     btn02.css({
                         'opacity': '1',
-                        'cursor': 'default'
-                    })
+                    });
+
+                    aplicacion.reproducirAudio(audio[3], 1000);
+                    animacionEntrada(info02, 'default', 1, .2);
+
+                    if(!abrirBtn02){
+                        abrirBtn02 = true;
+                        setTimeout(()=>{
+                            parpadea(btn03);
+                        }, 2000);
+                    }
                 }
-
-                aplicacion.reproducirAudio(audio[3], 1000);
-                animacionEntrada(info02, 'default', 1, .2);
-                parpadea(btn03);
-
-                // function terminaAudio02() {
-                //     info02.click(function () {
-                //         if (info02.css('cursor') == 'pointer') {
-                //             TweenMax.killTweensOf(info02);
-                //             info02.css({
-                //                 'opacity': '1',
-                //                 'cursor': 'default'
-                //             })
-                //         }
-                //         animacionSalida(info02, 'default', 1, .2);
-                //     });
-                // }
             });
+
             btn03.click(function () {
                 if (btn03.css('cursor') == 'pointer') {
                     TweenMax.killTweensOf(btn03);
                     btn03.css({
                         'opacity': '1',
-                        'cursor': 'default'
-                    })
+                    });
+
+                    aplicacion.reproducirAudio(audio[4], 1000);
+                    animacionEntrada(info03, 'default', 1, .2);
+
+                    if(!abrirBtn03){
+                        abrirBtn03 = true;
+                        setTimeout(()=>{
+                            parpadea(btn04);
+                        }, 2000);
+                    }
                 }
 
-                aplicacion.reproducirAudio(audio[4], 1000);
-                animacionEntrada(info03, 'default', 1, .2);
-                parpadea(btn04);
-
-                // function terminaAudio03() {
-                //     info03.click(function () {
-                //         if (info03.css('cursor') == 'pointer') {
-                //             TweenMax.killTweensOf(info03);
-                //             info03.css({
-                //                 'opacity': '1',
-                //                 'cursor': 'default'
-                //             })
-                //         }
-                //         animacionSalida(info03, 'default', 1, .2);
-                //     });
-                // }
             });
 
             btn04.click(function () {
@@ -202,26 +191,18 @@
                     TweenMax.killTweensOf(btn04);
                     btn04.css({
                         'opacity': '1',
-                        'cursor': 'default'
-                    })
+                    });
+
+                    aplicacion.reproducirAudio(audio[5], 1000);
+                    animacionEntrada(info04, 'default', 1, .2);
+
+                    if(!abrirBtn04){
+                        abrirBtn04 = true;
+                        setTimeout(()=>{
+                            parpadea(btn05);
+                        }, 2000);
+                    }
                 }
-
-                aplicacion.reproducirAudio(audio[5], 1000);
-                animacionEntrada(info04, 'default', 1, .2);
-                parpadea(btn05);
-
-                // function terminaAudio04() {
-                //     info04.click(function () {
-                //         if (info04.css('cursor') == 'pointer') {
-                //             TweenMax.killTweensOf(info04);
-                //             info04.css({
-                //                 'opacity': '1',
-                //                 'cursor': 'default'
-                //             })
-                //         }
-                //         animacionSalida(info04, 'default', 1, .2);
-                //     });
-                // }
             });
 
             btn05.click(function () {
@@ -229,26 +210,18 @@
                     TweenMax.killTweensOf(btn05);
                     btn05.css({
                         'opacity': '1',
-                        'cursor': 'default'
-                    })
+                    });
+
+                    aplicacion.reproducirAudio(audio[6], 1000);
+                    animacionEntrada(info05, 'default', 1, .2);
+
+                    if(!abrirBtn05){
+                        abrirBtn05 = true;
+                        setTimeout(()=>{
+                            parpadea(btn06);
+                        }, 4000);
+                    }
                 }
-
-                aplicacion.reproducirAudio(audio[6], 1000);
-                animacionEntrada(info05, 'default', 1, .2);
-                parpadea(btn06);
-
-                // function terminaAudio05() {
-                //     info05.click(function () {
-                //         if (info05.css('cursor') == 'pointer') {
-                //             TweenMax.killTweensOf(info05);
-                //             info05.css({
-                //                 'opacity': '1',
-                //                 'cursor': 'default'
-                //             })
-                //         }
-                //         animacionSalida(info05, 'default', 1, .2);
-                //     });
-                // }
             });
 
             btn06.click(function () {
@@ -256,26 +229,18 @@
                     TweenMax.killTweensOf(btn06);
                     btn06.css({
                         'opacity': '1',
-                        'cursor': 'default'
-                    })
+                    });
+
+                    aplicacion.reproducirAudio(audio[7], 1000);
+                    animacionEntrada(info06, 'default', 1, .2);
+
+                    if(!abrirBtn06){
+                        abrirBtn06 = true;
+                        setTimeout(()=>{
+                            parpadea(btn07);
+                        }, 2000);
+                    }
                 }
-
-                aplicacion.reproducirAudio(audio[7], 1000);
-                animacionEntrada(info06, 'default', 1, .2);
-                parpadea(btn07);
-
-                // function terminaAudio06() {
-                //     info06.click(function () {
-                //         if (info06.css('cursor') == 'pointer') {
-                //             TweenMax.killTweensOf(info06);
-                //             info06.css({
-                //                 'opacity': '1',
-                //                 'cursor': 'default'
-                //             })
-                //         }
-                //         animacionSalida(info06, 'default', 1, .2);
-                //     });
-                // }
             });
 
             btn07.click(function () {
@@ -283,60 +248,36 @@
                     TweenMax.killTweensOf(btn07);
                     btn07.css({
                         'opacity': '1',
-                        'cursor': 'default'
-                    })
+                    });
+
+                    aplicacion.reproducirAudio(audio[8], dudas, 1000);
+                    animacionEntrada(info07, 'default', 1, .2);
                 }
-
-                aplicacion.reproducirAudio(audio[8], dudas, 1000);
-                animacionEntrada(info07, 'default', 1, .2);
-
-                // function terminaAudio07() {
-                //     aplicacion.terminaPantalla();
-                //     info07.click(function () {
-                //         if (info07.css('cursor') == 'pointer') {
-                //             TweenMax.killTweensOf(info07);
-                //             info07.css({
-                //                 'opacity': '1',
-                //                 'cursor': 'default'
-                //             })
-                //         }
-                //         animacionSalida(info07, 'default', 1, .2);
-                //     });
-                // }
             });
 
             function dudas() {
                 parpadea(btnDudas);
-                btnDudas.click(function () {
-                    if (btnDudas.css('cursor') == 'pointer') {
-                        TweenMax.killTweensOf(btnDudas);
-                        btnDudas.css({
-                            'opacity': '1',
-                            'cursor': 'default'
-                        })
-                    }
+            }
+
+            btnDudas.click(function () {
+                if (btnDudas.css('cursor') == 'pointer') {
+                    TweenMax.killTweensOf(btnDudas);
+                    btnDudas.css('opacity', '1');
+
                     aplicacion.reproducirAudio(audio[9], cerrarDudas, 1000);
                     animacionEntrada(pop, 'default', 1, .5);
-                });
 
-            }
-
-            function cerrarDudas(){
-                parpadea(btnCerrar);
-                btnCerrar.click(function () {
-                    if (btnCerrar.css('cursor') == 'pointer') {
-                        TweenMax.killTweensOf(btnCerrar);
-                        btnCerrar.css({
-                            'opacity': '1',
-                            'cursor': 'default'
-                        })
+                    function cerrarDudas(){
+                        parpadea(btnCerrar);
+                        btnCerrar.click(function () {
+                            TweenMax.killTweensOf(btnCerrar);
+                            animacionSalida(pop, 'default', 1, .2);
+                            animacionSalida(btnCerrar, 'default', 1, .2);
+                            aplicacion.terminaPantalla();
+                        });
                     }
-                    animacionSalida(pop, 'default', 1, .2);
-                    animacionSalida(btnCerrar, 'default', 1, .2);
-                    aplicacion.terminaPantalla();
-                });
-            }
-
+                }
+            });
         });
     </script>
 

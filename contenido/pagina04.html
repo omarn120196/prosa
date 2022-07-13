@@ -501,9 +501,9 @@
                 animacionEntrada(d05, 'default', 1, 1);
                 animacionEntrada(terminal, 'izquierda-derecha', 1, 1);
                 animacionEntrada(deslizador, 'izquierda-derecha', 1, 1);
-                animacionEntrada(tarjeta, 'arriba-abajo', 1, 1.5);
-                animacionEntrada(drop, 'izquierda-derecha', 1, 1);
-                animacionEntrada(instrucciones, 'izquierda-derecha', 1, 1);
+                animacionEntrada(tarjeta, 'arriba-abajo', 1, 5);
+                animacionEntrada(drop, 'default', 1, 1);
+                animacionEntrada(instrucciones, 'izquierda-derecha', 1, 7);
 
                 setTimeout(() => {
                     aplicacion.reproducirAudio(audio[4], ejercicioPag04);
@@ -514,6 +514,7 @@
             function ejercicioPag04() {
                 pararHablar();
                 parpadea(tarjeta);
+                parpadea(deslizador);
                 pasarTarjeta();
             }
 
