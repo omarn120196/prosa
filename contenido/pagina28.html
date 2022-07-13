@@ -432,9 +432,11 @@
             function textos(){
                 pararHablar();
                 parpadea(adelante);
+                adelante.css('cursor', 'pointer');
             }
 
             adelante.click(function(){
+                TweenMax.killTweensOf(adelante);
                 animacionSalida(robot, 'default', .4);
                 animacionSalida(adelante, 'default', .4);
                 animacionSalida(d1, 'default', .4);
