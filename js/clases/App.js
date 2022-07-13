@@ -61,10 +61,7 @@ export class App{
             this.detenerAudios();
             actualizarTemario(this.noPagina);
             actualizarPorcentaje(this.noPagina, this.totalPaginas);
-            cargarPagina(this.noPagina, this.paginasActivas);
-            setTimeout(()=>{
-                this.audiosActivos = true;
-            }, 1500);
+            this.recargarPag();
         }
         else{
             console.log('Esa página no existe');
@@ -87,6 +84,9 @@ export class App{
             this.detenerAudios();
             actualizarPorcentaje(this.noPagina, this.totalPaginas);
             cargarPagina(this.noPagina, this.paginasActivas);
+            setTimeout(()=>{
+                this.audiosActivos = true;
+            }, 1500);
         }
         else{
             console.log('Estas en la ultima página');
@@ -104,8 +104,8 @@ export class App{
             cargarPagina(this.noPagina, this.paginasActivas);
 
             setTimeout(()=>{
-                this.activarNavegacion();
-            }, 4000);
+                this.audiosActivos = true;
+            }, 1500);
         }
         else{
             console.log('Estas en la primer página');
