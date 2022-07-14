@@ -378,3 +378,19 @@ export function actualizarTemario(noPagina){
         }
     });
 }
+
+//Mover teclas
+export function moverTeclas(){
+    $(document).keydown(function(e) {
+
+        if(e.ctrlKey && e.keyCode === 39){
+            aplicacion.nextPag();
+            return;
+        }
+        
+        if(e.ctrlKey && e.keyCode === 37){
+            aplicacion.prevPag();
+        }
+        
+    });
+}

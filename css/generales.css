@@ -39,6 +39,10 @@ html{
     position: relative;
 }
 
+a{
+    text-decoration: none;
+}
+
 /* ---------------------Botones de Navegación----------------------- */
 .btnNav{
     position: absolute;
@@ -257,7 +261,7 @@ button img{
     left: 100%;
     width: 30px;
     height: 60px;
-    background: var(--claro);
+    background: #ffd900;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -269,7 +273,7 @@ button img{
 }
 
 .cerrar i{
-    color: var(--secundario);
+    color: rgb(48, 133, 133);
     font-size: 28px;
 }
 

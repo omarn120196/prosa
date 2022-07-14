@@ -50,6 +50,11 @@
             const btnCerrar01 = $('#btnCerrar01');
             const btnCerrar02 = $('#btnCerrar02');
 
+            let abrirBtnCajero = false;
+
+            let observandoCajero = false;
+            let observandoTerminal = false;
+
             //Iniciar contenido de la página--------------------------------------
 
             cargando(iniciarPagina);
@@ -58,6 +63,8 @@
                 aplicacion.reproducirAudio(audio[0], terminaAudio, 2000);
                 animacionEntrada(titulo, 'izquierda-derecha', 1, .2);
                 animacionEntrada(instrucciones, 'izquierda-derecha', 1, 1.5);
+                animacionEntrada(btnCajero, 'izquierda-derecha', 1, 1.5);
+                animacionEntrada(btnTerminal, 'izquierda-derecha', 1, 1.5);
 
                 function terminaAudio() {
                     animacionSalida(instrucciones, 'default', .5);
@@ -67,71 +74,66 @@
 
 
             btnCajero.click(function () {
-                if (btnCajero.css('cursor') == 'pointer') {
+                if (btnCajero.css('cursor') == 'pointer' && !observandoTerminal) {
                     TweenMax.killTweensOf(btnCajero);
                     btnCajero.css({
                         'opacity': '1',
-                        'cursor': 'default'
                     });
 
                     aplicacion.reproducirAudio(audio[1], terminaAudio01, 2000);
                     animacionEntrada(infoCajero, 'default', 1, 1);
+                    observandoCajero = true;
+
+                    function terminaAudio01() {
+                        parpadea(btnCerrar01);
+                        btnCerrar01.click(function () {
+                            TweenMax.killTweensOf(btnCerrar01);
+                            animacionSalida(infoCajero, 'default', 1, .2);
+                            animacionSalida(btnCerrar01, 'default', 1, fin, .2);
+
+                            function fin(){
+                                observandoCajero = false;
+                                if(!abrirBtnCajero){
+                                    abrirBtnCajero = true;
+                                    setTimeout(()=>{
+                                        parpadea(btnTerminal);
+                                    }, 2000);
+                                }
+                            }
+                            
+                        });
+                    }
                 }
             });
 
-            function terminaAudio01() {
-                parpadea(btnCerrar01);
-                btnCerrar01.click(function () {
-                    if (btnCerrar01.css('cursor') == 'pointer') {
-                        TweenMax.killTweensOf(btnCerrar01);
-                        btnCerrar01.css({
-                            'opacity': '1',
-                            'cursor': 'default'
-                        });
-
-                        animacionSalida(infoCajero, 'default', 1, .2);
-                        animacionSalida(btnCerrar01, 'default', 1, .2);
-                    }
-
-                    parpadea(btnTerminal);
-                });
-            }
-
 
             btnTerminal.click(function () {
-                if (btnTerminal.css('cursor') == 'pointer') {
+                if (btnTerminal.css('cursor') == 'pointer' && !observandoCajero) {
                     TweenMax.killTweensOf(btnTerminal);
                     btnTerminal.css({
                         'opacity': '1',
-                        'cursor': 'default'
                     });
 
                     aplicacion.reproducirAudio(audio[2], terminaAudio02, 2000);
                     animacionEntrada(infoTerminal, 'default', 1, 1);
+                    observandoTerminal = true;
+
+                    function terminaAudio02() {
+                        parpadea(btnCerrar02);
+                        aplicacion.terminaPantalla();
+                        btnCerrar02.click(function () {
+                            TweenMax.killTweensOf(btnCerrar02);
+                            animacionSalida(infoTerminal, 'default', 1, .2);
+                            animacionSalida(btnCerrar02, 'default', 1, fin, .2);
+                        });
+                    }
+
+                    function fin(){
+                        observandoTerminal = false;
+                    }
                 }
             });
 
-            function terminaAudio02() {
-                parpadea(btnCerrar02);
-                btnCerrar02.click(function () {
-                    if (btnCerrar02.css('cursor') == 'pointer') {
-                        TweenMax.killTweensOf(btnCerrar02);
-                        btnCerrar02.css({
-                            'opacity': '1',
-                            'cursor': 'default'
-                        });
-
-                        animacionSalida(infoTerminal, 'default', 1, .2);
-                        animacionSalida(btnCerrar02, 'default', 1, .2);
-                    }
-
-                    terminaPantalla();
-                });
-            }
-
-            function terminaPantalla() {
-                aplicacion.terminaPantalla();
-            }
 
 
 

@@ -894,17 +894,19 @@
 
                     function cerrarGlobo1(){
                       pausarHablar();
-                        animacionEntrada(cerrar1, 'default', 1);
                         setTimeout(()=>{
                             cerrar1.css({
                                 'cursor': 'pointer', 
-                                'opacity': '1'
-                            }
-                            );
+                                'opacity': '1',
+                                'transition': 'all .3s ease',
+                                'display': 'block'
+                            });
                         }, 1000);
                         cerrar1.click(function(){
                             btn1.css('cursor', 'pointer');
-                            animacionSalida(cerrar1, 'default', .3)
+                            cerrar1.css({
+                                'opacity': '0'
+                            });
                             animacionSalida(globo1, 'default', .3);
                             if(!abrir1){
                                 abrir1 = true;
@@ -925,17 +927,19 @@
 
                     function cerrarGlobo1(){
                       pausarHablar();
-                        animacionEntrada(cerrar2, 'deafault', 1);
                         setTimeout(()=>{
                             cerrar2.css({
                                 'cursor': 'pointer', 
-                                'opacity': '1'
-                            }
-                            );
+                                'opacity': '1',
+                                'transition': 'all .3s ease',
+                                'display': 'block'
+                            });
                         }, 1000);
                         cerrar2.click(function(){
                             btn2.css('cursor', 'pointer');
-                            animacionSalida(cerrar2, 'default', .3)
+                            cerrar2.css({
+                                'opacity': '0'
+                            });
                             animacionSalida(globo2, 'default', .3);
                             if(!abrir2){
                                 abrir2 = true;
@@ -956,17 +960,19 @@
 
                     function cerrarGlobo1(){
                       pausarHablar();
-                        animacionEntrada(cerrar3, 'deafault', 1);
                         setTimeout(()=>{
                             cerrar3.css({
                                 'cursor': 'pointer', 
-                                'opacity': '1'
-                            }
-                            );
+                                'opacity': '1',
+                                'transition': 'all .3s ease',
+                                'display': 'block'
+                            });
                         }, 1000);
                         cerrar3.click(function(){
                             btn3.css('cursor', 'pointer');
-                            animacionSalida(cerrar3, 'default', .3)
+                            cerrar3.css({
+                                'opacity': '0'
+                            });
                             animacionSalida(globo3, 'default', .3);
                             if(!abrir3){
                                 abrir3 = true;
@@ -987,17 +993,19 @@
 
                     function cerrarGlobo1(){
                       pararHablar();
-                        animacionEntrada(cerrar4, 'deafault', 1);
                         setTimeout(()=>{
                             cerrar4.css({
                                 'cursor': 'pointer', 
-                                'opacity': '1'
-                            }
-                            );
+                                'opacity': '1',
+                                'transition': 'all .3s ease',
+                                'display': 'block'
+                            });
                         }, 1000);
                         cerrar4.click(function(){
                             btn4.css('cursor', 'pointer');
-                            animacionSalida(cerrar4, 'default', .3)
+                            cerrar4.css({
+                                'opacity': '0'
+                            });
                             animacionSalida(globo4, 'default', .3);
                             if(!abrir4){
                                 abrir4 = true;

@@ -14,12 +14,10 @@
     <img class="elementos" id="dialogo" src="./img/pagina42/dialogo.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="enchufe" src="./img/pagina42/enchufe.png" data-posX="0" data-posY="0" alt="">
     
-    <div class="elementos" id="drop"  data-id="1" data-posX="500" data-posY="310" style="width:30px; height:85px; "></div>
-
-    <div class="elementos" id="cable" data-id="1" data-posX="0" data-posY="310">
-        <img src="./img/pagina42/cable.png" alt="">
-    </div>
-
+    <div class="elementos drop" id="drop1"  data-id="1" data-posX="80" data-posY="310" style="width:500px; height:85px;"></div>
+    <div class="elementos" id="gris" data-posX="500" data-posY="313" style="width:30px; height:76px; background-color: #706c6c5b;"></div>
+    <img class="elementos drag" id="drag1" data-id="1" src="./img/pagina42/cable.png" data-posX="0" data-posY="310" alt="">
+    
     <img class="elementos" id="carrusel" src="./img/pagina42/carrusel.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="info1" src="./img/pagina42/info01.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="info2" src="./img/pagina42/info02.png" data-posX="0" data-posY="0" alt="">
@@ -28,7 +26,7 @@
     <img class="elementos" id="btnSiguiente" src="./img/pagina42/btnSiguiente.png" data-posX="900" data-posY="170" alt="">
     <img class="elementos" id="btnAtras" src="./img/pagina42/btnAtras.png" data-posX="900" data-posY="230" alt="">
 
-    <img class="elementos" id="btnAudio" src="./img/pagina42/btnAudio.png" data-posX="450" data-posY="480" alt="">
+    <img class="elementos" id="btnAudio" src="./img/pagina42/btnAudio.png" data-posX="600" data-posY="470" alt="">
 
     <!-- Script de la página -->
     <script type="module">
@@ -53,8 +51,8 @@
             const titulo = $('#titulo');
             const dialogo = $('#dialogo');
             const enchufe = $('#enchufe');
-            const drop = $('#drop');
-            const cable = $('#cable');
+            const drop = $('#drop1');
+            const drag1 = $('#drag1');
 
             const carrusel = $('#carrusel');
             const info1 = $('#info1');
@@ -63,6 +61,8 @@
             const btnSiguiente = $('#btnSiguiente');
             const btnAtras = $('#btnAtras');
             const btnAudio = $('#btnAudio');
+
+            const gris = $('#gris');
 
 
             var i = 1;
@@ -78,20 +78,21 @@
                 animacionEntrada(titulo, 'izquierda-derecha', 1, .2);
                 animacionEntrada(dialogo, 'izquierda-derecha', 1, 1);
                 animacionEntrada(enchufe, 'izquierda-derecha', 1, 5);
+                animacionEntrada(gris, 'izquierda-derecha', 1, 5);
                 animacionEntrada(drop, 'izquierda-derecha', 1, 5);
-                animacionEntrada(cable, 'izquierda-derecha', 1, 5);
+                animacionEntrada(drag1, 'izquierda-derecha', 1, 5);
 
             }
 
             function ejercicioPag42() {
-                parpadea(cable);
+                parpadea(drag1);
                 juntarCable();
             }
 
 
             function juntarCable() {
-                const elementoDrag = $('#cable');
-                const elementoDrop = $('#drop');
+                const elementoDrag = $('.drag');
+                const elementoDrop = $('.drop');
 
                 let dragSelect;
                 let dropCorrespondiente;
@@ -100,30 +101,41 @@
                     revert: true,
                     opacity: 1,
                     start: function (event, ui) {
-                        dragSelect = $(this).attr('data-id');
+                        dragSelect = $(this).data('id');
                     }
                 });
 
 
                 elementoDrop.droppable({
-                    accept: "#cable",
-                    tolerance: "touch",
+                    accept: ".drag",
+                    tolerance: "intersect",
                     drop: function (event, ui) {
-                        dropCorrespondiente = $(this).attr('data-id');
+                        dropCorrespondiente = $(this).data('id');
                         verificar();
                     }
                 });
 
                 function verificar() {
                     if (dragSelect === dropCorrespondiente) {
+                        let dragActivo = $(`#drag${dragSelect}`);
+                        let dropActivo = $(`#drop${dropCorrespondiente}`);
 
-                        cable.draggable({
+                        const dropTop = dropActivo.css('top');
+                        const dropLeft = dropActivo.css('left');
+
+                        dragActivo.css({
+                            'top': dropTop,
+                            'left': dropLeft
+                        });
+
+                        drag1.draggable({
                             revert: false,
                         });
 
-                        animacionSalida(cable, 'default', .5);
-                        animacionSalida(dialogo, 'default', .5);
-                        animacionSalida(enchufe, 'default', .5);
+                        animacionSalida(drag1, 'default', 2);
+                        animacionSalida(dialogo, 'default', 2);
+                        animacionSalida(enchufe, 'default', 2);
+                        animacionSalida(gris, 'default', 2);
                         animacionSalida(drop, 'default', .5, entraCarrusel);
 
                     }

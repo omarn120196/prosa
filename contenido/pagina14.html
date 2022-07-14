@@ -62,6 +62,10 @@
             const cerrar02 = $('#btnCerrar02');
             const cerrar03 = $('#btnCerrar03');
 
+            let abrirBtn01 = false;
+            let abrirBtn02 = false;
+            let abrirBtn03 = false;
+
             //Iniciar contenido de la página--------------------------------------
             
             cargando(iniciarPagina);
@@ -74,45 +78,41 @@
             }
 
             function terminaAudio(){
-                aplicacion.reproducirAudio(audio[1], btnAzul, 1000);
+                aplicacion.reproducirAudio(audio[1], botones, 1000);
 
                 animacionEntrada(instrucciones, 'izquierda-derecha', 1, 6);
                 animacionEntrada(base, 'izquierda-derecha', 1, 7);
                 animacionEntrada(btn01, 'arriba-abajo', 1, 6.5);
                 animacionEntrada(btn02, 'arriba-abajo', 1, 6.5);
-                animacionEntrada(btn03, 'arriba-abajo', 1, 6.5);
+                animacionEntrada(btn03, 'arriba-abajo', 1, 6.5);   
+            }
 
-                function btnAzul() {
-                    parpadea(btn01);
-                }
+            function botones() {
+                parpadea(btn01);
             }
 
             btn01.click(function () {
                 if (btn01.css('cursor') == 'pointer') {
                     TweenMax.killTweensOf(btn01);
-                    btn01.css({
-                        'opacity': '1',
-                        'cursor': 'default'
-                    })
-                }
+                    btn01.css('opacity', '1');
 
-                aplicacion.reproducirAudio(audio[2], terminaAudio01, 2000);
-                animacionEntrada(info01, 'default', 1, 1);
+                    aplicacion.reproducirAudio(audio[2], terminaAudio01, 2000);
+                    animacionEntrada(info01, 'default', 1, 1);
 
-                function terminaAudio01() {
-                    parpadea(cerrar01);
-                    cerrar01.click(function () {
-                        if (cerrar01.css('cursor') == 'pointer') {
+                    function terminaAudio01() {
+                        parpadea(cerrar01);
+
+                        cerrar01.click(function () {
                             TweenMax.killTweensOf(cerrar01);
-                            cerrar01.css({
-                                'opacity': '1',
-                                'cursor': 'default'
-                            })
-                        }
-                        animacionSalida(info01, 'default', 1, .5);
-                        animacionSalida(cerrar01, 'default', 1, .5);
-                        parpadea(btn02);
-                    });
+                            animacionSalida(info01, 'default', 1, .5);
+                            animacionSalida(cerrar01, 'default', 1, .5);
+
+                            if(!abrirBtn01){
+                                abrirBtn01 = true;
+                                parpadea(btn02);
+                            }
+                        });
+                    }
                 }
             });
 
@@ -120,60 +120,53 @@
             btn02.click(function () {
                 if (btn02.css('cursor') == 'pointer') {
                     TweenMax.killTweensOf(btn02);
-                    btn02.css({
-                        'opacity': '1',
-                        'cursor': 'default'
-                    })
-                }
-                aplicacion.reproducirAudio(audio[3], terminaAudio02, 2000);
-                animacionEntrada(info02, 'default', 1, 1);
+                    btn02.css('opacity', '1');
 
-                function terminaAudio02() {
-                    parpadea(cerrar02);
-                    cerrar02.click(function () {
-                        if (cerrar02.css('cursor') == 'pointer') {
+                    aplicacion.reproducirAudio(audio[3], terminaAudio02, 2000);
+                    animacionEntrada(info02, 'default', 1, 1);
+
+                    function terminaAudio02() {
+                        parpadea(cerrar02);
+
+                        cerrar02.click(function () {
                             TweenMax.killTweensOf(cerrar02);
-                            cerrar02.css({
-                                'opacity': '1',
-                                'cursor': 'default'
-                            })
-                        }
-                        animacionSalida(info02, 'default', 1, .5);
-                        animacionSalida(cerrar02, 'default', 1, .5);
-                        parpadea(btn03);
-                    });
+                            animacionSalida(info02, 'default', 1, .5);
+                            animacionSalida(cerrar02, 'default', 1, .5);
+
+                            if(!abrirBtn02){
+                                abrirBtn02 = true;
+                                parpadea(btn03);
+                            }
+                        });
+                    }
                 }
+
             });
             
 
             btn03.click(function () {
                 if (btn03.css('cursor') == 'pointer') {
                     TweenMax.killTweensOf(btn03);
-                    btn03.css({
-                        'opacity': '1',
-                        'cursor': 'default'
-                    })
-                }
-                aplicacion.reproducirAudio(audio[4], terminaAudio03, 2000);
-                animacionEntrada(info03, 'default', 1, 1);
+                    btn03.css('opacity', '1');
 
-                function terminaAudio03() {
-                    parpadea(cerrar03);
-                    cerrar03.click(function () {
-                        if (cerrar03.css('cursor') == 'pointer') {
+                    aplicacion.reproducirAudio(audio[4], terminaAudio03, 2000);
+                    animacionEntrada(info03, 'default', 1, 1);
+
+                    function terminaAudio03() {
+                        parpadea(cerrar03);
+
+                        cerrar03.click(function () {
                             TweenMax.killTweensOf(cerrar03);
-                            cerrar03.css({
-                                'opacity': '1',
-                                'cursor': 'default'
-                            })
-                        }
-                        animacionSalida(info03, 'default', 1, .5);
-                        animacionSalida(cerrar03, 'default', 1, .5);
-                    });
-
-                    aplicacion.terminaPantalla();
+                            animacionSalida(info03, 'default', 1, .5);
+                            animacionSalida(cerrar03, 'default', 1, terminaPantalla, .5);
+                        });
+                    }
                 }
             });
+
+            function terminaPantalla(){
+                aplicacion.terminaPantalla();
+            }
         });
     </script>
 
