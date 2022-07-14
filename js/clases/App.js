@@ -61,7 +61,10 @@ export class App{
             this.detenerAudios();
             actualizarTemario(this.noPagina);
             actualizarPorcentaje(this.noPagina, this.totalPaginas);
-            this.recargarPag();
+            cargarPagina(this.noPagina, this.paginasActivas);
+            setTimeout(()=>{
+                this.audiosActivos = true;
+            }, 1500);
         }
         else{
             console.log('Esa página no existe');
