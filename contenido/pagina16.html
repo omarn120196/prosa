@@ -437,16 +437,16 @@
                     btnAdelante.css({
                         'opacity': '1'
                     });
-                }
 
-                aplicacion.reproducirAudio(audio[15], terminaAudio101, 1000);
-                animacionSalida(info10, "default", .5, 0.3);
-                animacionSalida(btnAdelante, "default", .5, 0.3);
-                animacionEntrada(info10_2, "default", .5, 0.3);
-                animacionEntrada(btnAtras, "default", .5, 0.3);
-
-                function terminaAudio101() {
-                    parpadea(btnCerrar10);
+                    aplicacion.reproducirAudio(audio[15], terminaAudio101, 1000);
+                    animacionSalida(info10, "default", .5, 0.3);
+                    animacionSalida(btnAdelante, "default", .5, 0.3);
+                    animacionEntrada(info10_2, "default", .5, 0.3);
+                    
+                    function terminaAudio101() {
+                        animacionEntrada(btnAtras, "default", .5, 0.3);
+                        parpadea(btnCerrar10);
+                    }
                 }
             });
 
@@ -457,12 +457,14 @@
                     btnCerrar10.css({
                         'opacity': '1'
                     });
-                }
-                animacionSalida(info10_2, "default", .5, 0.2);
-                animacionSalida(btnAtras, "default", .5, 0.2);
-                animacionSalida(btnCerrar10, "default", .5, 0.2);
 
-                aplicacion.terminaPantalla()
+                    animacionSalida(info10_2, "default", .5, 0.2);
+                    animacionSalida(btnAtras, "default", .5, 0.2);
+                    animacionSalida(btnAdelante, "default", .5, 0.2);
+                    animacionSalida(btnCerrar10, "default", .5, 0.2);
+
+                    aplicacion.terminaPantalla();
+                }
             });
 
             //Funcionalidad btnRegresar--------------------------------------------------------
@@ -473,14 +475,18 @@
                         'opacity': '1'
                     });
                 }
+                aplicacion.reproducirAudio(audio[14], terminaAtras, 1000);
+                animacionEntrada(info10, "default", .5, 0.2);
 
-                aplicacion.reproducirAudio(audio[14], 1000);
                 animacionSalida(info10_2, "default", .5, 0.2);
                 animacionSalida(btnCerrar10, "default", .5, 0.2);
                 animacionSalida(btnAtras, "default", .5, 0.2);
-                animacionEntrada(info10, "default", .5, 0.2);
-                animacionEntrada(btnAdelante, "default", .5, 0.2);
+                 
+                function terminaAtras(){
+                    animacionEntrada(btnAdelante, "default", .5, 0.2);
+                }
             });
+            
 
         });
     </script>

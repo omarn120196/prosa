@@ -531,6 +531,7 @@
                 if (i == 2) {
                     pausarHablar();
                     animacionSalida(btnSiguiente, "default", 0);
+                    animacionSalida(btnAtras, "default", 0);
 
                     setTimeout(() => {
                         aplicacion.reproducirAudio(audio[5], siguiente);
@@ -542,6 +543,7 @@
                 if (i == 3) {
                     pausarHablar();
                     animacionSalida(btnSiguiente, "default", 0);
+                    animacionSalida(btnAtras, "default", 0);
 
                     setTimeout(() => {
                         aplicacion.reproducirAudio(audio[6], siguiente);
@@ -553,6 +555,7 @@
                 if (i == 4) {
                     pausarHablar();
                     animacionSalida(btnSiguiente, "default", 0);
+                    animacionSalida(btnAtras, "default", 0);
 
                     setTimeout(() => {
                         aplicacion.reproducirAudio(audio[7], siguiente);
@@ -564,6 +567,7 @@
                 if (i == 5) {
                     pausarHablar();
                     animacionSalida(btnSiguiente, "default", 0);
+                    animacionSalida(btnAtras, "default", 0);
                     
                     setTimeout(() => {
                         aplicacion.reproducirAudio(audio[8], siguiente);
@@ -580,7 +584,7 @@
                         reanudarHablar();
                     }, 1500);
 
-                    animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, 1.5);
+                    animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, 1.5, atras);
 
                 }
                 checa();
@@ -605,6 +609,7 @@
                 animacionEntrada($("#info" + i), 'derecha-izquierda', 1, .5)
                 if (i == 2) {
                   aplicacion.detenerAudios();
+                  animacionSalida(btnAtras, "default", 0);
                     pausarHablar();
                     setTimeout(() => {
                         aplicacion.reproducirAudio(audio[5], siguiente);
@@ -615,6 +620,7 @@
                 }
                 if (i == 3) {
                   aplicacion.detenerAudios();
+                  animacionSalida(btnAtras, "default", 0);
                     pausarHablar();
                     setTimeout(() => {
                         aplicacion.reproducirAudio(audio[6], siguiente);
@@ -625,6 +631,7 @@
                 }
                 if (i == 4) {
                   aplicacion.detenerAudios();
+                  animacionSalida(btnAtras, "default", 0);
                     pausarHablar();
                     setTimeout(() => {
                         aplicacion.reproducirAudio(audio[7], siguiente);
@@ -635,6 +642,7 @@
                 }
                 if (i == 5) {
                   aplicacion.detenerAudios();
+                  animacionSalida(btnAtras, "default", 0);
                     pausarHablar();
                     setTimeout(() => {
                         aplicacion.reproducirAudio(audio[8], siguiente);
@@ -650,7 +658,7 @@
                         aplicacion.reproducirAudio(audio[9], atras);
                         reanudarHablar();
                     }, 1500);
-                    animacionEntrada($("#info" + i), 'derecha-izquierda', 1, .5);
+                    animacionEntrada($("#info" + i), 'derecha-izquierda', 1, .5, atras);
                     
                     
                 }
