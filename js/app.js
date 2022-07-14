@@ -1,5 +1,5 @@
 import { App } from "./clases/App.js";
-import { modoDesarrollador, tiempo, redimensionar } from "./funciones.js";
+import { modoDesarrollador, tiempo, redimensionar, moverTeclas } from "./funciones.js";
 import {btnAdelante, btnAtras, btnMenu, btnCerrar, btnAudio, btnRecargar, btnCerrarGlosario, contGlosario, btnGlosario} from './selectores.js';
 import { registrarTiempo, cerrarConexion } from './conexion.js';
 

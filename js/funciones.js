@@ -373,11 +373,24 @@ export function actualizarTemario(noPagina){
             if($(this).hasClass('tema-activo')){
                 $(this).click(function(){
                     aplicacion.irPagina(pagina);
-                    setTimeout(()=>{
-                        aplicacion.recargarPag();
-                    }, 500);
                 });
             }
         }
+    });
+}
+
+//Mover teclas
+export function moverTeclas(){
+    $(document).keydown(function(e) {
+
+        if(e.ctrlKey && e.keyCode === 39){
+            aplicacion.nextPag();
+            return;
+        }
+        
+        if(e.ctrlKey && e.keyCode === 37){
+            aplicacion.prevPag();
+        }
+        
     });
 }
