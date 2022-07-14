@@ -488,10 +488,10 @@
 
 
           function salen() {
-              animacionSalida(carrousel_01, 'default', .3,0);
-              animacionSalida(carrousel_02, 'default', .3,0);
-              animacionSalida(carrousel_03, 'default', .3,0);
-              animacionSalida(carrousel_04, 'default', .3,0);
+              // animacionSalida(carrousel_01, 'default', .3,0);
+              // animacionSalida(carrousel_02, 'default', .3,0);
+              // animacionSalida(carrousel_03, 'default', .3,0);
+              // animacionSalida(carrousel_04, 'default', .3,0);
               animacionSalida(btn_adelante1,'default', .3,0);
               animacionSalida(btn_adelante2,'default', .3,0);
               animacionSalida(btn_atras1,   'default', .3,0);
@@ -507,6 +507,23 @@
               // btn_adelante2.hide();
               // btn_atras2.hide();
               // btn_atras3.hide();
+
+            carrousel_01.css({
+                      'display': 'block',
+                      'opacity': '0'
+                  });
+             carrousel_02.css({
+                      'display': 'block',
+                      'opacity': '0'
+                  });
+              carrousel_03.css({
+                      'display': 'block',
+                      'opacity': '0'
+                  });
+               carrousel_04.css({
+                      'display': 'block',
+                      'opacity': '0'
+                  });
 
           }
 
@@ -555,7 +572,7 @@
                      
                   }
                 
-              },1500)                
+              },300)                
                  
           }
 
@@ -588,7 +605,7 @@
                     }) 
               }
 
-              }, 1500);                           
+              }, 300);                           
                
            }/////////////
            function pops3(){
@@ -631,7 +648,7 @@
                     })
               }
 
-              }, 1500);            
+              },300);            
              
            }
 
@@ -658,21 +675,23 @@
                   }
           
             function volverAbrir () {
-                animacionEntrada($(".btn_alcance"), "default", .5, 0);
+                //animacionEntrada($(".btn_alcance"), "default", .5, 0);
 
               //   $(".btn_alcance").css({
               //   'cursor': 'pointer'
               // });
 
-               btn1.show();
+              btn1.show();
               btn1.css('cursor', 'pointer');
               btn1.click(function(){
+                aplicacion.detenerAudios();
                 salen();
-                pop1();
+                pops1();
               })
               btn2.css('cursor', 'pointer');
               btn2.click(function(){
-                pop4();
+                aplicacion.detenerAudios();
+                pops4();
               })
                 
             }
