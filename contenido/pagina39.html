@@ -686,105 +686,170 @@
 
             // Emisor------------------------------------------------------------
             btn2Hover.click(function(){
-                if(btn2Hover.css('cursor') == 'pointer'){
-                    TweenMax.killTweensOf(btn2Hover);
-                    btn2Hover.css('opacity', '1');
-                    pantalla1();
-                }
+              if(btn2Hover.css('cursor') == 'pointer'){
+                  TweenMax.killTweensOf(btn2Hover);
+                  btn2Hover.css('opacity', '1');
+                  pantallaEmisor1();
+              }
+            });
 
-                function pantalla1(){
-                    aplicacion.reproducirAudio(audio[2], activarSig, 1000);
-                    animacionEntrada(emisor1, 'default', 1, .1);
-                    animacionEntrada(btnSig1Emisor, 'default', 1, .1);
+            function pantallaEmisor1(){
+              aplicacion.audiosActivos = true;
+              aplicacion.reproducirAudio(audio[2], activarSig, 1000);
+              emisor1.css('display', 'block');
+              btnSig1Emisor.css('display', 'block');
+              setTimeout(()=>{
+                  emisor1.animate({opacity: '1'});
+                  btnSig1Emisor.animate({opacity: '1'});
+              }, 500);
 
-                    function activarSig(){
-                        parpadea(btnSig1Emisor);
-                        btnSig1Emisor.click(function(){
-                            if(btnSig1Emisor.css('cursor') == 'pointer'){
-                                TweenMax.killTweensOf(btnSig1Emisor);
-                                btnSig1Emisor.css('cursor', 'default');
-                                animacionSalida(emisor1, 'default', 1);
-                                animacionSalida(btnSig1Emisor, 'default', 1);
-                                pantalla2();
-                            }
-                        });
-                    }
-                }
+              function activarSig(){
+                  parpadea(btnSig1Emisor);
+                  btnSig1Emisor.click(function(){
+                      if(btnSig1Emisor.css('cursor') == 'pointer'){
+                          TweenMax.killTweensOf(btnSig1Emisor);
+                          btnSig1Emisor.css('cursor', 'default');
+                          setTimeout(()=>{
+                            emisor1.animate({
+                              'opacity': '0',
+                            });
+                            btnSig1Emisor.animate({
+                              'opacity': '0',
+                            });
+                          }, 1000);
+                          setTimeout(()=>{
+                            emisor1.css('display', 'none');
+                            btnSig1Emisor.css('display', 'none');
+                          }, 1100);
+                          aplicacion.detenerAudios();
+                          pantallaEmisor2();
+                      }
+                  });
+              }
+            }
 
-                function pantalla2(){
-                    aplicacion.reproducirAudio(audio[3], activarSig2, 1000);
-                    animacionEntrada(emisor2, 'default', 1, .5);
-                    animacionEntrada(btnSig2Emisor, 'default', 1, .5);
-                    animacionEntrada(btnAtras1Emisor, 'default', 1, .5);
+            function pantallaEmisor2(){
+                aplicacion.audiosActivos = true;
+                aplicacion.reproducirAudio(audio[3], activarSig2, 1000);
+                emisor2.css('display', 'block');
+                btnSig2Emisor.css('display', 'block');
+                btnAtras1Emisor.css({
+                  'display': 'block',
+                  'cursor': 'pointer'
+                });
+                setTimeout(()=>{
+                    emisor2.animate({opacity: '1'});
+                    btnSig2Emisor.animate({opacity: '1'});
+                    btnAtras1Emisor.animate({opacity: '1'});
+                }, 500);
 
+                btnAtras1Emisor.click(function(){
+                    aplicacion.detenerAudios();
                     setTimeout(()=>{
-                        emisor2.css('opacity', '1');
+                      emisor2.animate({
+                          'opacity': '0',
+                      });
+                      btnSig2Emisor.animate({
+                          'opacity': '0',
+                      });
+                      btnAtras1Emisor.animate({
+                          'opacity': '0',
+                      });
                     }, 1000);
-
                     setTimeout(()=>{
-                        btnAtras1Emisor.css('cursor', 'pointer');
-                    }, 1500);
-                    btnAtras1Emisor.click(function(){
-                        aplicacion.detenerAudios();
-                        animacionSalida(emisor2, 'default', 1, .5);
-                        animacionSalida(btnSig2Emisor, 'default', 1, .5);
-                        animacionSalida(btnAtras1Emisor, 'default', 1, .5);
-                        pantalla1();
-                    });
-                }
+                      emisor2.css('display', 'none');
+                      btnSig2Emisor.css('display', 'none');
+                      btnAtras1Emisor.css('display', 'none');
+                    }, 1100);
+                    aplicacion.detenerAudios();
+                    pantallaEmisor1();
+                });
 
                 function activarSig2(){
-                    parpadea(btnSig2Emisor);
-                    btnSig2Emisor.click(function(){
-                        if(btnSig2Emisor.css('cursor') == 'pointer'){
-                            TweenMax.killTweensOf(btnSig2Emisor);
-                            btnSig2Emisor.css('cursor', 'default');
-                            animacionSalida(emisor2, 'default', 1);
-                            animacionSalida(btnSig2Emisor, 'default', 1);
-                            animacionSalida(btnAtras1Emisor, 'default', 1);
-                            pantalla3();
-                        }
-                    });
+                  parpadea(btnSig2Emisor);
+                  btnSig2Emisor.click(function(){
+                      if(btnSig2Emisor.css('cursor') == 'pointer'){
+                          TweenMax.killTweensOf(btnSig2Emisor);
+                          btnSig2Emisor.css('cursor', 'default');
+                          setTimeout(()=>{
+                            emisor2.animate({
+                                'opacity': '0',
+                            });
+                            btnSig2Emisor.animate({
+                                'opacity': '0',
+                            });
+                            btnAtras1Emisor.animate({
+                                'opacity': '0',
+                            });
+                          }, 1000);
+                          setTimeout(()=>{
+                            emisor2.css('display', 'none');
+                            btnSig2Emisor.css('display', 'none');
+                            btnAtras1Emisor.css('display', 'none');
+                          }, 1100);
+                          aplicacion.detenerAudios();
+                          pantallaEmisor3();
+                      }
+                  });
                 }
+              }
 
-                
-                function pantalla3(){
-                    aplicacion.reproducirAudio(audio[4], activarCredito, 1000);
-                    animacionEntrada(emisor3, 'default', 1, .5);
-                    animacionEntrada(btnSig3Emisor, 'default', 1, .5);
-                    animacionEntrada(btnAtras2Emisor, 'default', 1, .5);
-                    animacionEntrada(tituloEmisor, 'default', 1, .5);
-                    animacionEntrada(instrucciones3, 'default', 1, 4);
+              function pantallaEmisor3(){
+                  aplicacion.audiosActivos = true;
+                  aplicacion.reproducirAudio(audio[4], activarCredito, 1000);
+                  emisor3.css('display', 'block');
+                  btnSig3Emisor.css('display', 'block');
+                  tituloEmisor.css('display', 'block');
+                  instrucciones3.css('display', 'block');
+                  btnAtras2Emisor.css({
+                    'display': 'block',
+                    'cursor': 'pointer'
+                  });
+                  setTimeout(()=>{
+                      emisor3.animate({opacity: '1'});
+                      btnSig3Emisor.animate({opacity: '1'});
+                      btnAtras2Emisor.animate({opacity: '1'});
+                      tituloEmisor.animate({opacity: '1'});
+                      instrucciones3.animate({opacity: '1'});
+                  }, 500);
 
-                    setTimeout(()=>{
-                        emisor3.css('opacity', '1');
-                    }, 1000);
+                  btnAtras2Emisor.click(function(){
+                      if(btnAtras2Emisor.css('cursor') == 'pointer'){
+                          aplicacion.detenerAudios();
+                          setTimeout(()=>{
+                          emisor3.animate({'opacity': '0'});
+                          btnSig3Emisor.animate({'opacity': '0'});
+                          btnAtras2Emisor.animate({'opacity': '0'});
+                          tituloEmisor.animate({'opacity': '0'});
+                          instrucciones3.animate({'opacity': '0'});
+                          caracteriza.animate({'opacity': '0'});
+                          emisor3_1.animate({'opacity': '0'});
+                          emisor3_2.animate({'opacity': '0'});
+                          emisor3_3.animate({'opacity': '0'});
+                          btnCredito.animate({'opacity': '0'});
+                          btnDebito.animate({'opacity': '0'});
+                          btnPrepago.animate({'opacity': '0'});
+                        }, 1000);
+                        setTimeout(()=>{
+                          emisor3.css('display', 'none');
+                          btnSig3Emisor.css('display', 'none');
+                          btnAtras2Emisor.css('display', 'none');
+                          tituloEmisor.css('display', 'none');
+                          instrucciones3.css('display', 'none');
+                          caracteriza.css('display', 'none');
+                          emisor3_1.css('display', 'none');
+                          emisor3_2.css('display', 'none');
+                          emisor3_3.css('display', 'none');
+                          btnCredito.css('display', 'none');
+                          btnDebito.css('display', 'none');
+                          btnPrepago.css('display', 'none');
+                        }, 1100);
+                          aplicacion.detenerAudios();
+                          pantallaEmisor2();
+                      }
+                  });
 
-                    setTimeout(()=>{
-                        btnAtras2Emisor.css('cursor', 'pointer');
-                    }, 1500);
-                    btnAtras2Emisor.click(function(){
-                        if(btnAtras2Emisor.css('cursor') == 'pointer'){
-                            aplicacion.detenerAudios();
-                            animacionSalida(emisor3, 'default', 1, .5);
-                            animacionSalida(btnSig3Emisor, 'default', 1, .5);
-                            animacionSalida(btnAtras2Emisor, 'default', 1, .5);
-                            animacionSalida(tituloEmisor, 'default', 1, .5);
-                            animacionSalida(instrucciones3, 'default', 1, .5);
-                            animacionSalida(caracteriza, 'default', 1, .5);
-                            animacionSalida(emisor3_1, 'default', 1, .5);
-                            animacionSalida(emisor3_2, 'default', 1, .5);
-                            animacionSalida(emisor3_3, 'default', 1, .5);
-                            animacionSalida(btnCredito, 'default', 1, .5);
-                            animacionSalida(btnDebito, 'default', 1, .5);
-                            animacionSalida(btnPrepago, 'default', 1, .5);
-
-                            pantalla2();
-                        }
-                    });
-                }
-
-                function activarCredito(){
+                  function activarCredito(){
                     parpadea(btnCredito);
                     btnCredito.click(function(){
                         if(btnCredito.css('cursor') == 'pointer'){
@@ -794,8 +859,13 @@
                                 'cursor': 'default' 
                             });
                             aplicacion.reproducirAudio(audio[5], sonido6, 1000);
-                            animacionEntrada(caracteriza, 'default', .5);
-                            animacionEntrada(emisor3_1, 'default', .5);
+                            caracteriza.css('display', 'block');
+                            emisor3_1.css('display', 'block');
+
+                            setTimeout(()=>{
+                              caracteriza.animate({opacity: '1'});
+                              emisor3_1.animate({opacity: '1'});
+                            }, 500);
                         }
 
                         function sonido6(){
@@ -806,9 +876,9 @@
                             aplicacion.reproducirAudio(audio[7], activarDebito, 1000);
                         }
                     });
-                }
+                  }
 
-                function activarDebito(){
+                  function activarDebito(){
                     parpadea(btnDebito);
                     btnDebito.click(function(){
                         if(btnDebito.css('cursor') == 'pointer'){
@@ -818,8 +888,13 @@
                                 'cursor': 'default' 
                             });
                             aplicacion.reproducirAudio(audio[8], sonido6, 1000);
-                            animacionSalida(emisor3_1, 'default', .5)
-                            animacionEntrada(emisor3_2, 'default', .5, 1);
+                            
+                            emisor3_1.css('display', 'none');
+                            emisor3_2.css('display', 'block');
+
+                            setTimeout(()=>{
+                              emisor3_2.animate({opacity: '1'});
+                            }, 500);
                         }
 
                         function sonido6(){
@@ -830,9 +905,9 @@
                             aplicacion.reproducirAudio(audio[10], activarPrepago, 1000);
                         }
                     });
-                }
+                  }
 
-                function activarPrepago(){
+                  function activarPrepago(){
                     parpadea(btnPrepago);
                     btnPrepago.click(function(){
                         if(btnPrepago.css('cursor') == 'pointer'){
@@ -842,8 +917,13 @@
                                 'cursor': 'default' 
                             });
                             aplicacion.reproducirAudio(audio[11], sonido6, 1000);
-                            animacionSalida(emisor3_2, 'default', .5)
-                            animacionEntrada(emisor3_3, 'default', .5, 1);
+                            
+                            emisor3_2.css('display', 'none');
+                            emisor3_3.css('display', 'block');
+
+                            setTimeout(()=>{
+                              emisor3_3.animate({opacity: '1'});
+                            }, 500);
                         }
 
                         function sonido6(){
@@ -854,530 +934,742 @@
                             aplicacion.reproducirAudio(audio[13], activarSig3, 1000);
                         }
                     });
-                }
+                  }
 
-                function activarSig3(){
+                  function activarSig3(){
+                    aplicacion.audiosActivos = true;
                     parpadea(btnSig3Emisor);
                     btnSig3Emisor.click(function(){
-                        if(btnSig3Emisor.css('cursor') == 'pointer'){
-                            TweenMax.killTweensOf(btnSig3Emisor);
-                            btnSig3Emisor.css('cursor', 'default');
-                            animacionSalida(emisor3, 'default', 1, .5);
-                            animacionSalida(btnSig3Emisor, 'default', 1, .5);
-                            animacionSalida(btnAtras2Emisor, 'default', 1, .5);
-                            animacionSalida(tituloEmisor, 'default', 1, .5);
-                            animacionSalida(instrucciones3, 'default', 1, .5);
-                            animacionSalida(caracteriza, 'default', 1, .5);
-                            animacionSalida(emisor3_1, 'default', 1, .5);
-                            animacionSalida(emisor3_2, 'default', 1, .5);
-                            animacionSalida(emisor3_3, 'default', 1, .5);
-                            animacionSalida(btnCredito, 'default', 1, .5);
-                            animacionSalida(btnDebito, 'default', 1, .5);
-                            animacionSalida(btnPrepago, 'default', 1, .5);
-                            pantalla4();
-                        }
+                      TweenMax.killTweensOf(btnSig3Emisor);
+                      btnSig3Emisor.css('cursor', 'default');
+                      setTimeout(()=>{
+                        emisor3.animate({'opacity': '0'});
+                        btnSig3Emisor.animate({'opacity': '0'});
+                        btnAtras2Emisor.animate({'opacity': '0'});
+                        tituloEmisor.animate({'opacity': '0'});
+                        instrucciones3.animate({'opacity': '0'});
+                        caracteriza.animate({'opacity': '0'});
+                        emisor3_1.animate({'opacity': '0'});
+                        emisor3_2.animate({'opacity': '0'});
+                        emisor3_3.animate({'opacity': '0'});
+                        btnCredito.animate({'opacity': '0'});
+                        btnDebito.animate({'opacity': '0'});
+                        btnPrepago.animate({'opacity': '0'});
+                      }, 1000);
+                      setTimeout(()=>{
+                        emisor3.css('display', 'none');
+                        btnAtras2Emisor.css('display', 'none');
+                        btnSig3Emisor.css('display', 'none');
+                        tituloEmisor.css('display', 'none');
+                        instrucciones3.css('display', 'none');
+                        caracteriza.css('display', 'none');
+                        emisor3_1.css('display', 'none');
+                        emisor3_2.css('display', 'none');
+                        emisor3_3.css('display', 'none');
+                        btnCredito.css('display', 'none');
+                        btnDebito.css('display', 'none');
+                        btnPrepago.css('display', 'none');
+                      }, 1100);
+                      aplicacion.detenerAudios();
+                      pantallaEmisor4();
                     });
-                }
+                  }
+              }
 
-                function pantalla4(){
-                    aplicacion.reproducirAudio(audio[14], sonido15, 1000);
-                    animacionEntrada(emisor4, 'default', 1, .5);
-                    animacionEntrada(robot, 'default', 1, .5);
-                    animacionEntrada(btnCerrarEmisor, 'default', 1, .5);
-                    animacionEntrada(btnAtras3Emisor, 'default', 1, .5);
+              function pantallaEmisor4(){
+                  aplicacion.audiosActivos = true;
+                  aplicacion.reproducirAudio(audio[14], sonido15, 1000);
+                  emisor4.css('display', 'block');
+                  robot.css('display', 'block');
+                  btnCerrarEmisor.css('display', 'block');
+                  btnAtras3Emisor.css({
+                    'display': 'block',
+                    'cursor': 'pointer'
+                  });
 
-                    setTimeout(()=>{
-                        emisor4.css('opacity', '1');
-                    }, 1000);
+                  setTimeout(()=>{
+                    emisor4.animate({opacity: '1'});
+                    robot.animate({opacity: '1'});
+                    btnCerrarEmisor.animate({opacity: '1'});
+                    btnAtras3Emisor.animate({opacity: '1'});
+                    flotar(robot, 'i');
+                    hablar(robot, 'i');
+                  }, 500);
 
-                    setTimeout(()=>{
-                        flotar(robot, 'i');
-                        hablar(robot, 'i');
-                    }, 1000);
+                  btnAtras3Emisor.click(function(){
+                      aplicacion.detenerAudios();
+                      setTimeout(()=>{
+                        emisor4.animate({
+                            'opacity': '0',
+                        });
+                        robot.animate({
+                            'opacity': '0',
+                        });
+                        btnAtras3Emisor.animate({
+                            'opacity': '0',
+                        });
+                        btnCerrarEmisor.animate({
+                            'opacity': '0',
+                        });
+                      }, 1000);
+                      setTimeout(()=>{
+                        emisor4.css('display', 'none');
+                        robot.css('display', 'none');
+                        btnAtras3Emisor.css('display', 'none');
+                        btnCerrarEmisor.css('display', 'none');
+                      }, 1100);
+                      pantallaEmisor3();
+                  });
 
-                    setTimeout(()=>{
-                        btnAtras3Emisor.css('cursor', 'pointer');
-                    }, 1500);
-                    btnAtras3Emisor.click(function(){
-                        if(btnAtras3Emisor.css('cursor') == 'pointer'){
-                            aplicacion.detenerAudios();
-                            animacionSalida(emisor4, 'default', 1);
-                            animacionSalida(robot, 'default', 1);
-                            animacionSalida(btnCerrarEmisor, 'default', 1);
-                            animacionSalida(btnAtras3Emisor, 'default', 1);
-
-                            pantalla3();
-                        }
-                    });
-                }
-
-                function sonido15(){
+                  function sonido15(){
                     pausarHablar();
                     setTimeout(()=>{
                         aplicacion.reproducirAudio(audio[15], salirEmisor, 1000);
                         reanudarHablar();
                     }, 1000);
-                }
+                  }
 
-                function salirEmisor(){
+                  function salirEmisor(){
                     parpadea(btnCerrarEmisor);
-                    btnCerrarEmisor.click(function(){
+                      btnCerrarEmisor.click(function(){
                         if(btnCerrarEmisor.css('cursor') == 'pointer'){
-                            animacionSalida(emisor4, 'default', 1);
-                            animacionSalida(robot, 'default', 1);
-                            animacionSalida(btnCerrarEmisor, 'default', 1);
-                            animacionSalida(btnAtras3Emisor, 'default', 1);
+                          setTimeout(()=>{
+                            emisor4.animate({
+                                'opacity': '0',
+                            });
+                            robot.animate({
+                                'opacity': '0',
+                            });
+                            btnAtras3Emisor.animate({
+                                'opacity': '0',
+                            });
+                            btnCerrarEmisor.animate({
+                                'opacity': '0',
+                            });
+                          }, 1000);
+                          setTimeout(()=>{
+                            emisor4.css('display', 'none');
+                            robot.css('display', 'none');
+                            btnAtras3Emisor.css('display', 'none');
+                            btnCerrarEmisor.css('display', 'none');
+                          }, 1100);
 
                             if(!abrir2){
                               abrir2 = true;
                               parpadea(btn3Hover);
                             }
                         }
-                    });
-                    
-                }
-            });
-
-            //Comercio-----------------------------------------------------------
-            btn3Hover.click(function(){
-              if(btn3Hover.css('cursor') == 'pointer'){
-                    TweenMax.killTweensOf(btn3Hover);
-                    btn3Hover.css('opacity', '1');
-                    aplicacion.reproducirAudio(audio[16], cerrarPop, 1000);
-                    animacionEntrada(comercio, 'default', .5);
-                    
-                    function cerrarPop(){
-                        animacionEntrada(btnCerrarComercio, 'default', .4);
-                        setTimeout(()=>{
-                            parpadea(btnCerrarComercio);
-                        }, 500);
-                        btnCerrarComercio.click(function(){
-                            TweenMax.killTweensOf(btnCerrarComercio);
-                            animacionSalida(comercio, 'default', 1);
-                            animacionSalida(btnCerrarComercio, 'default', 1);
-
-                            if(!abrir3){
-                                abrir3 = true;
-                                parpadea(btn4Hover);
-                            }
-                        });
-                    }
-                }
-            });
-
-            //Adquirente--------------------------------------------------------
-            btn4Hover.click(function(){
-              if(btn4Hover.css('cursor') == 'pointer'){
-                    TweenMax.killTweensOf(btn4Hover);
-                    btn4Hover.css('opacity', '1');
-                    aplicacion.reproducirAudio(audio[17], sonido3, 1000);
-                    animacionEntrada(adquirente1, 'default', .5);
-                    animacionEntrada(adquirente2, 'default', .5, 15);
-                    animacionEntrada(instruccionesAdquirente, 'default', .5, 17);
-                    
-                    function sonido3(){
-                      parpadea(uno);
-                      uno.click(function(){
-                        if(uno.css('cursor') == 'pointer'){
-                          uno.css({
-                            'cursor': 'default',
-                            'opacity': '1'
-                          });
-                          TweenMax.killTweensOf(uno);
-                          aplicacion.reproducirAudio(audio[18], sonido4, 1000);
-                          animacionEntrada(texto1, 'default', 1);
-                        }
                       });
-                    }
-                    
-                    function sonido4(){
-                      parpadea(dos);
-                      dos.click(function(){
-                        if(dos.css('cursor') == 'pointer'){
-                          dos.css({
-                            'cursor': 'default',
-                            'opacity': '1'
-                          });
-                          TweenMax.killTweensOf(dos);
-                          aplicacion.reproducirAudio(audio[19], sonido5, 1000);
-                          animacionEntrada(texto2, 'default', 1);
-                        }
-                      });
-                    }
-                    
-                    function sonido5(){
-                      parpadea(tres);
-                      tres.click(function(){
-                        if(tres.css('cursor') == 'pointer'){
-                          tres.css({
-                            'cursor': 'default',
-                            'opacity': '1'
-                          });
-                          TweenMax.killTweensOf(tres);
-                          aplicacion.reproducirAudio(audio[20], sonido6, 1000);
-                          animacionEntrada(texto3, 'default', 1);
-                        }
-                      });
-                    }
-                    
-                    function sonido6(){
-                      parpadea(cuatro);
-                      cuatro.click(function(){
-                        if(cuatro.css('cursor') == 'pointer'){
-                          cuatro.css({
-                            'cursor': 'default',
-                            'opacity': '1'
-                          });
-                          TweenMax.killTweensOf(cuatro);
-                          aplicacion.reproducirAudio(audio[21], sonido7, 1000);
-                          animacionEntrada(texto4, 'default', 1);
-                        }
-                      });
-                    }
-                    
-                    function sonido7(){
-                      parpadea(cinco);
-                      cinco.click(function(){
-                        if(cinco.css('cursor') == 'pointer'){
-                          cinco.css({
-                            'cursor': 'default',
-                            'opacity': '1'
-                          });
-                          TweenMax.killTweensOf(cinco);
-                          aplicacion.reproducirAudio(audio[22], sonido8, 1000);
-                          animacionEntrada(texto5, 'default', 1);
-                        }
-                      });
-                    }
-                    
-                    function sonido8(){
-                      aplicacion.reproducirAudio(audio[23], sonido9, 1000);
-                      animacionEntrada(d1, 'default', 1);
-                    }
-                    
-                    function sonido9(){
-                      aplicacion.reproducirAudio(audio[24], activar, 1000);
-                      animacionEntrada(instruccionesAdquirente2, 'default', 1);
-                    }
-                    
-                    function activar(){
-                      parpadea(btnEjemplo);
-                      btnEjemplo.click(function(){
-                        btnEjemplo.css({
-                          'cursor': 'default',
-                          'opacity': '1'
-                        });
-                        animacionSalida(adquirente1, 'default', 1);
-                        animacionSalida(adquirente2, 'default', 1);
-                        animacionSalida(instruccionesAdquirente, 'default', 1);
-                        animacionSalida(instruccionesAdquirente2, 'default', 1);
-                        animacionSalida(btnEjemplo, 'default', 1);
-                        animacionSalida(texto1, 'default', 1);
-                        animacionSalida(texto2, 'default', 1);
-                        animacionSalida(texto3, 'default', 1);
-                        animacionSalida(texto4, 'default', 1);
-                        animacionSalida(texto5, 'default', 1);
-                        animacionSalida(uno, 'default', 1);
-                        animacionSalida(dos, 'default', 1);
-                        animacionSalida(tres, 'default', 1);
-                        animacionSalida(cuatro, 'default', 1);
-                        animacionSalida(cinco, 'default', 1);
-                        animacionSalida(d1, 'default', 1);
-                        TweenMax.killTweensOf(btnEjemplo);
-                        carrusel1();  
-                      });
-                    }
-
-                    function carrusel1(){
-                      aplicacion.reproducirAudio(audio[25], sig, 1000);
-                      animacionEntrada(fondoAdquirente, 'default', .5);
-                      animacionEntrada(adquirentes1, 'default', .5);
-
-                      setTimeout(()=>{
-                        adquirentes1.css('opacity', '1');
-                      }, 1000);
-
-                      function sig(){
-                        parpadea(btnSigAdquirente);
-                        btnSigAdquirente.click(function(){
-                          btnAtrasAdquirente.css({
-                            'cursor': 'default',
-                            'opacity': '1'
-                          });
-                          TweenMax.killTweensOf(btnSigAdquirente);
-                          animacionSalida(btnSigAdquirente, 'default', .5);
-                          animacionSalida(adquirentes1, 'default', .5);
-                          carrusel2();
-                        });
-                      }
-                    }
-
-                    
-
-                    function carrusel2(){
-                      aplicacion.reproducirAudio(audio[26], salirAdquirente, 1000);
-                      animacionEntrada(btnAtrasAdquirente, 'default', .5);
-                      animacionEntrada(adquirentes2, 'default', .5);
-
-                      setTimeout(()=>{
-                        adquirentes2.css('opacity', '1');
-                      }, 1000);
-
-                      setTimeout(()=>{
-                        btnAtrasAdquirente.css('cursor', 'pointer');
-                      }, 1500);
-
-                      btnAtrasAdquirente.click(function(){
-                        if(btnAtrasAdquirente.css('cursor') == 'pointer'){
-                          aplicacion.detenerAudios();
-                          animacionSalida(btnAtrasAdquirente, 'default', .5);
-                          animacionSalida(adquirentes2, 'default', .5);
-                          animacionSalida(btnCerrarAdquirente, 'default', .5);
-                          carrusel1();
-                        }
-                      });
-
-                      function salirAdquirente(){
-                        parpadea(btnCerrarAdquirente);
-                        btnCerrarAdquirente.click(function(){
-                          btnCerrarAdquirente.css({
-                            'cursor': 'default',
-                            'opacity': '1'
-                          });
-                          TweenMax.killTweensOf(btnCerrarAdquirente);
-                          animacionSalida(btnAtrasAdquirente, 'default', .5);
-                          animacionSalida(fondoAdquirente, 'default', .5);
-                          animacionSalida(adquirentes2, 'default', .5);
-                          animacionSalida(btnCerrarAdquirente, 'default', .5);
-                          if(!abrir4){
-                            abrir4 = true;
-                            parpadea(btn5Hover);
-                          }
-                        });
-                      }  
-                    }
-                }
-            });
-
-            //Marca-------------------------------------------------------------
-            btn5Hover.click(function(){
-              TweenMax.killTweensOf(btn5Hover);
-              btn5Hover.css('opacity', '1');
-              carrusel1();
-
-              function carrusel1(){
-                aplicacion.reproducirAudio(audio[27], sig, 1000);
-                animacionEntrada(fondoMarca, 'default', .5);
-                animacionEntrada(robot, 'default', .5);
-                animacionEntrada(marca1, 'default', .5);
-
-                setTimeout(()=>{
-                  marca1.css('opacity', '1');
-                  reanudarHablar();
-                }, 1000);
-
-                function sig(){
-                  pausarHablar();
-                  parpadea(btnSigMarca);
-                  btnSigMarca.click(function(){
-                    btnAtrasMarca.css({
-                      'cursor': 'default',
-                      'opacity': '1'
-                    });
-                    TweenMax.killTweensOf(btnSigMarca);
-                    animacionSalida(btnSigMarca, 'default', .5);
-                    animacionSalida(marca1, 'default', .5);
-                    carrusel2();
-                  });
-                }
-              }
-
-              function carrusel2(){
-                aplicacion.reproducirAudio(audio[28], salirMarca, 1000);
-                animacionEntrada(btnAtrasMarca, 'default', .5);
-                animacionEntrada(marca2, 'default', .5);
-
-                setTimeout(()=>{
-                  reanudarHablar();
-                  marca2.css('opacity', '1');
-                }, 1000);
-
-                setTimeout(()=>{
-                  btnAtrasMarca.css({
-                    'cursor': 'pointer',
-                    'opacity': '1'
-                  });
-                }, 1500);
-
-                btnAtrasMarca.click(function(){
-                  if(btnAtrasMarca.css('cursor') == 'pointer'){
-                    aplicacion.detenerAudios();
-                    animacionSalida(btnAtrasMarca, 'default', .5);
-                    animacionSalida(marca2, 'default', .5);
-                    animacionSalida(btnCerrarMarca, 'default', .5);
-                    carrusel1();
                   }
-                });
+              }
 
-                function salirMarca(){
-                  pausarHablar();
-                  parpadea(btnCerrarMarca);
-                  btnCerrarMarca.click(function(){
-                    btnCerrarMarca.css({
-                      'cursor': 'default',
-                      'opacity': '1'
+        //Comercio-----------------------------------------------------------
+          
+        btn3Hover.click(function(){
+          if(btn3Hover.css('cursor') == 'pointer'){
+                TweenMax.killTweensOf(btn3Hover);
+                btn3Hover.css('opacity', '1');
+                aplicacion.reproducirAudio(audio[16], cerrarPop, 1000);
+                animacionEntrada(comercio, 'default', .5);
+
+                function cerrarPop(){
+                    animacionEntrada(btnCerrarComercio, 'default', .4);
+                    setTimeout(()=>{
+                        parpadea(btnCerrarComercio);
+                    }, 500);
+                    btnCerrarComercio.click(function(){
+                        TweenMax.killTweensOf(btnCerrarComercio);
+                        animacionSalida(comercio, 'default', 1);
+                        animacionSalida(btnCerrarComercio, 'default', 1);
+
+                        if(!abrir3){
+                            abrir3 = true;
+                            parpadea(btn4Hover);
+                        }
                     });
-                    TweenMax.killTweensOf(btnCerrarAdquirente);
-                    animacionSalida(btnAtrasMarca, 'default', .5);
-                    animacionSalida(fondoMarca, 'default', .5);
-                    animacionSalida(marca2, 'default', .5);
-                    animacionSalida(btnCerrarMarca, 'default', .5);
-                    animacionSalida(robot, 'default', .5);
-                    if(!abrir5){
-                      abrir5 = true;
-                      parpadea(btn6Hover);
-                    }
-                  });
-                }  
-              }
-
-            });
-
-            //Empresa
-            btn6Hover.click(function(){
-              btn6Hover.css('opacity', '1');
-              TweenMax.killTweensOf(btn6Hover);
-              pantalla6();
-
-              function pantalla6(){
-                aplicacion.reproducirAudio(audio[29], adelante, 1000);
-                animacionEntrada(fondoEmpresa, 'default', .5);
-                animacionEntrada(robot, 'default', .5);
-
-                setTimeout(()=>{
-                  fondoEmpresa.css('opacity', '1');
-                  reanudarHablar();
-                }, 1000);
-
-                function adelante(){
-                  pausarHablar();
-                  parpadea(btnSigEmpresa);
-                  btnSigEmpresa.click(function(){
-                    animacionSalida(robot, 'default', .5);
-                    animacionSalida(fondoEmpresa, 'default', .5);
-                    animacionSalida(btnSigEmpresa, 'default', .5);
-                    pantalla7();
-                  });
                 }
-              }
-
-              function pantalla7(){
-                aplicacion.reproducirAudio(audio[30], activar1, 1000);
-                animacionEntrada(empresa1, 'default', .5);
-                animacionEntrada(instruccionesEmpresa, 'default', .5, 6);
-                animacionEntrada(btnAtrasEmpresa, 'default', .5, 1);
-
-                setTimeout(()=>{
-                  empresa1.css('opacity', '1');
-                }, 1000);
-
-                setTimeout(()=>{
-                  btnAtrasEmpresa.css('cursor', 'pointer');
-                }, 1500);
-
-                btnAtrasEmpresa.click(function(){
-                  if(btnAtrasEmpresa.css('cursor') == 'pointer'){
-                    aplicacion.detenerAudios();
-                    animacionSalida(btnAtrasEmpresa, 'default', 1);
-                    animacionSalida(btnSigEmpresa, 'default', 1);
-                    animacionSalida(instruccionesEmpresa, 'default', 1);
-                    animacionSalida(empresa1, 'default', 1);
-                    animacionSalida(btnIndependet, 'default', 1);
-                    animacionSalida(btnProcesadores, 'default', 1);
-                    animacionSalida(btnAgregador, 'default', 1);
-                    animacionSalida(textoEmpresa1, 'default', 1);
-                    animacionSalida(textoEmpresa2, 'default', 1);
-                    animacionSalida(textoEmpresa3, 'default', 1);
-                    animacionSalida(btnCerrarEmpresa, 'default', 1);
-
-                    pantalla6();
-                  }
-                });
-
-                function activar1(){
-                  parpadea(btnProcesadores);
-                  btnProcesadores.click(function(){
-                    if(btnProcesadores.css('cursor') == 'pointer'){
-                      TweenMax.killTweensOf(btnProcesadores);
-                      btnProcesadores.css('opacity', '1');
-                      aplicacion.reproducirAudio(audio[31], descripcion, 1000);
-                      animacionEntrada(textoEmpresa1, 'default', 1);
-                      textoEmpresa1.css('opacity', '1');
-                    }
-
-                    function descripcion(){
-                      aplicacion.reproducirAudio(audio[32], activar2, 1000);
-                    }
-                  });
-                }
-
-                function activar2(){
-                  parpadea(btnIndependet);
-                  btnIndependet.click(function(){
-                    if(btnIndependet.css('cursor') == 'pointer'){
-                      TweenMax.killTweensOf(btnIndependet);
-                      btnIndependet.css('opacity', '1');
-                      aplicacion.reproducirAudio(audio[33], descripcion, 1000);
-                      animacionSalida(textoEmpresa1, 'default', .5);
-                      animacionEntrada(textoEmpresa2, 'default', 1);
-                      textoEmpresa2.css('opacity', '1');
-                    }
-
-                    function descripcion(){
-                      aplicacion.reproducirAudio(audio[34], activar3, 1000);
-                    }
-                  });
-                }
-
-                function activar3(){
-                  parpadea(btnAgregador);
-                  btnAgregador.click(function(){
-                    if(btnAgregador.css('cursor') == 'pointer'){
-                      TweenMax.killTweensOf(btnAgregador);
-                      btnAgregador.css('opacity', '1');
-                      aplicacion.reproducirAudio(audio[35], descripcion, 1000);
-                      animacionSalida(textoEmpresa2, 'default', .5);
-                      animacionEntrada(textoEmpresa3, 'default', 1);
-                      textoEmpresa3.css('opacity', '1');
-                    }
-
-                    function descripcion(){
-                      aplicacion.reproducirAudio(audio[36], ultimaPantalla, 1000);
-                    }
-                  });
-                }
-
-                function ultimaPantalla(){
-                  parpadea(btnCerrarEmpresa);
-                  btnCerrarEmpresa.click(function(){
-                    animacionSalida(btnAtrasEmpresa, 'default', 1);
-                    animacionSalida(btnSigEmpresa, 'default', 1);
-                    animacionSalida(instruccionesEmpresa, 'default', 1);
-                    animacionSalida(empresa1, 'default', 1);
-                    animacionSalida(btnIndependet, 'default', 1);
-                    animacionSalida(btnProcesadores, 'default', 1);
-                    animacionSalida(btnAgregador, 'default', 1);
-                    animacionSalida(textoEmpresa1, 'default', 1);
-                    animacionSalida(textoEmpresa2, 'default', 1);
-                    animacionSalida(textoEmpresa3, 'default', 1);
-                    animacionSalida(btnCerrarEmpresa, 'default', 1);
-
-                    aplicacion.terminaPantalla();
-                  });
-                }
-              }
-            });
+            }
         });
+
+        //Adquirente--------------------------------------------------------
+        
+        btn4Hover.click(function(){
+          if(btn4Hover.css('cursor') == 'pointer'){
+                TweenMax.killTweensOf(btn4Hover);
+                btn4Hover.css('opacity', '1');
+                aplicacion.reproducirAudio(audio[17], sonido3, 1000);
+                animacionEntrada(adquirente1, 'default', .5);
+                animacionEntrada(adquirente2, 'default', .5, 15);
+                animacionEntrada(instruccionesAdquirente, 'default', .5, 17);
+                    
+                function sonido3(){
+                  parpadea(uno);
+                  uno.click(function(){
+                    if(uno.css('cursor') == 'pointer'){
+                      uno.css({
+                        'cursor': 'default',
+                        'opacity': '1'
+                      });
+                      TweenMax.killTweensOf(uno);
+                      aplicacion.reproducirAudio(audio[18], sonido4, 1000);
+                      animacionEntrada(texto1, 'default', 1);
+                    }
+                  });
+                }
+                    
+                function sonido4(){
+                  parpadea(dos);
+                  dos.click(function(){
+                    if(dos.css('cursor') == 'pointer'){
+                      dos.css({
+                        'cursor': 'default',
+                        'opacity': '1'
+                      });
+                      TweenMax.killTweensOf(dos);
+                      aplicacion.reproducirAudio(audio[19], sonido5, 1000);
+                      animacionEntrada(texto2, 'default', 1);
+                    }
+                  });
+                }
+                    
+                function sonido5(){
+                  parpadea(tres);
+                  tres.click(function(){
+                    if(tres.css('cursor') == 'pointer'){
+                      tres.css({
+                        'cursor': 'default',
+                        'opacity': '1'
+                      });
+                      TweenMax.killTweensOf(tres);
+                      aplicacion.reproducirAudio(audio[20], sonido6, 1000);
+                      animacionEntrada(texto3, 'default', 1);
+                    }
+                  });
+                }
+                    
+                function sonido6(){
+                  parpadea(cuatro);
+                  cuatro.click(function(){
+                    if(cuatro.css('cursor') == 'pointer'){
+                      cuatro.css({
+                        'cursor': 'default',
+                        'opacity': '1'
+                      });
+                      TweenMax.killTweensOf(cuatro);
+                      aplicacion.reproducirAudio(audio[21], sonido7, 1000);
+                      animacionEntrada(texto4, 'default', 1);
+                    }
+                  });
+                }
+                    
+                function sonido7(){
+                  parpadea(cinco);
+                  cinco.click(function(){
+                    if(cinco.css('cursor') == 'pointer'){
+                      cinco.css({
+                        'cursor': 'default',
+                        'opacity': '1'
+                      });
+                      TweenMax.killTweensOf(cinco);
+                      aplicacion.reproducirAudio(audio[22], sonido8, 1000);
+                      animacionEntrada(texto5, 'default', 1);
+                    }
+                  });
+                }
+                    
+                function sonido8(){
+                  aplicacion.reproducirAudio(audio[23], sonido9, 1000);
+                  animacionEntrada(d1, 'default', 1);
+                }
+                    
+                function sonido9(){
+                  aplicacion.reproducirAudio(audio[24], activar, 1000);
+                  animacionEntrada(instruccionesAdquirente2, 'default', 1);
+                }
+                    
+                function activar(){
+                  parpadea(btnEjemplo);
+                  btnEjemplo.click(function(){
+                    btnEjemplo.css({
+                      'cursor': 'default',
+                      'opacity': '1'
+                    });
+                    animacionSalida(adquirente1, 'default', 1);
+                    animacionSalida(adquirente2, 'default', 1);
+                    animacionSalida(instruccionesAdquirente, 'default', 1);
+                    animacionSalida(instruccionesAdquirente2, 'default', 1);
+                    animacionSalida(btnEjemplo, 'default', 1);
+                    animacionSalida(texto1, 'default', 1);
+                    animacionSalida(texto2, 'default', 1);
+                    animacionSalida(texto3, 'default', 1);
+                    animacionSalida(texto4, 'default', 1);
+                    animacionSalida(texto5, 'default', 1);
+                    animacionSalida(uno, 'default', 1);
+                    animacionSalida(dos, 'default', 1);
+                    animacionSalida(tres, 'default', 1);
+                    animacionSalida(cuatro, 'default', 1);
+                    animacionSalida(cinco, 'default', 1);
+                    animacionSalida(d1, 'default', 1);
+                    TweenMax.killTweensOf(btnEjemplo);
+                    carrusel1();  
+                  });
+                }
+
+                function carrusel1(){
+                  aplicacion.audiosActivos = true;
+                  aplicacion.reproducirAudio(audio[25], sig, 1000);
+                  fondoAdquirente.css('display', 'block');
+                  adquirentes1.css('display', 'block');
+                  setTimeout(()=>{
+                      fondoAdquirente.animate({opacity: '1'});
+                      adquirentes1.animate({opacity: '1'});
+                  }, 500);
+
+                  function sig(){
+                    parpadea(btnSigAdquirente);
+                    btnSigAdquirente.click(function(){
+                      btnAtrasAdquirente.css({
+                        'cursor': 'default',
+                        'opacity': '1'
+                      });
+                      TweenMax.killTweensOf(btnSigAdquirente);
+                      setTimeout(()=>{
+                        btnSigAdquirente.animate({
+                          'opacity': '0',
+                        });
+                        adquirentes1.animate({
+                          'opacity': '0',
+                        });
+                      }, 1000);
+                      setTimeout(()=>{
+                        btnSigAdquirente.css('display', 'none');
+                        adquirentes1.css('display', 'none');
+                      }, 1100);
+                      aplicacion.detenerAudios();
+                      carrusel2();
+                    });
+                  }
+                }
+
+                function carrusel2(){
+                  aplicacion.audiosActivos = true;
+                  aplicacion.reproducirAudio(audio[26], salirAdquirente, 1000);
+                  btnAtrasAdquirente.css({
+                    'display': 'block',
+                    'cursor': 'pointer'
+                  });
+                  adquirentes2.css('display', 'block');
+                  setTimeout(()=>{
+                      btnAtrasAdquirente.animate({opacity: '1'});
+                      adquirentes2.animate({opacity: '1'});
+                  }, 500);
+
+                  setTimeout(()=>{
+                    btnAtrasAdquirente.css('cursor', 'pointer');
+                  }, 1500);
+
+                  btnAtrasAdquirente.click(function(){
+                    if(btnAtrasAdquirente.css('cursor') == 'pointer'){
+                      setTimeout(()=>{
+                        btnAtrasAdquirente.animate({
+                          'opacity': '0',
+                        });
+                        adquirentes2.animate({
+                          'opacity': '0',
+                        });
+                        btnCerrarAdquirente.animate({
+                          'opacity': '0',
+                        });
+                      }, 1000);
+                      setTimeout(()=>{
+                        btnAtrasAdquirente.css('display', 'none');
+                        adquirentes2.css('display', 'none');
+                        btnCerrarAdquirente.css('display', 'none');
+                      }, 1100);
+                      aplicacion.detenerAudios();
+                      carrusel1();
+                    }
+                  });
+
+                  function salirAdquirente(){
+                    parpadea(btnCerrarAdquirente);
+                    btnCerrarAdquirente.click(function(){
+                      btnCerrarAdquirente.css({
+                        'cursor': 'default',
+                        'opacity': '1'
+                      });
+                      TweenMax.killTweensOf(btnCerrarAdquirente);
+                      setTimeout(()=>{
+                        btnAtrasAdquirente.animate({
+                          'opacity': '0',
+                        });
+                        adquirentes2.animate({
+                          'opacity': '0',
+                        });
+                        btnCerrarAdquirente.animate({
+                          'opacity': '0',
+                        });
+                        fondoAdquirente.animate({
+                          'opacity': '0',
+                        });
+                      }, 1000);
+                      setTimeout(()=>{
+                        btnAtrasAdquirente.css('display', 'none');
+                        adquirentes2.css('display', 'none');
+                        btnCerrarAdquirente.css('display', 'none');
+                        fondoAdquirente.css('display', 'none');
+                      }, 1100);
+
+                      if(!abrir4){
+                        abrir4 = true;
+                        parpadea(btn5Hover);
+                      }
+                    });
+                  }  
+                }
+            }
+        });
+
+        //Marca-------------------------------------------------------------
+        btn5Hover.click(function(){
+
+        TweenMax.killTweensOf(btn5Hover);
+        btn5Hover.css('opacity', '1');
+        carrusel1();
+
+        function carrusel1(){
+          aplicacion.audiosActivos = true;
+          aplicacion.reproducirAudio(audio[27], sig, 1000);
+          fondoMarca.css('display', 'block');
+          robot.css('display', 'block');
+          marca1.css('display', 'block');
+          setTimeout(()=>{
+              fondoMarca.animate({opacity: '1'});
+              robot.animate({opacity: '1'});
+              marca1.animate({opacity: '1'});
+              flotar(robot, 'i');
+              hablar(robot, 'i');
+          }, 500);
+        }
+
+        function sig(){
+          pausarHablar();
+          parpadea(btnSigMarca);
+          btnSigMarca.click(function(){
+            btnAtrasMarca.css({
+              'cursor': 'default',
+              'opacity': '1'
+            });
+            TweenMax.killTweensOf(btnSigMarca);
+            setTimeout(()=>{
+              marca1.animate({
+                'opacity': '0',
+              });
+              btnSigMarca.animate({
+                'opacity': '0',
+              });
+            }, 1000);
+            setTimeout(()=>{
+              marca1.css('display', 'none');
+              btnSigMarca.css('display', 'none');
+            }, 1100);
+
+            animacionSalida(btnSigMarca, 'default', .5);
+            animacionSalida(marca1, 'default', .5);
+            aplicacion.detenerAudios();
+            carrusel2();
+          });
+        }
+
+        function carrusel2(){
+          aplicacion.audiosActivos = true;
+          aplicacion.reproducirAudio(audio[28], salirMarca, 1000);
+          btnAtrasMarca.css({
+            'display': 'block',
+            'cursor': 'pointer'
+          });
+          marca2.css('display', 'block');
+          setTimeout(()=>{
+              btnAtrasMarca.animate({opacity: '1'});
+              marca2.animate({opacity: '1'});
+              reanudarHablar();
+          }, 500);
+
+        }
+
+        btnAtrasMarca.click(function(){
+          if(btnAtrasMarca.css('cursor') == 'pointer'){
+            aplicacion.detenerAudios();
+            setTimeout(()=>{
+              btnAtrasMarca.animate({
+                  'opacity': '0',
+              });
+              marca2.animate({
+                  'opacity': '0',
+              });
+              btnCerrarMarca.animate({
+                  'opacity': '0',
+              });
+            }, 1000);
+            setTimeout(()=>{
+              btnAtrasMarca.css('display', 'none');
+              marca2.css('display', 'none');
+              btnCerrarMarca.css('display', 'none');
+            }, 1100);
+            aplicacion.detenerAudios();
+            carrusel1();
+          }
+        });
+
+        function salirMarca(){
+          pausarHablar();
+          parpadea(btnCerrarMarca);
+          btnCerrarMarca.click(function(){
+            
+            btnCerrarMarca.css({
+              'cursor': 'default',
+              'opacity': '1'
+            });
+            TweenMax.killTweensOf(btnCerrarMarca);
+
+            setTimeout(()=>{
+              btnAtrasMarca.animate({
+                  'opacity': '0',
+              });
+              marca2.animate({
+                  'opacity': '0',
+              });
+              btnCerrarMarca.animate({
+                  'opacity': '0',
+              });
+              fondoMarca.animate({
+                  'opacity': '0',
+              });
+              robot.animate({
+                  'opacity': '0',
+              });
+            }, 1000);
+            setTimeout(()=>{
+              btnAtrasMarca.css('display', 'none');
+              marca2.css('display', 'none');
+              btnCerrarMarca.css('display', 'none');
+              fondoMarca.css('display', 'none');
+              robot.css('display', 'none');
+            }, 1100);
+            if(!abrir5){
+              abrir5 = true;
+              parpadea(btn6Hover);
+            }
+          });  
+        }
+
+        });
+
+        //Empresa-----------------------------------------------------------
+        
+        btn6Hover.click(function(){
+          btn6Hover.css('opacity', '1');
+          TweenMax.killTweensOf(btn6Hover);
+          pantalla6();
+          
+          function pantalla6(){
+            aplicacion.audiosActivos = true;
+            aplicacion.reproducirAudio(audio[29], adelante, 1000);
+            fondoEmpresa.css('display', 'block');
+            robot.css('display', 'block');
+            setTimeout(()=>{
+                fondoEmpresa.animate({opacity: '1'});
+                robot.animate({opacity: '1'});
+                flotar(robot, 'i');
+                reanudarHablar();
+            }, 500);
+          }
+
+          function adelante(){
+            pausarHablar();
+            parpadea(btnSigEmpresa);
+            btnSigEmpresa.click(function(){
+              setTimeout(()=>{
+                robot.animate({
+                  'opacity': '0',
+                });
+                fondoEmpresa.animate({
+                  'opacity': '0',
+                });
+                btnSigEmpresa.animate({
+                  'opacity': '0',
+                });
+              }, 1000);
+              setTimeout(()=>{
+                robot.css('display', 'none');
+                fondoEmpresa.css('display', 'none');
+                btnSigEmpresa.css('display', 'none');
+              }, 1100);
+              aplicacion.detenerAudios();
+              pantalla7();
+            });
+          }
+
+          function pantalla7(){
+            aplicacion.audiosActivos = true;
+            aplicacion.reproducirAudio(audio[30], activar1, 1000);
+            empresa1.css('display', 'block');
+            instruccionesEmpresa.css('display', 'block');
+            btnAtrasEmpresa.css({
+                'display': 'block',
+                'cursor': 'pointer'
+              });
+              setTimeout(()=>{
+                  empresa1.animate({opacity: '1'});
+                  instruccionesEmpresa.animate({opacity: '1'});
+                  btnAtrasEmpresa.animate({opacity: '1'});
+              }, 500);
+          }
+
+          btnAtrasEmpresa.click(function(){
+            setTimeout(()=>{
+                btnAtrasEmpresa.animate({'opacity': '0'});
+                btnSigEmpresa.animate({'opacity': '0'});
+                instruccionesEmpresa.animate({'opacity': '0'});
+                empresa1.animate({'opacity': '0'});
+                btnIndependet.animate({'opacity': '0'});
+                btnProcesadores.animate({'opacity': '0'});
+                btnAgregador.animate({'opacity': '0'});
+                textoEmpresa1.animate({'opacity': '0'});
+                textoEmpresa2.animate({'opacity': '0'});
+                textoEmpresa3.animate({'opacity': '0'});
+                btnDebito.animate({'opacity': '0'});
+                btnCerrarEmpresa.animate({'opacity': '0'});
+              }, 1000);
+              setTimeout(()=>{
+                btnAtrasEmpresa.css('display', 'none');
+                btnSigEmpresa.css('display', 'none');
+                instruccionesEmpresa.css('display', 'none');
+                empresa1.css('display', 'none');
+                btnIndependet.css('display', 'none');
+                btnProcesadores.css('display', 'none');
+                btnAgregador.css('display', 'none');
+                textoEmpresa1.css('display', 'none');
+                textoEmpresa2.css('display', 'none');
+                textoEmpresa3.css('display', 'none');
+                btnDebito.css('display', 'none');
+                btnCerrarEmpresa.css('display', 'none');
+              }, 2000);
+              aplicacion.detenerAudios();
+              pantalla6();
+          });
+
+          function activar1(){
+            parpadea(btnProcesadores);
+              btnProcesadores.click(function(){
+                  if(btnProcesadores.css('cursor') == 'pointer'){
+                      TweenMax.killTweensOf(btnProcesadores);
+                      btnProcesadores.css({
+                          'opacity': '1',
+                          'cursor': 'default' 
+                      });
+                      aplicacion.reproducirAudio(audio[31], descripcion, 1000);
+                      textoEmpresa1.css('display', 'block');
+
+                      setTimeout(()=>{
+                        textoEmpresa1.animate({opacity: '1'});
+                      }, 500);
+                  }
+
+                  function descripcion(){
+                      aplicacion.reproducirAudio(audio[32], activar2, 1000);
+                  }
+              });
+          }
+
+          function activar2(){
+            parpadea(btnIndependet);
+              btnIndependet.click(function(){
+                  if(btnIndependet.css('cursor') == 'pointer'){
+                      TweenMax.killTweensOf(btnIndependet);
+                      btnIndependet.css({
+                          'opacity': '1',
+                          'cursor': 'default' 
+                      });
+                      aplicacion.reproducirAudio(audio[33], descripcion, 1000);
+                      textoEmpresa1.css('display', 'none');
+                      textoEmpresa2.css('display', 'block');
+
+                      setTimeout(()=>{
+                        textoEmpresa2.animate({opacity: '1'});
+                      }, 500);
+                  }
+
+                  function descripcion(){
+                      aplicacion.reproducirAudio(audio[34], activar3, 1000);
+                  }
+              });
+          }
+
+          function activar3(){
+            parpadea(btnAgregador);
+              btnAgregador.click(function(){
+                  if(btnAgregador.css('cursor') == 'pointer'){
+                      TweenMax.killTweensOf(btnAgregador);
+                      btnAgregador.css({
+                          'opacity': '1',
+                          'cursor': 'default' 
+                      });
+                      aplicacion.reproducirAudio(audio[35], descripcion, 1000);
+                      textoEmpresa2.css('display', 'none');
+                      textoEmpresa3.css('display', 'block');
+
+                      setTimeout(()=>{
+                        textoEmpresa3.animate({opacity: '1'});
+                      }, 500);
+                  }
+
+                  function descripcion(){
+                      aplicacion.reproducirAudio(audio[36], ultimaPantalla, 1000);
+                  }
+              });
+          }
+
+          function ultimaPantalla(){
+            parpadea(btnCerrarEmpresa);
+            btnCerrarEmpresa.click(function(){
+              TweenMax.killTweensOf(btnCerrarEmpresa);
+              setTimeout(()=>{
+                btnAtrasEmpresa.animate({'opacity': '0'});
+                btnSigEmpresa.animate({'opacity': '0'});
+                instruccionesEmpresa.animate({'opacity': '0'});
+                empresa1.animate({'opacity': '0'});
+                btnIndependet.animate({'opacity': '0'});
+                btnProcesadores.animate({'opacity': '0'});
+                btnAgregador.animate({'opacity': '0'});
+                textoEmpresa1.animate({'opacity': '0'});
+                textoEmpresa2.animate({'opacity': '0'});
+                textoEmpresa3.animate({'opacity': '0'});
+                btnDebito.animate({'opacity': '0'});
+                btnCerrarEmpresa.animate({'opacity': '0'});
+              }, 1000);
+              setTimeout(()=>{
+                btnAtrasEmpresa.css('display', 'none');
+                btnSigEmpresa.css('display', 'none');
+                instruccionesEmpresa.css('display', 'none');
+                empresa1.css('display', 'none');
+                btnIndependet.css('display', 'none');
+                btnProcesadores.css('display', 'none');
+                btnAgregador.css('display', 'none');
+                textoEmpresa1.css('display', 'none');
+                textoEmpresa2.css('display', 'none');
+                textoEmpresa3.css('display', 'none');
+                btnDebito.css('display', 'none');
+                btnCerrarEmpresa.css('display', 'none');
+              }, 2000);
+
+
+              aplicacion.terminaPantalla();
+            });
+          }
+
+        });
+    });
     </script>
 
     <!-- Termina Script -->
