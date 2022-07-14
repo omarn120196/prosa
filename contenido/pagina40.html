@@ -511,8 +511,28 @@
                   animacionSalida(btnSiguiente, "default", 0);
                 }
                 if (i == 1) {
-                  animacionSalida(btnAtras, "default", 0);
-                  carrusel01();
+                    animacionSalida(btnAtras, "default", 0);
+                    setTimeout(() => {
+                        aplicacion.reproducirAudio(audio[2], terminaAudio01);
+                        reanudarHablar();
+                    }, 1500);
+
+
+                    function terminaAudio01() {
+                        pausarHablar();
+                        setTimeout(() => {
+                            aplicacion.reproducirAudio(audio[3], terminaAudio02);
+                            reanudarHablar();
+                        }, 1500);
+                    }
+
+                    function terminaAudio02() {
+                        pausarHablar();
+                        setTimeout(() => {
+                            aplicacion.reproducirAudio(audio[4], terminaAudio2);
+                            reanudarHablar();
+                        }, 1500);
+                    }
 
                 }
             }
@@ -523,76 +543,83 @@
                     btnSiguiente.css({
                         'opacity': '1'
                     });
-                }
-                salen();
-                i += 1;
-                animacionEntrada($("#info" + i), 'derecha-izquierda', 1, 1.5);
 
-                if (i == 2) {
-                    pausarHablar();
-                    animacionSalida(btnSiguiente, "default", 0);
-                    animacionSalida(btnAtras, "default", 0);
+                    salen();
+                    i += 1;
+                    animacionSalida(btnSiguiente, "default");
+                    animacionEntrada($("#info" + i), 'derecha-izquierda', 1, 1.5);
 
-                    setTimeout(() => {
-                        aplicacion.reproducirAudio(audio[5], siguiente);
-                        reanudarHablar();
-                    }, 1500);
+                    if (i == 2) {
+                        pausarHablar();
+                        animacionSalida(btnSiguiente, "default");
+                        animacionSalida(btnAtras, "default");
+
+                        setTimeout(() => {
+                            aplicacion.reproducirAudio(audio[5], siguiente);
+                            reanudarHablar();
+                        }, 1500);
                     
-                    animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, 1.5, atras);
-                }
-                if (i == 3) {
-                    pausarHablar();
-                    animacionSalida(btnSiguiente, "default", 0);
-                    animacionSalida(btnAtras, "default", 0);
+                        animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, 1.5);
+                    }
 
-                    setTimeout(() => {
-                        aplicacion.reproducirAudio(audio[6], siguiente);
-                        reanudarHablar();
-                    }, 1500);
+                    if (i == 3) {
+                        pausarHablar();
+                        animacionSalida(btnSiguiente, "default");
+                        animacionSalida(btnAtras, "default");
+
+                        setTimeout(() => {
+                            aplicacion.reproducirAudio(audio[6], siguiente);
+                            reanudarHablar();
+                        }, 1500);
                     
-                    animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, 1.5, atras);
-                }
-                if (i == 4) {
-                    pausarHablar();
-                    animacionSalida(btnSiguiente, "default", 0);
-                    animacionSalida(btnAtras, "default", 0);
+                        animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, 1.5);
+                    }
 
-                    setTimeout(() => {
-                        aplicacion.reproducirAudio(audio[7], siguiente);
-                        reanudarHablar();
-                    }, 1500);
+                    if (i == 4) {
+                        pausarHablar();
+                        animacionSalida(btnSiguiente, "default");
+                        animacionSalida(btnAtras, "default");
+
+                        setTimeout(() => {
+                            aplicacion.reproducirAudio(audio[7], siguiente);
+                            reanudarHablar();
+                        }, 1500);
                     
-                    animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, 1.5, atras);
-                }
-                if (i == 5) {
-                    pausarHablar();
-                    animacionSalida(btnSiguiente, "default", 0);
-                    animacionSalida(btnAtras, "default", 0);
+                        animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, 1.5);
+                    }
+
+
+                    if (i == 5) {
+                        pausarHablar();
+                        animacionSalida(btnSiguiente, "default");
+                        animacionSalida(btnAtras, "default");
                     
-                    setTimeout(() => {
-                        aplicacion.reproducirAudio(audio[8], siguiente);
-                        reanudarHablar();
-                    }, 1500);
+                        setTimeout(() => {
+                            aplicacion.reproducirAudio(audio[8], siguiente);
+                            reanudarHablar();
+                        }, 1500);
                     
-                    animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, 1.5, atras);
+                        animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, 1.5);
+                    }
+
+                    if (i == 6) {
+                        pausarHablar();
+                        animacionSalida(btnAtras, "default");
+                        setTimeout(() => {
+                            aplicacion.reproducirAudio(audio[9], terminaPantalla);
+                            reanudarHablar();
+                        }, 1500);
+
+                        animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, 1.5);
+                    }
+
+                    checa();
                 }
-
-                if (i == 6) {
-                    pausarHablar();
-                    setTimeout(() => {
-                        aplicacion.reproducirAudio(audio[9], terminaPantalla);
-                        reanudarHablar();
-                    }, 1500);
-
-                    animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, 1.5, atras);
-
-                }
-                checa();
-
             });
 
             function terminaPantalla() {
                 pararHablar();
+                atras();
                 aplicacion.terminaPantalla();
             }
 
@@ -602,87 +629,84 @@
                     btnAtras.css({
                         'opacity': '1'
                     });
-                }
-                i -= 1;
-                salen();
-                aplicacion.detenerAudios();
-                animacionEntrada($("#info" + i), 'derecha-izquierda', 1, .5)
-                if (i == 2) {
-                  aplicacion.detenerAudios();
-                  animacionSalida(btnAtras, "default", 0);
-                    pausarHablar();
-                    setTimeout(() => {
-                        aplicacion.reproducirAudio(audio[5], siguiente);
-                        reanudarHablar();
-                    }, 1500);
 
-                    animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, .5, atras);
-                }
-                if (i == 3) {
-                  aplicacion.detenerAudios();
-                  animacionSalida(btnAtras, "default", 0);
-                    pausarHablar();
-                    setTimeout(() => {
-                        aplicacion.reproducirAudio(audio[6], siguiente);
-                        reanudarHablar();
-                    }, 1500);
+                    i -= 1;
+                  salen();
+                  animacionSalida(btnSiguiente, "default");
+                  animacionEntrada($("#info" + i), 'derecha-izquierda', 1, .5);
 
-                    animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, .5, atras);
-                }
-                if (i == 4) {
-                  aplicacion.detenerAudios();
-                  animacionSalida(btnAtras, "default", 0);
-                    pausarHablar();
-                    setTimeout(() => {
-                        aplicacion.reproducirAudio(audio[7], siguiente);
-                        reanudarHablar();
-                    }, 1500);
+                  if (i == 2) {
+                      animacionSalida(btnAtras, "default");
+                      animacionSalida(btnSiguiente, "default");
+                      pausarHablar();
+                      setTimeout(() => {
+                          aplicacion.reproducirAudio(audio[5], siguiente);
+                          reanudarHablar();
+                      }, 1500);
 
-                    animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, .5, atras);
-                }
-                if (i == 5) {
-                  aplicacion.detenerAudios();
-                  animacionSalida(btnAtras, "default", 0);
-                    pausarHablar();
-                    setTimeout(() => {
-                        aplicacion.reproducirAudio(audio[8], siguiente);
-                        reanudarHablar();
-                    }, 1500);
+                      animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, .5);
+                  }
 
-                    animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, .5, atras);
-                }
-                if (i == 6) {
-                  aplicacion.detenerAudios();
-                    pausarHablar();
-                    setTimeout(() => {
-                        aplicacion.reproducirAudio(audio[9], atras);
-                        reanudarHablar();
-                    }, 1500);
-                    animacionEntrada($("#info" + i), 'derecha-izquierda', 1, .5, atras);
-                    
-                    
-                }
-                checa();
+                  if (i == 3) {
+                      animacionSalida(btnAtras, "default");
+                      animacionSalida(btnSiguiente, "default");
+                      pausarHablar();
+                      setTimeout(() => {
+                            aplicacion.reproducirAudio(audio[6], siguiente);
+                            reanudarHablar();
+                      }, 1500);
 
+                      animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, .5);
+                  }
+
+                  if (i == 4) {
+                      animacionSalida(btnAtras, "default");
+                      animacionSalida(btnSiguiente, "default");
+                      pausarHablar();
+                      setTimeout(() => {
+                          aplicacion.reproducirAudio(audio[7], siguiente);
+                          reanudarHablar();
+                      }, 1500);
+
+                      animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, .5);
+                  } 
+
+                  if (i == 5) {
+                      animacionSalida(btnAtras, "default");
+                      animacionSalida(btnSiguiente, "default");
+                      pausarHablar();
+                      setTimeout(() => {
+                          aplicacion.reproducirAudio(audio[8], siguiente);
+                          reanudarHablar();
+                      }, 1500);
+
+                      animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, .5);
+                  }
+
+                  if (i == 6) {
+                      pausarHablar();
+                      animacionSalida(btnAtras, "default");
+                      setTimeout(() => {
+                          aplicacion.reproducirAudio(audio[9], atras);
+                          reanudarHablar();
+                      }, 1500);
+                      animacionEntrada($("#info" + i), 'derecha-izquierda', 1, .5); 
+                  }
+                  checa();
+                }
             });
 
             function siguiente() {
               parpadea(btnSiguiente);
               btnAtras.css({
                 'display': 'block',
+                'cursor': 'pointer',
                 'opacity': '1'
               });
             }
 
             function atras() {
-              btnAtras.css({
-                'display': 'block',
-                'opacity': '1'
-              });
-              btnAtras.css({
-                'cursor': 'pointer',
-              });
-
+              parpadea(btnAtras);
             }
         });
     </script>

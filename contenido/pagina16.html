@@ -422,13 +422,15 @@
                         'opacity': '1'
                     });
 
-                    aplicacion.reproducirAudio(audio[14], terminaAudioBtn10, 1000);
+                    aplicacion.reproducirAudio(audio[14], termina, 1000);
                     animacionEntrada(info10, "default", .5, 0.3);
                 }
-                function terminaAudioBtn10() {
-                    parpadea(btnAdelante);
-                }
             });
+
+            function termina(){
+                parpadea(btnAdelante);
+            }
+
 
             //Funcionalidad btnAdelante--------------------------------------------------------
             btnAdelante.click(function () {
@@ -444,8 +446,8 @@
                     animacionEntrada(info10_2, "default", .5, 0.3);
                     
                     function terminaAudio101() {
-                        animacionEntrada(btnAtras, "default", .5, 0.3);
                         parpadea(btnCerrar10);
+                        parpadea(btnAtras);
                     }
                 }
             });
@@ -474,16 +476,17 @@
                     btnAtras.css({
                         'opacity': '1'
                     });
-                }
-                aplicacion.reproducirAudio(audio[14], terminaAtras, 1000);
-                animacionEntrada(info10, "default", .5, 0.2);
 
-                animacionSalida(info10_2, "default", .5, 0.2);
-                animacionSalida(btnCerrar10, "default", .5, 0.2);
-                animacionSalida(btnAtras, "default", .5, 0.2);
+                    aplicacion.reproducirAudio(audio[14], terminaAtras, 1000);
+                    animacionEntrada(info10, "default", .5, 0.2);
+
+                    animacionSalida(info10_2, "default", .5, 0.2);
+                    animacionSalida(btnCerrar10, "default", .5, 0.2);
+                    animacionSalida(btnAtras, "default", .5, 0.2);
                  
-                function terminaAtras(){
-                    animacionEntrada(btnAdelante, "default", .5, 0.2);
+                    function terminaAtras(){
+                        animacionEntrada(btnAdelante, "default", .5, 0.2);
+                    }
                 }
             });
             
