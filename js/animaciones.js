@@ -132,6 +132,20 @@ export function parpadea(elemento, tiempo=.8, delay=0){
     });
 }
 
+export function pararParpadear(elemento, cursorActivo = false){
+    gsap.killTweensOf(elemento);
+    elemento.css({
+        'opacity': '1',
+        'cursor': 'default'
+    });
+
+    if(cursorActivo){
+        elemento.css({
+            'cursor': 'pointer'
+        });
+    }
+}
+
 export function eliminarAnimaciones(){
     //Elementos dentro de las páginas
     const elementos = $('.elementos');

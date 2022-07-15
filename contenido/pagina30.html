@@ -402,7 +402,7 @@
     <!-- Script de la página -->
     <script type="module">
         import {aplicacion} from './js/app.js';
-        import {animacionEntrada, parpadea, animacionSalida} from './js/animaciones.js';
+        import {animacionEntrada, parpadea, animacionSalida, pararParpadear} from './js/animaciones.js';
         import {cargando} from './js/funciones.js';
         import {flotar, hablar, pausarHablar, reanudarHablar, pararHablar} from './js/movimientosRobot.js';
 
@@ -482,8 +482,7 @@
 
             led1.click(function(){
                 if(led1.css('cursor') == 'pointer'){
-                    TweenMax.killTweensOf(led1);
-                    led1.css('opacity', '1');
+                    pararParpadear(led1, true);
                     reanudarHablar();
                     aplicacion.reproducirAudio(audio[2], cerrar, 1000);
                     animacionEntrada(globo1, 'default', 1);
@@ -512,8 +511,7 @@
 
             led2.click(function(){
                 if(led2.css('cursor') == 'pointer'){
-                    TweenMax.killTweensOf(led2);
-                    led2.css('opacity', '1');
+                    pararParpadear(led2, true);
                     aplicacion.reproducirAudio(audio[3], cerrar, 1000);
                     animacionEntrada(globo2, 'default', 1);
                     reanudarHablar();
@@ -542,8 +540,7 @@
 
             led3.click(function(){
                 if(led3.css('cursor') == 'pointer'){
-                    TweenMax.killTweensOf(led3);
-                    led3.css('opacity', '1');
+                    pararParpadear(led3, true);
                     aplicacion.reproducirAudio(audio[4], cerrar, 1000);
                     animacionEntrada(globo3, 'default', 1);
                     reanudarHablar();
