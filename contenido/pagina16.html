@@ -444,10 +444,12 @@
                     animacionSalida(info10, "default", .5, 0.3);
                     animacionSalida(btnAdelante, "default", .5, 0.3);
                     animacionEntrada(info10_2, "default", .5, 0.3);
+                    animacionEntrada(btnAtras, "default", .5, 0.3);
+
+                    btnAtras.css("cursor", "pointer");
                     
                     function terminaAudio101() {
                         parpadea(btnCerrar10);
-                        parpadea(btnAtras);
                     }
                 }
             });

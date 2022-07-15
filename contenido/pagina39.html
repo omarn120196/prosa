@@ -698,8 +698,9 @@
               aplicacion.reproducirAudio(audio[2], activarSig, 1000);
               emisor1.css('display', 'block');
               btnSig1Emisor.css('display', 'block');
+              emisor1.animate({opacity: '1'});
               setTimeout(()=>{
-                  emisor1.animate({opacity: '1'});
+                  
                   btnSig1Emisor.animate({opacity: '1'});
               }, 500);
 
@@ -709,14 +710,12 @@
                       if(btnSig1Emisor.css('cursor') == 'pointer'){
                           TweenMax.killTweensOf(btnSig1Emisor);
                           btnSig1Emisor.css('cursor', 'default');
-                          setTimeout(()=>{
-                            emisor1.animate({
-                              'opacity': '0',
-                            });
-                            btnSig1Emisor.animate({
-                              'opacity': '0',
-                            });
-                          }, 1000);
+                          emisor1.animate({
+                            'opacity': '0',
+                          });
+                          btnSig1Emisor.animate({
+                            'opacity': '0',
+                          });
                           setTimeout(()=>{
                             emisor1.css('display', 'none');
                             btnSig1Emisor.css('display', 'none');
@@ -737,25 +736,24 @@
                   'display': 'block',
                   'cursor': 'pointer'
                 });
+                emisor2.animate({opacity: '1'});
                 setTimeout(()=>{
-                    emisor2.animate({opacity: '1'});
+                    
                     btnSig2Emisor.animate({opacity: '1'});
                     btnAtras1Emisor.animate({opacity: '1'});
                 }, 500);
 
                 btnAtras1Emisor.click(function(){
                     aplicacion.detenerAudios();
-                    setTimeout(()=>{
-                      emisor2.animate({
-                          'opacity': '0',
-                      });
-                      btnSig2Emisor.animate({
-                          'opacity': '0',
-                      });
-                      btnAtras1Emisor.animate({
-                          'opacity': '0',
-                      });
-                    }, 1000);
+                    emisor2.animate({
+                        'opacity': '0',
+                    });
+                    btnSig2Emisor.animate({
+                        'opacity': '0',
+                    });
+                    btnAtras1Emisor.animate({
+                        'opacity': '0',
+                    });
                     setTimeout(()=>{
                       emisor2.css('display', 'none');
                       btnSig2Emisor.css('display', 'none');
@@ -816,7 +814,6 @@
                   btnAtras2Emisor.click(function(){
                       if(btnAtras2Emisor.css('cursor') == 'pointer'){
                           aplicacion.detenerAudios();
-                          setTimeout(()=>{
                           emisor3.animate({'opacity': '0'});
                           btnSig3Emisor.animate({'opacity': '0'});
                           btnAtras2Emisor.animate({'opacity': '0'});
@@ -829,7 +826,6 @@
                           btnCredito.animate({'opacity': '0'});
                           btnDebito.animate({'opacity': '0'});
                           btnPrepago.animate({'opacity': '0'});
-                        }, 1000);
                         setTimeout(()=>{
                           emisor3.css('display', 'none');
                           btnSig3Emisor.css('display', 'none');
@@ -942,20 +938,18 @@
                     btnSig3Emisor.click(function(){
                       TweenMax.killTweensOf(btnSig3Emisor);
                       btnSig3Emisor.css('cursor', 'default');
-                      setTimeout(()=>{
-                        emisor3.animate({'opacity': '0'});
-                        btnSig3Emisor.animate({'opacity': '0'});
-                        btnAtras2Emisor.animate({'opacity': '0'});
-                        tituloEmisor.animate({'opacity': '0'});
-                        instrucciones3.animate({'opacity': '0'});
-                        caracteriza.animate({'opacity': '0'});
-                        emisor3_1.animate({'opacity': '0'});
-                        emisor3_2.animate({'opacity': '0'});
-                        emisor3_3.animate({'opacity': '0'});
-                        btnCredito.animate({'opacity': '0'});
-                        btnDebito.animate({'opacity': '0'});
-                        btnPrepago.animate({'opacity': '0'});
-                      }, 1000);
+                      emisor3.animate({'opacity': '0'});
+                      btnSig3Emisor.animate({'opacity': '0'});
+                      btnAtras2Emisor.animate({'opacity': '0'});
+                      tituloEmisor.animate({'opacity': '0'});
+                      instrucciones3.animate({'opacity': '0'});
+                      caracteriza.animate({'opacity': '0'});
+                      emisor3_1.animate({'opacity': '0'});
+                      emisor3_2.animate({'opacity': '0'});
+                      emisor3_3.animate({'opacity': '0'});
+                      btnCredito.animate({'opacity': '0'});
+                      btnDebito.animate({'opacity': '0'});
+                      btnPrepago.animate({'opacity': '0'});
                       setTimeout(()=>{
                         emisor3.css('display', 'none');
                         btnAtras2Emisor.css('display', 'none');
@@ -987,8 +981,9 @@
                     'cursor': 'pointer'
                   });
 
+                  emisor4.animate({opacity: '1'});
                   setTimeout(()=>{
-                    emisor4.animate({opacity: '1'});
+                    
                     robot.animate({opacity: '1'});
                     btnCerrarEmisor.animate({opacity: '1'});
                     btnAtras3Emisor.animate({opacity: '1'});
@@ -998,7 +993,6 @@
 
                   btnAtras3Emisor.click(function(){
                       aplicacion.detenerAudios();
-                      setTimeout(()=>{
                         emisor4.animate({
                             'opacity': '0',
                         });
@@ -1011,7 +1005,6 @@
                         btnCerrarEmisor.animate({
                             'opacity': '0',
                         });
-                      }, 1000);
                       setTimeout(()=>{
                         emisor4.css('display', 'none');
                         robot.css('display', 'none');
@@ -1179,12 +1172,18 @@
                     
                 function sonido8(){
                   aplicacion.reproducirAudio(audio[23], sonido9, 1000);
-                  animacionEntrada(d1, 'default', 1);
+                  d1.css('display', 'block');
+                  setTimeout(()=>{
+                    d1.animate({opacity: '1'});
+                  }, 500);
                 }
                     
                 function sonido9(){
                   aplicacion.reproducirAudio(audio[24], activar, 1000);
-                  animacionEntrada(instruccionesAdquirente2, 'default', 1);
+                  instruccionesAdquirente2.css('display', 'block');
+                  setTimeout(()=>{
+                    instruccionesAdquirente2.animate({opacity: '1'});
+                  }, 500);
                 }
                     
                 function activar(){
@@ -1233,14 +1232,12 @@
                         'opacity': '1'
                       });
                       TweenMax.killTweensOf(btnSigAdquirente);
-                      setTimeout(()=>{
-                        btnSigAdquirente.animate({
-                          'opacity': '0',
-                        });
-                        adquirentes1.animate({
-                          'opacity': '0',
-                        });
-                      }, 1000);
+                      btnSigAdquirente.animate({
+                        'opacity': '0',
+                      });
+                      adquirentes1.animate({
+                        'opacity': '0',
+                      });
                       setTimeout(()=>{
                         btnSigAdquirente.css('display', 'none');
                         adquirentes1.css('display', 'none');
@@ -1270,17 +1267,15 @@
 
                   btnAtrasAdquirente.click(function(){
                     if(btnAtrasAdquirente.css('cursor') == 'pointer'){
-                      setTimeout(()=>{
-                        btnAtrasAdquirente.animate({
-                          'opacity': '0',
-                        });
-                        adquirentes2.animate({
-                          'opacity': '0',
-                        });
-                        btnCerrarAdquirente.animate({
-                          'opacity': '0',
-                        });
-                      }, 1000);
+                      btnAtrasAdquirente.animate({
+                        'opacity': '0',
+                      });
+                      adquirentes2.animate({
+                        'opacity': '0',
+                      });
+                      btnCerrarAdquirente.animate({
+                        'opacity': '0',
+                      });
                       setTimeout(()=>{
                         btnAtrasAdquirente.css('display', 'none');
                         adquirentes2.css('display', 'none');
@@ -1299,20 +1294,18 @@
                         'opacity': '1'
                       });
                       TweenMax.killTweensOf(btnCerrarAdquirente);
-                      setTimeout(()=>{
-                        btnAtrasAdquirente.animate({
-                          'opacity': '0',
-                        });
-                        adquirentes2.animate({
-                          'opacity': '0',
-                        });
-                        btnCerrarAdquirente.animate({
-                          'opacity': '0',
-                        });
-                        fondoAdquirente.animate({
-                          'opacity': '0',
-                        });
-                      }, 1000);
+                      btnAtrasAdquirente.animate({
+                        'opacity': '0',
+                      });
+                      adquirentes2.animate({
+                        'opacity': '0',
+                      });
+                      btnCerrarAdquirente.animate({
+                        'opacity': '0',
+                      });
+                      fondoAdquirente.animate({
+                        'opacity': '0',
+                      });
                       setTimeout(()=>{
                         btnAtrasAdquirente.css('display', 'none');
                         adquirentes2.css('display', 'none');
@@ -1343,8 +1336,9 @@
           fondoMarca.css('display', 'block');
           robot.css('display', 'block');
           marca1.css('display', 'block');
+          fondoMarca.animate({opacity: '1'});
           setTimeout(()=>{
-              fondoMarca.animate({opacity: '1'});
+              
               robot.animate({opacity: '1'});
               marca1.animate({opacity: '1'});
               flotar(robot, 'i');
@@ -1361,21 +1355,16 @@
               'opacity': '1'
             });
             TweenMax.killTweensOf(btnSigMarca);
-            setTimeout(()=>{
-              marca1.animate({
-                'opacity': '0',
-              });
-              btnSigMarca.animate({
-                'opacity': '0',
-              });
-            }, 1000);
+            marca1.animate({
+              'opacity': '0',
+            });
+            btnSigMarca.animate({
+              'opacity': '0',
+            });
             setTimeout(()=>{
               marca1.css('display', 'none');
               btnSigMarca.css('display', 'none');
             }, 1100);
-
-            animacionSalida(btnSigMarca, 'default', .5);
-            animacionSalida(marca1, 'default', .5);
             aplicacion.detenerAudios();
             carrusel2();
           });
@@ -1400,17 +1389,15 @@
         btnAtrasMarca.click(function(){
           if(btnAtrasMarca.css('cursor') == 'pointer'){
             aplicacion.detenerAudios();
-            setTimeout(()=>{
-              btnAtrasMarca.animate({
-                  'opacity': '0',
-              });
-              marca2.animate({
-                  'opacity': '0',
-              });
-              btnCerrarMarca.animate({
-                  'opacity': '0',
-              });
-            }, 1000);
+            btnAtrasMarca.animate({
+                'opacity': '0',
+            });
+            marca2.animate({
+                'opacity': '0',
+            });
+            btnCerrarMarca.animate({
+                'opacity': '0',
+            });
             setTimeout(()=>{
               btnAtrasMarca.css('display', 'none');
               marca2.css('display', 'none');
@@ -1432,23 +1419,21 @@
             });
             TweenMax.killTweensOf(btnCerrarMarca);
 
-            setTimeout(()=>{
-              btnAtrasMarca.animate({
-                  'opacity': '0',
-              });
-              marca2.animate({
-                  'opacity': '0',
-              });
-              btnCerrarMarca.animate({
-                  'opacity': '0',
-              });
-              fondoMarca.animate({
-                  'opacity': '0',
-              });
-              robot.animate({
-                  'opacity': '0',
-              });
-            }, 1000);
+            btnAtrasMarca.animate({
+                'opacity': '0',
+            });
+            marca2.animate({
+                'opacity': '0',
+            });
+            btnCerrarMarca.animate({
+                'opacity': '0',
+            });
+            fondoMarca.animate({
+                'opacity': '0',
+            });
+            robot.animate({
+                'opacity': '0',
+            });
             setTimeout(()=>{
               btnAtrasMarca.css('display', 'none');
               marca2.css('display', 'none');
@@ -1489,18 +1474,17 @@
             pausarHablar();
             parpadea(btnSigEmpresa);
             btnSigEmpresa.click(function(){
+              robot.animate({
+                'opacity': '0',
+              });
+              
+              btnSigEmpresa.animate({
+                'opacity': '0',
+              });
               setTimeout(()=>{
-                robot.animate({
+                  fondoEmpresa.animate({
                   'opacity': '0',
                 });
-                fondoEmpresa.animate({
-                  'opacity': '0',
-                });
-                btnSigEmpresa.animate({
-                  'opacity': '0',
-                });
-              }, 1000);
-              setTimeout(()=>{
                 robot.css('display', 'none');
                 fondoEmpresa.css('display', 'none');
                 btnSigEmpresa.css('display', 'none');
@@ -1519,15 +1503,15 @@
                 'display': 'block',
                 'cursor': 'pointer'
               });
+              empresa1.animate({opacity: '1'});
               setTimeout(()=>{
-                  empresa1.animate({opacity: '1'});
+                  
                   instruccionesEmpresa.animate({opacity: '1'});
                   btnAtrasEmpresa.animate({opacity: '1'});
               }, 500);
           }
 
           btnAtrasEmpresa.click(function(){
-            setTimeout(()=>{
                 btnAtrasEmpresa.animate({'opacity': '0'});
                 btnSigEmpresa.animate({'opacity': '0'});
                 instruccionesEmpresa.animate({'opacity': '0'});
@@ -1540,10 +1524,10 @@
                 textoEmpresa3.animate({'opacity': '0'});
                 btnDebito.animate({'opacity': '0'});
                 btnCerrarEmpresa.animate({'opacity': '0'});
-              }, 1000);
+                btnSigEmpresa.css('display', 'none');
               setTimeout(()=>{
                 btnAtrasEmpresa.css('display', 'none');
-                btnSigEmpresa.css('display', 'none');
+                
                 instruccionesEmpresa.css('display', 'none');
                 empresa1.css('display', 'none');
                 btnIndependet.css('display', 'none');
@@ -1562,22 +1546,33 @@
           function activar1(){
             parpadea(btnProcesadores);
               btnProcesadores.click(function(){
-                  if(btnProcesadores.css('cursor') == 'pointer'){
+                if(btnProcesadores.css('cursor') == 'pointer'){
+                    aplicacion.detenerAudios();
+                    aplicacion.audiosActivos = true;
                       TweenMax.killTweensOf(btnProcesadores);
                       btnProcesadores.css({
                           'opacity': '1',
                           'cursor': 'default' 
                       });
                       aplicacion.reproducirAudio(audio[31], descripcion, 1000);
+                      const textoAbierto = $('.textoAbierto');
+                      textoAbierto.removeClass('textoAbierto');
+                      textoAbierto.animate({
+                        'opacity': '0',
+                      });
                       textoEmpresa1.css('display', 'block');
+                      
 
                       setTimeout(()=>{
+                        textoAbierto.css('display', 'none');
                         textoEmpresa1.animate({opacity: '1'});
                       }, 500);
                   }
 
                   function descripcion(){
                       aplicacion.reproducirAudio(audio[32], activar2, 1000);
+                      textoEmpresa1.addClass('textoAbierto');
+                      btnProcesadores.css('cursor', 'pointer');
                   }
               });
           }
@@ -1585,7 +1580,9 @@
           function activar2(){
             parpadea(btnIndependet);
               btnIndependet.click(function(){
-                  if(btnIndependet.css('cursor') == 'pointer'){
+                if(btnIndependet.css('cursor') == 'pointer'){
+                    aplicacion.detenerAudios();
+                    aplicacion.audiosActivos = true;
                       TweenMax.killTweensOf(btnIndependet);
                       btnIndependet.css({
                           'opacity': '1',
@@ -1594,14 +1591,22 @@
                       aplicacion.reproducirAudio(audio[33], descripcion, 1000);
                       textoEmpresa1.css('display', 'none');
                       textoEmpresa2.css('display', 'block');
+                      const textoAbierto = $('.textoAbierto');
+                      textoAbierto.removeClass('textoAbierto');
+                      textoAbierto.animate({
+                        'opacity': '0',
+                      });
 
                       setTimeout(()=>{
+                        textoAbierto.css('display', 'none');
                         textoEmpresa2.animate({opacity: '1'});
                       }, 500);
                   }
 
                   function descripcion(){
                       aplicacion.reproducirAudio(audio[34], activar3, 1000);
+                      textoEmpresa2.addClass('textoAbierto');
+                      btnIndependet.css('cursor', 'pointer');
                   }
               });
           }
@@ -1610,6 +1615,8 @@
             parpadea(btnAgregador);
               btnAgregador.click(function(){
                   if(btnAgregador.css('cursor') == 'pointer'){
+                    aplicacion.detenerAudios();
+                    aplicacion.audiosActivos = true;
                       TweenMax.killTweensOf(btnAgregador);
                       btnAgregador.css({
                           'opacity': '1',
@@ -1618,14 +1625,22 @@
                       aplicacion.reproducirAudio(audio[35], descripcion, 1000);
                       textoEmpresa2.css('display', 'none');
                       textoEmpresa3.css('display', 'block');
+                      const textoAbierto = $('.textoAbierto');
+                      textoAbierto.removeClass('textoAbierto');
+                      textoAbierto.animate({
+                        'opacity': '0',
+                      });
 
                       setTimeout(()=>{
+                        textoAbierto.css('display', 'none');
                         textoEmpresa3.animate({opacity: '1'});
                       }, 500);
                   }
 
                   function descripcion(){
                       aplicacion.reproducirAudio(audio[36], ultimaPantalla, 1000);
+                      textoEmpresa3.addClass('textoAbierto');
+                      btnAgregador.css('cursor', 'pointer');
                   }
               });
           }
@@ -1634,7 +1649,6 @@
             parpadea(btnCerrarEmpresa);
             btnCerrarEmpresa.click(function(){
               TweenMax.killTweensOf(btnCerrarEmpresa);
-              setTimeout(()=>{
                 btnAtrasEmpresa.animate({'opacity': '0'});
                 btnSigEmpresa.animate({'opacity': '0'});
                 instruccionesEmpresa.animate({'opacity': '0'});
@@ -1647,7 +1661,6 @@
                 textoEmpresa3.animate({'opacity': '0'});
                 btnDebito.animate({'opacity': '0'});
                 btnCerrarEmpresa.animate({'opacity': '0'});
-              }, 1000);
               setTimeout(()=>{
                 btnAtrasEmpresa.css('display', 'none');
                 btnSigEmpresa.css('display', 'none');
@@ -1663,7 +1676,7 @@
                 btnCerrarEmpresa.css('display', 'none');
               }, 2000);
 
-
+              
               aplicacion.terminaPantalla();
             });
           }
