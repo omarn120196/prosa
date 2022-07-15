@@ -12,11 +12,11 @@ import {contendorPáginas,
         btnRecargar,
         btnAudio,
         spinner,
-        temas,
         menuLateral,
-        titulo,
+        titulo, 
+        nombreTemas, 
         cuadros, 
-        nombreTemas} 
+        temas} 
 from './selectores.js';
 
 import {pBarraProgreso, paginas, pBotonMenu, pBotonRecargar, pBotonAudio, pBotonAtras, pBotonAdelante, pMenuLateral, pCuadros, pTitulos, pNombreTemas} from './configuracion.js';
@@ -361,25 +361,32 @@ export function cargando(funcion){
 export function actualizarTemario(noPagina){
     noPagina = noPagina + 1;
     
-    $.each(temas, function(){
-        const pagina =parseInt($(this).data('pagina'));
-        
-        if(pagina<noPagina){
+    temas.each(function(){
+        const paginaTema = $(this).data('pagina');
+
+        if(paginaTema<noPagina){
             $(this).addClass('tema-activo');
             $(this).find('i').removeClass('bx-square-rounded');
             $(this).find('i').addClass('bx-check-square');
             $(this).find('i').css('fontSize', '20px');
-
-            if($(this).hasClass('tema-activo')){
-                $(this).click(function(){
-                    aplicacion.irPagina(pagina);
-                });
-            }
         }
     });
 }
 
-//Mover teclas
+export function botonesTemario(){
+    temas.each(function(){
+        const paginaTema = $(this).data('pagina');
+
+        $(this).click(function(){
+            if($(this).hasClass('tema-activo')){
+                console.log(paginaTema);
+                aplicacion.irPagina(paginaTema);
+            }
+        });
+    });
+}
+
+//Mover teclas------------------------------------------------------------------
 export function moverTeclas(){
     $(document).keydown(function(e) {
 

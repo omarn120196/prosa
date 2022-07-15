@@ -21,6 +21,8 @@ import { conectarLMS,
         asignarCalificacion } 
 from '../conexion.js';
 
+import { eliminarAnimaciones } from '../animaciones.js';
+
 export class App{
 
     // Parametros de Inicio------------------------------------------------------
@@ -51,6 +53,8 @@ export class App{
     //Esta función solo es para modo desarrollador y temario-------------------------
     irPagina(noPagina){
 
+        eliminarAnimaciones();
+
         const pagina = noPagina - 1;
 
         if(pagina <= this.totalPaginas && pagina >= 0){
@@ -62,9 +66,6 @@ export class App{
             actualizarTemario(this.noPagina);
             actualizarPorcentaje(this.noPagina, this.totalPaginas);
             cargarPagina(this.noPagina, this.paginasActivas);
-            setTimeout(()=>{
-                this.audiosActivos = true;
-            }, 1500);
         }
         else{
             console.log('Esa página no existe');
@@ -76,6 +77,8 @@ export class App{
     nextPag(){
         if(this.noPagina < this.totalPaginas - 1){
             
+            eliminarAnimaciones();
+
             if(this.noPagina == this.paginasActivas){
                 this.paginasActivas++
             }
@@ -87,9 +90,6 @@ export class App{
             this.detenerAudios();
             actualizarPorcentaje(this.noPagina, this.totalPaginas);
             cargarPagina(this.noPagina, this.paginasActivas);
-            setTimeout(()=>{
-                this.audiosActivos = true;
-            }, 1500);
         }
         else{
             console.log('Estas en la ultima página');
@@ -97,6 +97,9 @@ export class App{
     }
 
     prevPag(){
+
+        eliminarAnimaciones();
+
         if(this.noPagina > 0){
             this.noPagina--;
 
@@ -106,9 +109,6 @@ export class App{
             actualizarPorcentaje(this.noPagina, this.totalPaginas);
             cargarPagina(this.noPagina, this.paginasActivas);
 
-            setTimeout(()=>{
-                this.audiosActivos = true;
-            }, 1500);
         }
         else{
             console.log('Estas en la primer página');
@@ -118,9 +118,6 @@ export class App{
     recargarPag(){
         this.detenerAudios();
         cargarPagina(this.noPagina, this.paginasActivas);
-        setTimeout(()=>{
-            this.audiosActivos = true;
-        }, 1500);
     }
 
     desplegarMenu(){
@@ -188,6 +185,10 @@ export class App{
         clearTimeout(this.delayAudio);
         this.audio.pause();
         this.audio.currenTime = 0;
+
+        setTimeout(()=>{
+            this.audiosActivos = true;
+        }, 1500);
     }
 
     //Guardar Calificacion-------------------------------------------------------

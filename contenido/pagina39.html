@@ -636,6 +636,10 @@
             let abrir5 = false;
             let abrir6 = false;
 
+            let abierto1 = false;
+            let abierto2 = false;
+            let abierto3 = false;
+
             //Iniciar contenido de la página--------------------------------------
             
             cargando(iniciarPagina);
@@ -1545,7 +1549,9 @@
 
           function activar1(){
             parpadea(btnProcesadores);
-              btnProcesadores.click(function(){
+          }
+
+          btnProcesadores.click(function(){
                 if(btnProcesadores.css('cursor') == 'pointer'){
                     aplicacion.detenerAudios();
                     aplicacion.audiosActivos = true;
@@ -1575,11 +1581,15 @@
                       btnProcesadores.css('cursor', 'pointer');
                   }
               });
-          }
 
           function activar2(){
-            parpadea(btnIndependet);
-              btnIndependet.click(function(){
+            if(!abierto1){
+              parpadea(btnIndependet);
+              abierto1 = true;
+            }
+          }
+
+          btnIndependet.click(function(){
                 if(btnIndependet.css('cursor') == 'pointer'){
                     aplicacion.detenerAudios();
                     aplicacion.audiosActivos = true;
@@ -1609,11 +1619,15 @@
                       btnIndependet.css('cursor', 'pointer');
                   }
               });
-          }
 
           function activar3(){
-            parpadea(btnAgregador);
-              btnAgregador.click(function(){
+            if(!abierto2){
+              parpadea(btnAgregador);
+              abierto2 = true;
+            }
+          }
+
+          btnAgregador.click(function(){
                   if(btnAgregador.css('cursor') == 'pointer'){
                     aplicacion.detenerAudios();
                     aplicacion.audiosActivos = true;
@@ -1643,7 +1657,6 @@
                       btnAgregador.css('cursor', 'pointer');
                   }
               });
-          }
 
           function ultimaPantalla(){
             parpadea(btnCerrarEmpresa);
@@ -1674,7 +1687,7 @@
                 textoEmpresa3.css('display', 'none');
                 btnDebito.css('display', 'none');
                 btnCerrarEmpresa.css('display', 'none');
-              }, 2000);
+              }, 1000);
 
               
               aplicacion.terminaPantalla();

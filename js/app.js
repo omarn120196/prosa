@@ -1,5 +1,5 @@
 import { App } from "./clases/App.js";
-import { modoDesarrollador, tiempo, redimensionar, moverTeclas } from "./funciones.js";
+import { modoDesarrollador, tiempo, redimensionar, moverTeclas, botonesTemario} from "./funciones.js";
 import {btnAdelante, btnAtras, btnMenu, btnCerrar, btnAudio, btnRecargar, btnCerrarGlosario, contGlosario, btnGlosario} from './selectores.js';
 import { registrarTiempo, cerrarConexion } from './conexion.js';
 
@@ -41,6 +41,8 @@ btnCerrarGlosario.click(function(){
     contGlosario.css('display', 'none');
 });
 
+botonesTemario();
+
 //Al cerrar el curso
 window.onunload = function(){
     registrarTiempo(tiempo);
@@ -49,6 +51,7 @@ window.onunload = function(){
 
 // Modo desarrollador-------------------------------------------------------------
 modoDesarrollador();
+moverTeclas();
 
 //Redimensionar tamaño------------------------------------------------------------
 redimensionar();

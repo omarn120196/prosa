@@ -232,6 +232,9 @@ button img{
     align-items: center;
     margin-bottom: 10px;
     transition: all .3s ease;
+    border: none;
+    background: none;
+    width: 100%;
 }
 
 .temas i{
