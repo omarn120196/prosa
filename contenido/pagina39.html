@@ -31,6 +31,7 @@
     <img class="elementos" id="btnCerrar1" src="./img/pagina39/btnCerrar1.png" data-posX="790" data-posY="166" alt="">
 
     <!-- Info2 -->
+    <img class="elementos" id="fondoG1" src="./img/pagina39/fondo.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="emisor1" src="./img/pagina39/emisor1.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="btnSig1_emisor" src="./img/pagina39/btnSig.png" data-posX="884" data-posY="115" alt="">
 
@@ -53,15 +54,12 @@
 
     <img class="elementos" id="emisor4" src="./img/pagina39/emisor4.png" data-posX="0" data-posY="0" alt="">
 
-    
-
-    
-
     <!-- Info 3 -->
     <img class="elementos" id="comercio" src="./img/pagina39/comercio.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="btnCerrarComercio" src="./img/pagina39/btnCerrarComercio.png" data-posX="869" data-posY="93" alt="">
 
     <!-- Info 4 -->
+    <img class="elementos" id="fondoG2" src="./img/pagina39/fondo.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="adquirente1" src="./img/pagina39/adquirente1.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="adquirente2" src="./img/pagina39/adquirente2.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="instruccionesAdquirente" src="./img/pagina39/instruccionesAdquirente.png" data-posX="0" data-posY="0" alt="">
@@ -95,6 +93,7 @@
     
 
     <!-- Info 6 -->
+    <img class="elementos" id="fondoG3" src="./img/pagina39/fondo.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="fondoEmpresa" src="./img/pagina39/fondoEmpresa.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="empresa1" src="./img/pagina39/empresa1.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="instruccionesEmpresa" src="./img/pagina39/instruccionesEmpresa.png" data-posX="0" data-posY="0" alt="">
@@ -491,7 +490,7 @@
     <!-- Script de la página -->
     <script type="module">
         import {aplicacion} from './js/app.js';
-        import {animacionEntrada, parpadea, animacionSalida} from './js/animaciones.js';
+        import {animacionEntrada, parpadea, animacionSalida, pararParpadear} from './js/animaciones.js';
         import {cargando} from './js/funciones.js';
         import {flotar, hablar, pausarHablar, reanudarHablar, pararHablar} from './js/movimientosRobot.js';
 
@@ -558,6 +557,10 @@
 
             const tarjetaHabiente = $('#tarjeta_habiente');
             const btnCerrar1 = $('#btnCerrar1');
+
+            const fondoG1 = $('#fondoG1');
+            const fondoG2 = $('#fondoG2');
+            const fondoG3 = $('#fondoG3');
 
             const emisor1 = $('#emisor1');
             const emisor2 = $('#emisor2');
@@ -640,6 +643,10 @@
             let abierto2 = false;
             let abierto3 = false;
 
+            let abiertoEmisor1 = false;
+            let abiertoEmisor2 = false;
+            let abiertoEmisor3 = false;
+
             //Iniciar contenido de la página--------------------------------------
             
             cargando(iniciarPagina);
@@ -702,9 +709,11 @@
               aplicacion.reproducirAudio(audio[2], activarSig, 1000);
               emisor1.css('display', 'block');
               btnSig1Emisor.css('display', 'block');
+              fondoG1.css('display', 'block');
               emisor1.animate({opacity: '1'});
               setTimeout(()=>{
                   
+                  fondoG1.animate({opacity: '1'});
                   btnSig1Emisor.animate({opacity: '1'});
               }, 500);
 
@@ -830,6 +839,9 @@
                           btnCredito.animate({'opacity': '0'});
                           btnDebito.animate({'opacity': '0'});
                           btnPrepago.animate({'opacity': '0'});
+                          abiertoEmisor1 = false;
+                          abiertoEmisor2 = false;
+                          abiertoEmisor3 = false;
                         setTimeout(()=>{
                           emisor3.css('display', 'none');
                           btnSig3Emisor.css('display', 'none');
@@ -850,21 +862,29 @@
                   });
 
                   function activarCredito(){
-                    parpadea(btnCredito);
+                    if(!abiertoEmisor1){
+                      parpadea(btnCredito);
+                      abiertoEmisor1 = true;
+                    }
                     btnCredito.click(function(){
                         if(btnCredito.css('cursor') == 'pointer'){
-                            TweenMax.killTweensOf(btnCredito);
-                            btnCredito.css({
-                                'opacity': '1',
-                                'cursor': 'default' 
-                            });
+                            aplicacion.detenerAudios();
+                            aplicacion.audiosActivos = true;
+                            pararParpadear(btnCredito, true);
                             aplicacion.reproducirAudio(audio[5], sonido6, 1000);
                             caracteriza.css('display', 'block');
                             emisor3_1.css('display', 'block');
 
+                            const textoAbierto = $('.textoAbierto');
+                            textoAbierto.removeClass('textoAbierto');
+                            textoAbierto.animate({
+                              'opacity': '0',
+                            });
+
                             setTimeout(()=>{
                               caracteriza.animate({opacity: '1'});
                               emisor3_1.animate({opacity: '1'});
+                              emisor3_1.addClass('textoAbierto');
                             }, 500);
                         }
 
@@ -879,21 +899,29 @@
                   }
 
                   function activarDebito(){
-                    parpadea(btnDebito);
+                    if(!abiertoEmisor2){
+                      parpadea(btnDebito);
+                      abiertoEmisor2 = true;
+                    }
                     btnDebito.click(function(){
                         if(btnDebito.css('cursor') == 'pointer'){
-                            TweenMax.killTweensOf(btnDebito);
-                            btnDebito.css({
-                                'opacity': '1',
-                                'cursor': 'default' 
-                            });
+                            aplicacion.detenerAudios();
+                            aplicacion.audiosActivos = true;
+                            pararParpadear(btnDebito, true);
                             aplicacion.reproducirAudio(audio[8], sonido6, 1000);
                             
                             emisor3_1.css('display', 'none');
                             emisor3_2.css('display', 'block');
 
+                            const textoAbierto = $('.textoAbierto');
+                            textoAbierto.removeClass('textoAbierto');
+                            textoAbierto.animate({
+                              'opacity': '0',
+                            });
+
                             setTimeout(()=>{
                               emisor3_2.animate({opacity: '1'});
+                              emisor3_2.addClass('textoAbierto');
                             }, 500);
                         }
 
@@ -908,21 +936,29 @@
                   }
 
                   function activarPrepago(){
-                    parpadea(btnPrepago);
+                    if(!abiertoEmisor3){
+                      parpadea(btnPrepago);
+                      abiertoEmisor3 = true;
+                    }
                     btnPrepago.click(function(){
                         if(btnPrepago.css('cursor') == 'pointer'){
-                            TweenMax.killTweensOf(btnPrepago);
-                            btnPrepago.css({
-                                'opacity': '1',
-                                'cursor': 'default' 
-                            });
+                            aplicacion.detenerAudios();
+                            aplicacion.audiosActivos = true;
+                            pararParpadear(btnPrepago, true);
                             aplicacion.reproducirAudio(audio[11], sonido6, 1000);
                             
                             emisor3_2.css('display', 'none');
                             emisor3_3.css('display', 'block');
 
+                            const textoAbierto = $('.textoAbierto');
+                            textoAbierto.removeClass('textoAbierto');
+                            textoAbierto.animate({
+                              'opacity': '0',
+                            });
+
                             setTimeout(()=>{
                               emisor3_3.animate({opacity: '1'});
+                              emisor3_3.addClass('textoAbierto');
                             }, 500);
                         }
 
@@ -1009,6 +1045,9 @@
                         btnCerrarEmisor.animate({
                             'opacity': '0',
                         });
+                        abiertoEmisor1 = false;
+                        abiertoEmisor2 = false;
+                        abiertoEmisor3 = false;
                       setTimeout(()=>{
                         emisor4.css('display', 'none');
                         robot.css('display', 'none');
@@ -1030,6 +1069,12 @@
                     parpadea(btnCerrarEmisor);
                       btnCerrarEmisor.click(function(){
                         if(btnCerrarEmisor.css('cursor') == 'pointer'){
+                          aplicacion.detenerAudios();
+                          pararParpadear(btnCerrarEmisor);
+                          abiertoEmisor1 = false;
+                          abiertoEmisor2 = false;
+                          abiertoEmisor3 = false;
+
                           setTimeout(()=>{
                             emisor4.animate({
                                 'opacity': '0',
@@ -1043,12 +1088,16 @@
                             btnCerrarEmisor.animate({
                                 'opacity': '0',
                             });
+                            fondoG1.animate({
+                                'opacity': '0',
+                            });
                           }, 1000);
                           setTimeout(()=>{
                             emisor4.css('display', 'none');
                             robot.css('display', 'none');
                             btnAtras3Emisor.css('display', 'none');
                             btnCerrarEmisor.css('display', 'none');
+                            fondoG1.css('display', 'none');
                           }, 1100);
 
                             if(!abrir2){
@@ -1095,6 +1144,7 @@
                 TweenMax.killTweensOf(btn4Hover);
                 btn4Hover.css('opacity', '1');
                 aplicacion.reproducirAudio(audio[17], sonido3, 1000);
+                animacionEntrada(fondoG2, 'default', .5);
                 animacionEntrada(adquirente1, 'default', .5);
                 animacionEntrada(adquirente2, 'default', .5, 15);
                 animacionEntrada(instruccionesAdquirente, 'default', .5, 17);
@@ -1293,6 +1343,8 @@
                   function salirAdquirente(){
                     parpadea(btnCerrarAdquirente);
                     btnCerrarAdquirente.click(function(){
+                      aplicacion.detenerAudios();
+                      pararParpadear(btnCerrarAdquirente);
                       btnCerrarAdquirente.css({
                         'cursor': 'default',
                         'opacity': '1'
@@ -1310,11 +1362,15 @@
                       fondoAdquirente.animate({
                         'opacity': '0',
                       });
+                      fondoG2.animate({
+                        'opacity': '0',
+                      });
                       setTimeout(()=>{
                         btnAtrasAdquirente.css('display', 'none');
                         adquirentes2.css('display', 'none');
                         btnCerrarAdquirente.css('display', 'none');
                         fondoAdquirente.css('display', 'none');
+                        fondoG2.css('display', 'none');
                       }, 1100);
 
                       if(!abrir4){
@@ -1416,7 +1472,8 @@
           pausarHablar();
           parpadea(btnCerrarMarca);
           btnCerrarMarca.click(function(){
-            
+            aplicacion.detenerAudios();
+            pararParpadear(btnCerrarMarca);
             btnCerrarMarca.css({
               'cursor': 'default',
               'opacity': '1'
@@ -1466,9 +1523,11 @@
             aplicacion.reproducirAudio(audio[29], adelante, 1000);
             fondoEmpresa.css('display', 'block');
             robot.css('display', 'block');
+            fondoG3.css('display', 'block');
             setTimeout(()=>{
                 fondoEmpresa.animate({opacity: '1'});
                 robot.animate({opacity: '1'});
+                fondoG3.animate({opacity: '1'});
                 flotar(robot, 'i');
                 reanudarHablar();
             }, 500);
@@ -1529,6 +1588,10 @@
                 btnDebito.animate({'opacity': '0'});
                 btnCerrarEmpresa.animate({'opacity': '0'});
                 btnSigEmpresa.css('display', 'none');
+
+                abierto1 = false;
+                abierto2 = false;
+                abierto3 = false;
               setTimeout(()=>{
                 btnAtrasEmpresa.css('display', 'none');
                 
@@ -1555,7 +1618,7 @@
                 if(btnProcesadores.css('cursor') == 'pointer'){
                     aplicacion.detenerAudios();
                     aplicacion.audiosActivos = true;
-                      TweenMax.killTweensOf(btnProcesadores);
+                      pararParpadear(btnProcesadores);
                       btnProcesadores.css({
                           'opacity': '1',
                           'cursor': 'default' 
@@ -1593,7 +1656,7 @@
                 if(btnIndependet.css('cursor') == 'pointer'){
                     aplicacion.detenerAudios();
                     aplicacion.audiosActivos = true;
-                      TweenMax.killTweensOf(btnIndependet);
+                      pararParpadear(btnIndependet);
                       btnIndependet.css({
                           'opacity': '1',
                           'cursor': 'default' 
@@ -1631,7 +1694,7 @@
                   if(btnAgregador.css('cursor') == 'pointer'){
                     aplicacion.detenerAudios();
                     aplicacion.audiosActivos = true;
-                      TweenMax.killTweensOf(btnAgregador);
+                      pararParpadear(btnAgregador);
                       btnAgregador.css({
                           'opacity': '1',
                           'cursor': 'default' 
@@ -1661,7 +1724,8 @@
           function ultimaPantalla(){
             parpadea(btnCerrarEmpresa);
             btnCerrarEmpresa.click(function(){
-              TweenMax.killTweensOf(btnCerrarEmpresa);
+                aplicacion.detenerAudios();
+                pararParpadear(btnCerrarEmpresa);
                 btnAtrasEmpresa.animate({'opacity': '0'});
                 btnSigEmpresa.animate({'opacity': '0'});
                 instruccionesEmpresa.animate({'opacity': '0'});
@@ -1674,6 +1738,11 @@
                 textoEmpresa3.animate({'opacity': '0'});
                 btnDebito.animate({'opacity': '0'});
                 btnCerrarEmpresa.animate({'opacity': '0'});
+                fondoG3.animate({'opacity': '0'});
+
+                abierto1 = false;
+                abierto2 = false;
+                abierto3 = false;
               setTimeout(()=>{
                 btnAtrasEmpresa.css('display', 'none');
                 btnSigEmpresa.css('display', 'none');
@@ -1687,6 +1756,7 @@
                 textoEmpresa3.css('display', 'none');
                 btnDebito.css('display', 'none');
                 btnCerrarEmpresa.css('display', 'none');
+                fondoG3.css('display', 'none');
               }, 1000);
 
               

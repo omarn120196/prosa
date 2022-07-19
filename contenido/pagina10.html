@@ -254,7 +254,7 @@
             <stop offset="1" stop-color="#fff" stop-opacity="0"/>
           </radialGradient>
         </defs>
-        <title>robot</title>
+        
         <g class="cls-1">
           <g id="Robot">
             <g id="fondo">
@@ -414,6 +414,7 @@
                 animacionEntrada(titulo, 'izquierda-derecha', 1, 1);
                 animacionEntrada(d1, 'derecha-izquierda', 1, 1);
                 animacionEntrada(robot, 'izquierda-derecha', 1, 1);
+                animacionEntrada(btnCable, 'izquierda-derecha', 1, 1);
                 
                 setTimeout(()=>{
                     flotar(robot, 'i');
@@ -426,7 +427,9 @@
                 parpadea(btnCable);
 
                 btnCable.click(function(){
-                    aplicacion.nextPag();
+                    if(btnCable.css('cursor') == 'pointer'){
+                      aplicacion.nextPag();
+                    }
                 });
             }
         });
