@@ -421,6 +421,7 @@
                 new Audio('./audios/Prosa_Integracion_07_01.mp3'),
                 new Audio('./audios/Prosa_Integracion_07_02.mp3'),
                 new Audio('./audios/s_bien.mp3'),
+                new Audio('./audios/electrocutar.mp3'),
             ]
 
             //Crear Variables-----------------------------------------------------
@@ -564,6 +565,8 @@
                       aplicacion.reproducirAudio(audio[2], terminaPantalla, 1000);
                       animacionEntrada(paloma, 'arriba-abajo', 1, .5);
                     }
+                  } else{
+                    aplicacion.reproducirAudio(audio[3], 1000);
                   }
                 }
 

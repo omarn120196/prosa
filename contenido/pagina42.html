@@ -26,7 +26,11 @@
     <img class="elementos" id="btnSiguiente" src="./img/pagina42/btnSiguiente.png" data-posX="900" data-posY="170" alt="">
     <img class="elementos" id="btnAtras" src="./img/pagina42/btnAtras.png" data-posX="900" data-posY="230" alt="">
 
-    <img class="elementos" id="btnAudio" src="./img/pagina42/btnAudio.png" data-posX="600" data-posY="473" alt="">
+    <img class="elementos" id="progresoAudio" src="./img/pagina42/progresoAudio.png" data-posX="600" data-posY="487" alt="">
+    <img class="elementos" id="btnPlay" src="./img/pagina42/btnPlay.png" data-posX="550" data-posY="472" alt="">
+    <img class="elementos" id="btnPausa" src="./img/pagina42/btnPausa.png" data-posX="696.444" data-posY="506.302" alt="">
+    <img class="elementos" id="btnAvanzar" src="./img/pagina42/btnAvanzar.png" data-posX="760" data-posY="506.302" alt="">
+    <img class="elementos" id="btnAtrasar" src="./img/pagina42/btnAtrasar.png" data-posX="730" data-posY="506.302" alt="">
 
     <!-- Script de la página -->
     <script type="module">
@@ -60,7 +64,11 @@
             const info3 = $('#info3');
             const btnSiguiente = $('#btnSiguiente');
             const btnAtras = $('#btnAtras');
-            const btnAudio = $('#btnAudio');
+            const btnPlay = $('#btnPlay');
+            const btnPausa = $('#btnPausa');
+            const btnAvanzar = $('#btnAvanzar');
+            const btnAtrasar = $('#btnAtrasar');
+            const progresoAudio = $('#progresoAudio');
 
             const punteado = $('#punteado');
 
@@ -201,17 +209,71 @@
                 });
 
                 function reproducirAudio() {
-                    parpadea(btnAudio);
-                    btnAudio.click(function () {
-                        if (btnAudio.css('cursor') == 'pointer') {
-                            TweenMax.killTweensOf(btnAudio);
-                            btnAudio.css({
+                    parpadea(btnPlay);
+                    animacionEntrada(btnPausa, 'default');
+                    animacionEntrada(btnAvanzar, 'default');
+                    animacionEntrada(btnAtrasar, 'default');
+                    animacionEntrada(progresoAudio, 'default');
+
+                    btnPausa.css({
+                        'display': 'block',
+                        'cursor': 'pointer',
+                        'opacity': '1'
+                    });
+
+                    btnAvanzar.css({
+                        'display': 'block',
+                        'cursor': 'pointer',
+                        'opacity': '1'
+                    });
+
+                    btnAtrasar.css({
+                        'display': 'block',
+                        'cursor': 'pointer',
+                        'opacity': '1'
+                    });
+                    
+                    controles();
+                }
+
+                function controles(){
+                    btnPlay.click(function () {
+                        if (btnPlay.css('cursor') == 'pointer') {
+                            TweenMax.killTweensOf(btnPlay);
+                            btnPlay.css({
                                 'opacity': '1',
-                                'cursor': 'default'
                             });
-                            aplicacion.reproducirAudio(audio[4], terminaPantalla, 1000);
+                            audio[4].play();
+
+                            if(audio[4].currentTime >= 241){
+                                terminaPantalla();
+                            }
                         }
                     });
+
+                    btnPausa.click(function () {
+                        audio[4].pause();
+
+                        if(audio[4].currentTime >= 241){
+                            terminaPantalla();
+                        }
+                    });
+
+                    btnAvanzar.click(function () {
+                        audio[4].currentTime += 30.0;
+
+                        if(audio[4].currentTime >= 241){
+                            terminaPantalla();
+                        }
+                    });
+
+                    btnAtrasar.click(function () {
+                        audio[4].currentTime -= 30.0;
+                        if(audio[4].currentTime >= 241){
+                            terminaPantalla();
+                        }
+                    });
+
                 }
 
                 function terminaPantalla() {
@@ -236,7 +298,12 @@
                             animacionSalida(btnAtras, "default");
                             animacionSalida(btnSiguiente, "default");
 
-                            animacionSalida(btnAudio, "default", 0);
+                            animacionSalida(btnPlay, "default", 0);
+                            animacionSalida(btnPausa, "default", 0);
+                            animacionSalida(btnAvanzar, "default", 0);
+                            animacionSalida(btnAtrasar, "default", 0);
+                            animacionSalida(progresoAudio, "default", 0);
+
                             aplicacion.reproducirAudio(audio[2], siguiente);;
                             animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, .5);
                         }
