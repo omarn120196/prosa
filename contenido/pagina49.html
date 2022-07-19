@@ -296,7 +296,7 @@
           <stop offset="1" stop-color="#fff" stop-opacity="0"/>
         </radialGradient>
       </defs>
-      <title>robot</title>
+      
       <g class="cls-1">
         <g id="Robot">
           <g id="fondo">
@@ -510,7 +510,9 @@
             let colocados = 0;
             let aciertos = 0;
             let tiempo = '00:00';
-            let cronometro; 
+            let cronometro;
+            
+            let verificado = false;
 
             //Iniciar contenido de la página--------------------------------------
             function contarTiempo(){
@@ -665,14 +667,15 @@
                     }
                 }
 
-                if(colocados == 10){
-                    parpadea(btnVerificar);
+                if(colocados == 10 && !verificado){
+                  parpadea(btnVerificar);
+                  verificado = true;
 
-                    btnVerificar.click(function(){
-                        TweenMax.killTweensOf(btnVerificar);
-                        clearInterval(cronometro);
-                        evaluar();
-                    });
+                  btnVerificar.click(function(){
+                      TweenMax.killTweensOf(btnVerificar);
+                      clearInterval(cronometro);
+                      evaluar();
+                  });
                 }
             }
 
@@ -747,7 +750,7 @@
                     'fontSize': '32px',
                     'color': 'white', 
                     'top': '175px',
-                    'left': '495px'
+                    'left': '500px'
                 });
 
                 animacionEntrada(negativa, 'default', 1);

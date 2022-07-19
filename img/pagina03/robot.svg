@@ -242,7 +242,7 @@
       <stop offset="1" stop-color="#fff" stop-opacity="0"/>
     </radialGradient>
   </defs>
-  <title>robot</title>
+  
   <g class="cls-1">
     <g id="base">
       <rect class="cls-2" width="1024" height="620"/>
