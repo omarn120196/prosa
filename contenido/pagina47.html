@@ -435,7 +435,7 @@
 
             <img id="cerrar1" class="elementos" data-posX="503.155" data-posY="196.972" src="./img/pagina47/btnCerrar.png"></img>
             <img id="cerrar2" class="elementos" data-posX="648.155" data-posY="318.972" src="./img/pagina47/btnCerrar.png"></img>
-            <img id="cerrar3" class="elementos" data-posX="700" data-posY="197.972" src="./img/pagina47/btnCerrar.png"></img>
+            <img id="cerrar3" class="elementos" data-posX="720" data-posY="197.972" src="./img/pagina47/btnCerrar.png"></img>
             <img id="cerrar4" class="elementos" data-posX="930.155" data-posY="271.972" src="./img/pagina47/btnCerrar.png"></img>
             <img id="cerrar5" class="elementos" data-posX="669.155" data-posY="203.972" src="./img/pagina47/btnCerrar.png"></img>
 
@@ -530,17 +530,19 @@ jQuery(function($){
                var NoCase =0;
                var contador=0;
                var noPregunta=0;
-               
+
                 //Iniciar contenido de la página--------------------------------------
                 
                 cargando(iniciarPagina);
 
                 function iniciarPagina(){
+
                   if (aplicacion.vistopag47==true) {
                     introTexto();
 
                   }else{
                     aplicacion.reproducirAudio(audio[0], introTexto, 1500);
+                    animacionEntrada(pleca, 'izquierda-derecha', 1, 1);
                     animacionEntrada(fondo, 'izquierda-derecha', 1, 1);
                     animacionEntrada(imagen00, 'izquierda-derecha', 1, 1);
                     animacionEntrada(robot, 'arriba-abajo', 1, 1);
@@ -550,6 +552,8 @@ jQuery(function($){
                     }, 1000);
 
                   }
+
+                   
                 }
 
                 function introTexto(){ 
@@ -557,10 +561,10 @@ jQuery(function($){
                     animacionEntrada(fondo2, 'default', 1, 1);
                    // animacionSalida(fondo, 'arriba-abajo', 1, 1);
                     animacionSalida(imagen00, 'arriba-abajo', 1, 1);
-                    aplicacion.reproducirAudio(audio[1], parpadeaLed1, 1500);     
+                    aplicacion.reproducirAudio(audio[1], parpadeaLed1, 1500);                  
                     animacionEntrada(pleca, 'izquierda-derecha', 1, 1);
                     animacionEntrada(imagen1, 'izquierda-derecha', 1, 2);
-                    animacionEntrada(imagen2, 'izquierda-derecha', 1, 3);
+                    animacionEntrada(imagen2, 'izquierda-derecha', 1, 1.5);
                     animacionEntrada(imagen4, 'derecha-izquierda', 1, 11);
                     animacionSalida(imagen1, 'default', 1, 15);
                     animacionSalida(imagen2, 'default', 1, 15);
@@ -947,18 +951,19 @@ retroAlimenta();
 
 
 function retroAlimenta(){
-                aplicacion.vistopag47=true; 
+                aplicacion.vistopag47=true;  
                 console.log("Entra en retroAlimenta");                
                  puntuacion = Math.round((aciertos * 100) / cuantasPreguntas);
                 console.log("puntuacion:", puntuacion);
                 if (puntuacion >= minimo) {              
                     animacionEntrada(retroBien, "default", 1,0);
                    aplicacion.reproducirAudio(audio[2], aplicacion.terminaPantalla, 500);                
-                   aplicacion.terminaPantalla();
+                   // aplicacion.terminaPantalla();
                 } else {
                      animacionEntrada(retroMal, "default", 1,0);                    
                      aplicacion.reproducirAudio(audio[3], aplicacion.terminaPantalla, 500);
                      parpadea(btnReintentar);
+                     
 
 
                    } 
@@ -969,7 +974,6 @@ function retroAlimenta(){
     TweenMax.killTweensOf($(this));
      $(this).hide();  
           
-
     aplicacion.recargarPag();
    }  
     });

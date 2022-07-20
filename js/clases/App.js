@@ -153,7 +153,7 @@ export class App{
             this.audio.muted = false;
         }
 
-        this.delayAudio = setTimeout(()=>{
+        setTimeout(()=>{
             
             if(this.audiosActivos){
                 this.audio.play();
@@ -183,9 +183,8 @@ export class App{
 
     detenerAudios(){
         this.audiosActivos = false;
-        clearTimeout(this.delayAudio);
         this.audio.pause();
-        this.audio.currenTime = 0;
+        this.audio.currentTime = 0;
 
         setTimeout(()=>{
             this.audiosActivos = true;
