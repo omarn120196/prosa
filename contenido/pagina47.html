@@ -530,20 +530,26 @@ jQuery(function($){
                var NoCase =0;
                var contador=0;
                var noPregunta=0;
+               
                 //Iniciar contenido de la página--------------------------------------
                 
                 cargando(iniciarPagina);
 
                 function iniciarPagina(){
+                  if (aplicacion.vistopag47==true) {
+                    introTexto();
 
+                  }else{
                     aplicacion.reproducirAudio(audio[0], introTexto, 1500);
                     animacionEntrada(fondo, 'izquierda-derecha', 1, 1);
                     animacionEntrada(imagen00, 'izquierda-derecha', 1, 1);
                     animacionEntrada(robot, 'arriba-abajo', 1, 1);
-                setTimeout(()=>{
+                    setTimeout(()=>{
                     flotar(robot, 'i');
                     hablar(robot, 'i');
-                }, 1000);
+                    }, 1000);
+
+                  }
                 }
 
                 function introTexto(){ 
@@ -551,14 +557,14 @@ jQuery(function($){
                     animacionEntrada(fondo2, 'default', 1, 1);
                    // animacionSalida(fondo, 'arriba-abajo', 1, 1);
                     animacionSalida(imagen00, 'arriba-abajo', 1, 1);
-                    aplicacion.reproducirAudio(audio[1], parpadeaLed1, 1500);                  
-                   animacionEntrada(pleca, 'izquierda-derecha', 1, 1);
+                    aplicacion.reproducirAudio(audio[1], parpadeaLed1, 1500);     
+                    animacionEntrada(pleca, 'izquierda-derecha', 1, 1);
                     animacionEntrada(imagen1, 'izquierda-derecha', 1, 2);
                     animacionEntrada(imagen2, 'izquierda-derecha', 1, 3);
-                     animacionEntrada(imagen4, 'derecha-izquierda', 1, 11);
-                      animacionSalida(imagen1, 'default', 1, 15);
-                      animacionSalida(imagen2, 'default', 1, 15);
-                      animacionSalida(imagen4, 'default', 1, 15);
+                    animacionEntrada(imagen4, 'derecha-izquierda', 1, 11);
+                    animacionSalida(imagen1, 'default', 1, 15);
+                    animacionSalida(imagen2, 'default', 1, 15);
+                    animacionSalida(imagen4, 'default', 1, 15);
                     //parpadeaLed();
                 }
 
@@ -941,6 +947,7 @@ retroAlimenta();
 
 
 function retroAlimenta(){
+                aplicacion.vistopag47=true; 
                 console.log("Entra en retroAlimenta");                
                  puntuacion = Math.round((aciertos * 100) / cuantasPreguntas);
                 console.log("puntuacion:", puntuacion);
@@ -954,14 +961,15 @@ function retroAlimenta(){
                      parpadea(btnReintentar);
 
 
-
                    } 
  }
 
  btnReintentar.click(function(){
     if ($(this).css('cursor') == 'pointer') {
     TweenMax.killTweensOf($(this));
-     $(this).hide();           
+     $(this).hide();  
+          
+
     aplicacion.recargarPag();
    }  
     });
