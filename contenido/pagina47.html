@@ -530,13 +530,12 @@ jQuery(function($){
                var NoCase =0;
                var contador=0;
                var noPregunta=0;
-
+               
                 //Iniciar contenido de la página--------------------------------------
                 
                 cargando(iniciarPagina);
 
                 function iniciarPagina(){
-
                   if (aplicacion.vistopag47==true) {
                     introTexto();
 
@@ -551,8 +550,6 @@ jQuery(function($){
                     }, 1000);
 
                   }
-
-                   
                 }
 
                 function introTexto(){ 
@@ -560,7 +557,7 @@ jQuery(function($){
                     animacionEntrada(fondo2, 'default', 1, 1);
                    // animacionSalida(fondo, 'arriba-abajo', 1, 1);
                     animacionSalida(imagen00, 'arriba-abajo', 1, 1);
-                    aplicacion.reproducirAudio(audio[1], parpadeaLed1, 1500);                  
+                    aplicacion.reproducirAudio(audio[1], parpadeaLed1, 1500);     
                     animacionEntrada(pleca, 'izquierda-derecha', 1, 1);
                     animacionEntrada(imagen1, 'izquierda-derecha', 1, 2);
                     animacionEntrada(imagen2, 'izquierda-derecha', 1, 3);
@@ -950,7 +947,7 @@ retroAlimenta();
 
 
 function retroAlimenta(){
-                aplicacion.vistopag47=true;  
+                aplicacion.vistopag47=true; 
                 console.log("Entra en retroAlimenta");                
                  puntuacion = Math.round((aciertos * 100) / cuantasPreguntas);
                 console.log("puntuacion:", puntuacion);
@@ -962,7 +959,6 @@ function retroAlimenta(){
                      animacionEntrada(retroMal, "default", 1,0);                    
                      aplicacion.reproducirAudio(audio[3], aplicacion.terminaPantalla, 500);
                      parpadea(btnReintentar);
-                     
 
 
                    } 
@@ -973,6 +969,7 @@ function retroAlimenta(){
     TweenMax.killTweensOf($(this));
      $(this).hide();  
           
+
     aplicacion.recargarPag();
    }  
     });

@@ -1,5 +1,5 @@
 // Función flotar del lado derecho------------------------------------------
-
+let tl1;
 export function flotar(robot, lado){
 
     const brazoI = robot.find('#brazoIzquierdo');
@@ -10,7 +10,7 @@ export function flotar(robot, lado){
     const ojos = robot.find('#ojos');
     const boca = robot.find('#boca');
 
-    const tl1 = gsap.timeline({
+    tl1 = gsap.timeline({
         repeat: -1,
         yoyo: true
     });
@@ -18,36 +18,36 @@ export function flotar(robot, lado){
     if(lado == 'i'){
         tl1.to(brazoI, {
             duration: 1.5,
-            y: '-50px',
+            y: '-15px',
             x: '-15px',
             rotate: '-20deg',
             ease: "power1.inOut"
         })
         tl1.to(brazoD, {
             duration: 1.5,
-            y: '-45px',
+            y: '-15px',
             x: '-5px',
             rotate: '-20deg',
             ease: "power1.inOut"
         }, '<')
         tl1.to(cabeza, {
             duration: 1.5,
-            y: '-50px',
+            y: '-20px',
             ease: "power1.inOut"
         }, '<')
         tl1.to(torso, {
             duration: 1.5,
-            y: '-50px',
+            y: '-20px',
             ease: "power1.inOut"
         }, '<')
         tl1.to(ojos, {
             duration: 1.5,
-            y: '-50px',
+            y: '-20px',
             ease: "power1.inOut"
         }, '<')
         tl1.to(boca, {
             duration: 1.5,
-            y: '-52px',
+            y: '-22px',
             ease: "power1.inOut"
         }, '<')
         .to(sombra, {
@@ -61,36 +61,36 @@ export function flotar(robot, lado){
     else if(lado == 'd'){
         tl1.to(brazoI, {
             duration: 1.5,
-            y: '-65px',
+            y: '-30px',
             x: '15px',
             rotate: '20deg',
             ease: "power1.inOut"
         })
         tl1.to(brazoD, {
             duration: 1.5,
-            y: '-60px',
+            y: '-30px',
             x: '5px',
             rotate: '20deg',
             ease: "power1.inOut"
         }, '<')
         tl1.to(cabeza, {
             duration: 1.5,
-            y: '-50px',
+            y: '-20px',
             ease: "power1.inOut"
         }, '<')
         tl1.to(torso, {
             duration: 1.5,
-            y: '-50px',
+            y: '-20px',
             ease: "power1.inOut"
         }, '<')
         tl1.to(ojos, {
             duration: 1.5,
-            y: '-50px',
+            y: '-20px',
             ease: "power1.inOut"
         }, '<')
         tl1.to(boca, {
             duration: 1.5,
-            y: '-50px',
+            y: '-20px',
             ease: "power1.inOut"
         }, '<')
         .to(sombra, {
@@ -101,8 +101,10 @@ export function flotar(robot, lado){
             ease: "power1.inOut"
         }, '<')
     }
-    
-    
+}
+
+export function detenerRobot(){
+    tl1.kill();
 }
 
 // Función Hablar-----------------------------------------------------------

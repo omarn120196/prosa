@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 37 | I4L</title>
+</head>
+
+<body>
+    <img class="elementos" id="titulo" src="./img/pagina37/titulo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="instrucciones" src="./img/pagina37/instrucciones.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="btnCajero" src="./img/pagina37/btnCajero.png" data-posX="250" data-posY="150" alt="">
+    <img class="elementos" id="btnTerminal" src="./img/pagina37/btnTerminal.png" data-posX="500" data-posY="150" alt="">
+
+    <img class="elementos" id="infoCajero" src="./img/pagina37/infoCajero.png" data-posX="30" data-posY="100" alt="">
+    <img class="elementos" id="infoTerminal" src="./img/pagina37/infoTerminal.png" data-posX="670" data-posY="100"
+        alt="">
+
+    <img class="elementos" id="btnCerrar01" src="./img/pagina37/btnCerrar01.png" data-posX="25" data-posY="97" alt="">
+    <img class="elementos" id="btnCerrar02" src="./img/pagina37/btnCerrar02.png" data-posX="970" data-posY="97" alt="">
+
+
+    <!-- Script de la página -->
+    <script type="module">
+        import { aplicacion } from './js/app.js';
+        import { animacionEntrada, animacionSalida, parpadea } from './js/animaciones.js';
+        import { cargando } from './js/funciones.js';
+
+        jQuery(function ($) {
+
+            // Cargar Audios------------------------------------------------------
+            const audio = [
+                new Audio('./audios/Prosa_Integracion_37_01.mp3'),
+                new Audio('./audios/Prosa_Integracion_37_02.mp3'),
+                new Audio('./audios/Prosa_Integracion_37_03.mp3'),
+
+            ]
+
+            //Crear Variables-----------------------------------------------------
+            const titulo = $('#titulo');
+            const instrucciones = $('#instrucciones');
+            const btnTerminal = $('#btnTerminal');
+            const btnCajero = $('#btnCajero');
+
+            const infoCajero = $('#infoCajero');
+            const infoTerminal = $('#infoTerminal');
+
+            const btnCerrar01 = $('#btnCerrar01');
+            const btnCerrar02 = $('#btnCerrar02');
+
+            let abrirBtnCajero = false;
+
+            let observandoCajero = false;
+            let observandoTerminal = false;
+
+            //Iniciar contenido de la página--------------------------------------
+
+            cargando(iniciarPagina);
+
+            function iniciarPagina() {
+                aplicacion.reproducirAudio(audio[0], terminaAudio, 2000);
+                animacionEntrada(titulo, 'izquierda-derecha', 1, .2);
+                animacionEntrada(instrucciones, 'izquierda-derecha', 1, 1.5);
+                animacionEntrada(btnCajero, 'izquierda-derecha', 1, 1.5);
+                animacionEntrada(btnTerminal, 'izquierda-derecha', 1, 1.5);
+
+                function terminaAudio() {
+                    animacionSalida(instrucciones, 'default', .5);
+                    parpadea(btnCajero);
+                }
+            }
+
+
+            btnCajero.click(function () {
+                if (btnCajero.css('cursor') == 'pointer' && !observandoTerminal) {
+                    TweenMax.killTweensOf(btnCajero);
+                    btnCajero.css({
+                        'opacity': '1',
+                    });
+
+                    aplicacion.reproducirAudio(audio[1], terminaAudio01, 2000);
+                    animacionEntrada(infoCajero, 'default', 1, 1);
+                    observandoCajero = true;
+
+                    function terminaAudio01() {
+                        parpadea(btnCerrar01);
+                        btnCerrar01.click(function () {
+                            TweenMax.killTweensOf(btnCerrar01);
+                            animacionSalida(infoCajero, 'default', 1, .2);
+                            animacionSalida(btnCerrar01, 'default', 1, fin, .2);
+
+                            function fin(){
+                                observandoCajero = false;
+                                if(!abrirBtnCajero){
+                                    abrirBtnCajero = true;
+                                    setTimeout(()=>{
+                                        parpadea(btnTerminal);
+                                    }, 2000);
+                                }
+                            }
+                            
+                        });
+                    }
+                }
+            });
+
+
+            btnTerminal.click(function () {
+                if (btnTerminal.css('cursor') == 'pointer' && !observandoCajero) {
+                    TweenMax.killTweensOf(btnTerminal);
+                    btnTerminal.css({
+                        'opacity': '1',
+                    });
+
+                    aplicacion.reproducirAudio(audio[2], terminaAudio02, 2000);
+                    animacionEntrada(infoTerminal, 'default', 1, 1);
+                    observandoTerminal = true;
+
+                    function terminaAudio02() {
+                        parpadea(btnCerrar02);
+                        aplicacion.terminaPantalla();
+                        btnCerrar02.click(function () {
+                            TweenMax.killTweensOf(btnCerrar02);
+                            animacionSalida(infoTerminal, 'default', 1, .2);
+                            animacionSalida(btnCerrar02, 'default', 1, fin, .2);
+                        });
+                    }
+
+                    function fin(){
+                        observandoTerminal = false;
+                    }
+                }
+            });
+
+
+
+
+        });
+    </script>
+
+    <!-- Termina Script -->
+</body>
+
+</html>

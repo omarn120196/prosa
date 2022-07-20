@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 13 | I4L</title>
+</head>
+<body>
+    <img class="elementos" id="titulo13" src="./img/pagina13/titulo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="texto" src="./img/pagina13/texto.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="centro" src="./img/pagina13/centro.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="arriba" src="./img/pagina13/arriba.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="abajo" src="./img/pagina13/abajo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="frase_descarga" src="./img/pagina13/frase_descarga.png" data-posX="0" data-posY="0" alt="">
+
+    <a href="./doc/Info_s21.pdf" target="_blank" class="elementos" id="descargar" data-posX="828" data-posY="373">
+        <img src="./img/pagina13/descargar.png"  alt="">
+    </a>
+    
+
+
+    <!-- Script de la página -->
+    <script type="module">
+        import {aplicacion} from './js/app.js';
+        import {animacionEntrada, parpadea} from './js/animaciones.js';
+        import {cargando} from './js/funciones.js';
+
+        jQuery(function($){
+            
+            // Cargar Audios------------------------------------------------------
+            const audio = [
+                new Audio('./audios/Prosa_Integracion_13_01.mp3'),
+                new Audio('./audios/Prosa_Integracion_13_02.mp3'),
+                new Audio('./audios/Prosa_Integracion_13_03.mp3'),
+                new Audio('./audios/Prosa_Integracion_13_04.mp3'),
+                new Audio('./audios/Prosa_Integracion_13_05.mp3'),
+                new Audio('./audios/Prosa_Integracion_13_06.mp3'),
+            ]
+
+            //Crear Variables-----------------------------------------------------
+            const titulo = $('#titulo13');
+            const texto = $('#texto');
+            const centro = $('#centro');
+            const arriba = $('#arriba');
+            const abajo = $('#abajo');
+            const fraseDescarga = $('#frase_descarga');
+            const btnDescargar = $('#descargar');
+
+            //Iniciar contenido de la página--------------------------------------
+            
+            cargando(iniciarPagina);
+
+            function iniciarPagina(){
+
+                aplicacion.reproducirAudio(audio[0], frase, 1000);
+                animacionEntrada(titulo, 'izquierda-derecha', 1, 1);
+                animacionEntrada(texto, 'arriba-abajo', 1, 1);
+            }
+
+            function frase(){
+                aplicacion.reproducirAudio(audio[1], parrafo1, 1000);
+            }
+
+            function parrafo1(){
+                aplicacion.reproducirAudio(audio[2], parrafo2, 1000);
+                animacionEntrada(centro, 'default', 1, 1);
+            }
+
+            function parrafo2(){
+                aplicacion.reproducirAudio(audio[3], parrafo3, 1000);
+                animacionEntrada(arriba, 'default', 1, 1);
+            }
+
+            function parrafo3(){
+                aplicacion.reproducirAudio(audio[4], parrafo4, 1000);
+                animacionEntrada(abajo, 'default', 1, 1);
+            }
+
+            function parrafo4(){
+                aplicacion.reproducirAudio(audio[5], descargaArchivo, 1000);
+                animacionEntrada(fraseDescarga, 'default', 1, 1);
+            }
+
+            function descargaArchivo(){
+                parpadea(btnDescargar)
+                aplicacion.terminaPantalla();
+            }
+            
+            
+        });
+    </script>
+
+    <!-- Termina Script -->
+</body>
+</html>

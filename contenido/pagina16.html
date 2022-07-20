@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 16 | I4L</title>
+
+</head>
+<body>
+    <img class="elementos" id="titulo" src="./img/pagina16/titulo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="cuadro01" src="./img/pagina16/cuadro01.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="cuadro02" src="./img/pagina16/cuadro02.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="cuadro03" src="./img/pagina16/cuadro03.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="instrucciones" src="./img/pagina16/instrucciones.png" data-posX="0" data-posY="0" alt="">
+    
+    <img class="elementos" id="btn01" src="./img/pagina16/btn01.png" data-posX="610" data-posY="360" alt="">
+    <img class="elementos" id="btn02" src="./img/pagina16/btn02.png" data-posX="610" data-posY="395" alt="">
+    <img class="elementos" id="btn03" src="./img/pagina16/btn03.png" data-posX="610" data-posY="430" alt="">
+    <img class="elementos" id="btn04" src="./img/pagina16/btn04.png" data-posX="610" data-posY="465" alt="">
+    <img class="elementos" id="btn05" src="./img/pagina16/btn05.png" data-posX="610" data-posY="500" alt="">
+
+    <img class="elementos" id="btn06" src="./img/pagina16/btn06.png" data-posX="780" data-posY="365" alt="">
+    <img class="elementos" id="btn07" src="./img/pagina16/btn07.png" data-posX="780" data-posY="395" alt="">
+    <img class="elementos" id="btn08" src="./img/pagina16/btn08.png" data-posX="780" data-posY="430" alt="">
+    <img class="elementos" id="btn09" src="./img/pagina16/btn09.png" data-posX="780" data-posY="465" alt="">
+    <img class="elementos" id="btn10" src="./img/pagina16/btn10.png" data-posX="780" data-posY="500" alt="">
+
+    <img class="elementos" id="info01" src="./img/pagina16/info01.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info02" src="./img/pagina16/info02.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info03" src="./img/pagina16/info03.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info04" src="./img/pagina16/info04.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info05" src="./img/pagina16/info05.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info06" src="./img/pagina16/info06.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info07" src="./img/pagina16/info07.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info08" src="./img/pagina16/info08.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info09" src="./img/pagina16/info09.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info10_1" src="./img/pagina16/info10_1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info10_2" src="./img/pagina16/info10_2.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="btnCerrar01" src="./img/pagina16/btnCerrar01.png" data-posX="815" data-posY="145" alt="">
+    <img class="elementos" id="btnCerrar02" src="./img/pagina16/btnCerrar02.png" data-posX="815" data-posY="145" alt="">
+    <img class="elementos" id="btnCerrar03" src="./img/pagina16/btnCerrar03.png" data-posX="815" data-posY="145" alt="">
+    <img class="elementos" id="btnCerrar04" src="./img/pagina16/btnCerrar04.png" data-posX="815" data-posY="145" alt="">
+    <img class="elementos" id="btnCerrar05" src="./img/pagina16/btnCerrar05.png" data-posX="815" data-posY="145" alt="">
+    <img class="elementos" id="btnCerrar06" src="./img/pagina16/btnCerrar06.png" data-posX="815" data-posY="145" alt="">
+    <img class="elementos" id="btnCerrar07" src="./img/pagina16/btnCerrar07.png" data-posX="815" data-posY="145" alt="">
+    <img class="elementos" id="btnCerrar08" src="./img/pagina16/btnCerrar08.png" data-posX="815" data-posY="145" alt="">
+    <img class="elementos" id="btnCerrar09" src="./img/pagina16/btnCerrar09.png" data-posX="850" data-posY="145" alt="">
+
+    <img class="elementos" id="btnAdelante" src="./img/pagina16/btnAdelante.png" data-posX="815" data-posY="145" alt="">
+    <img class="elementos" id="btnAtras" src="./img/pagina16/btnAtras.png" data-posX="815" data-posY="205" alt="">
+    <img class="elementos" id="btnCerrar10" src="./img/pagina16/btnCerrar10.png" data-posX="815" data-posY="145" alt="">
+
+    <!-- Script de la página -->
+    <script type="module">
+        import {aplicacion} from './js/app.js';
+        import {animacionEntrada, animacionSalida, parpadea} from './js/animaciones.js';
+        import {cargando} from './js/funciones.js';
+
+        jQuery(function($){
+            
+            // Cargar Audios------------------------------------------------------
+            const audio = [
+                new Audio('./audios/Prosa_Integracion_16_01.mp3'),
+                new Audio('./audios/Prosa_Integracion_16_02.mp3'),
+                new Audio('./audios/Prosa_Integracion_16_03.mp3'),
+                new Audio('./audios/Prosa_Integracion_16_04.mp3'),
+                new Audio('./audios/Prosa_Integracion_16_05.mp3'),
+                new Audio('./audios/Prosa_Integracion_16_06.mp3'),
+                new Audio('./audios/Prosa_Integracion_16_07.mp3'),
+                new Audio('./audios/Prosa_Integracion_16_08.mp3'),
+                new Audio('./audios/Prosa_Integracion_16_09.mp3'),
+                new Audio('./audios/Prosa_Integracion_16_10.mp3'),
+                new Audio('./audios/Prosa_Integracion_16_11.mp3'),
+                new Audio('./audios/Prosa_Integracion_16_12.mp3'),
+                new Audio('./audios/Prosa_Integracion_16_13.mp3'),
+                new Audio('./audios/Prosa_Integracion_16_14.mp3'),
+                new Audio('./audios/Prosa_Integracion_16_15.mp3'),
+                new Audio('./audios/Prosa_Integracion_16_16.mp3'),
+
+            ]
+
+            //Crear Variables-----------------------------------------------------
+            const titulo = $('#titulo');
+            const cuadro01 = $('#cuadro01');
+            const cuadro02 = $('#cuadro02');
+            const cuadro03 = $('#cuadro03');
+            const instrucciones = $('#instrucciones');
+
+            const btn01 = $('#btn01');
+            const btn02 = $('#btn02');
+            const btn03 = $('#btn03');
+            const btn04 = $('#btn04');
+            const btn05 = $('#btn05');
+            const btn06 = $('#btn06');
+            const btn07 = $('#btn07');
+            const btn08 = $('#btn08');
+            const btn09 = $('#btn09');
+            const btn10 = $('#btn10');
+
+            const info01 = $('#info01');
+            const info02 = $('#info02');
+            const info03 = $('#info03');
+            const info04 = $('#info04');
+            const info05 = $('#info05');
+            const info06 = $('#info06');
+            const info07 = $('#info07');
+            const info08 = $('#info08');
+            const info09 = $('#info09');
+            const info10 = $('#info10_1');
+            const info10_2 = $('#info10_2');
+
+            const btnCerrar01 = $('#btnCerrar01');
+            const btnCerrar02 = $('#btnCerrar02');
+            const btnCerrar03 = $('#btnCerrar03');
+            const btnCerrar04 = $('#btnCerrar04');
+            const btnCerrar05 = $('#btnCerrar05');
+            const btnCerrar06 = $('#btnCerrar06');
+            const btnCerrar07 = $('#btnCerrar07');
+            const btnCerrar08 = $('#btnCerrar08');
+            const btnCerrar09 = $('#btnCerrar09');
+            const btnCerrar10 = $('#btnCerrar10');
+
+            const btnAdelante = $('#btnAdelante');
+            const btnAtras = $('#btnAtras');
+
+            let abrirBtn01 = false;
+            let abrirBtn02 = false;
+            let abrirBtn03 = false;
+            let abrirBtn04 = false;
+            let abrirBtn05 = false;
+            let abrirBtn06 = false;
+            let abrirBtn07 = false;
+            let abrirBtn08 = false;
+            let abrirBtn09 = false;
+            let abrirBtn10 = false;
+            
+            //Iniciar contenido de la página--------------------------------------
+            cargando(iniciarPagina);
+
+            function iniciarPagina(){
+                aplicacion.reproducirAudio(audio[0], terminaTitulo, 1000);
+                animacionEntrada(titulo, 'izquierda-derecha', .5);
+            }
+
+            function terminaTitulo(){
+                aplicacion.reproducirAudio(audio[1], terminaAudio, 1000);
+                animacionEntrada(cuadro01, 'arriba-abajo', 1, 1);
+            }
+
+            function terminaAudio(){
+                aplicacion.reproducirAudio(audio[2], terminaAudio01, 1000);
+                animacionEntrada(cuadro02, 'arriba-abajo', 1, .5);
+            }
+
+            function terminaAudio01(){
+                aplicacion.reproducirAudio(audio[3], terminaAudio02, 1000);
+                animacionEntrada(cuadro03, 'arriba-abajo', 1, .5);
+            }
+
+            function terminaAudio02(){
+                aplicacion.reproducirAudio(audio[4], terminaInstrucciones, 1000);
+                animacionEntrada(instrucciones, 'default', 1, .5);
+            }
+
+            function terminaInstrucciones(){
+                parpadea(btn01);
+                // animacionEntrada(btn01, 'default', 1, .5);
+                animacionEntrada(btn02, 'default', 1, .5);
+                animacionEntrada(btn03, 'default', 1, .5);
+                animacionEntrada(btn04, 'default', 1, .5);
+                animacionEntrada(btn05, 'default', 1, .5);
+                animacionEntrada(btn06, 'default', 1, .5);
+                animacionEntrada(btn07, 'default', 1, .5);
+                animacionEntrada(btn08, 'default', 1, .5);
+                animacionEntrada(btn09, 'default', 1, .5);
+                animacionEntrada(btn10, 'default', 1, .5);
+            }
+
+            btn01.click(function () {
+                if (btn01.css('cursor') == 'pointer') {
+                    TweenMax.killTweensOf(btn01);
+                    btn01.css({
+                        'opacity': '1',
+                    });
+
+                    aplicacion.reproducirAudio(audio[5], terminaAudioBtn01, 1000);
+                    animacionEntrada(info01, 'default', 1, .5);
+
+                    function terminaAudioBtn01() {
+                        parpadea(btnCerrar01);
+                        btnCerrar01.click(function () {
+                            TweenMax.killTweensOf(btnCerrar01);
+                            animacionSalida(info01, 'default', 1, .2);
+                            animacionSalida(btnCerrar01, 'default', 1, .2);
+
+                            if(!abrirBtn01){
+                                abrirBtn01 = true;
+                                parpadea(btn02);
+                            }
+
+                        });
+                    }
+                }
+            });
+
+            btn02.click(function () {
+                if (btn02.css('cursor') == 'pointer') {
+                    TweenMax.killTweensOf(btn02);
+                    btn02.css({
+                        'opacity': '1',
+                    });
+
+                    aplicacion.reproducirAudio(audio[6], terminaAudioBtn02, 1000);
+                    animacionEntrada(info02, 'default', 1, .5);
+
+                    function terminaAudioBtn02() {
+                        parpadea(btnCerrar02);
+                        btnCerrar02.click(function () {
+                            TweenMax.killTweensOf(btnCerrar02);
+                            animacionSalida(info02, 'default', 1, .2);
+                            animacionSalida(btnCerrar02, 'default', 1, .2);
+
+                            if(!abrirBtn02){
+                                abrirBtn02 = true;
+                                parpadea(btn03);
+                            }
+                        });
+                    }
+                }                
+            });
+
+            btn03.click(function () {
+                if (btn03.css('cursor') == 'pointer') {
+                    TweenMax.killTweensOf(btn03);
+                    btn03.css({
+                        'opacity': '1',
+                    });
+
+                    aplicacion.reproducirAudio(audio[7], terminaAudioBtn03, 1000);
+                    animacionEntrada(info03, 'default', 1, .5);
+
+                    function terminaAudioBtn03() {
+                        parpadea(btnCerrar03);
+                        btnCerrar03.click(function () {
+                            TweenMax.killTweensOf(btnCerrar03);
+                            animacionSalida(info03, 'default', 1, .2);
+                            animacionSalida(btnCerrar03, 'default', 1, .2);
+
+                            if(!abrirBtn03){
+                                abrirBtn03 = true;
+                                parpadea(btn04);
+                            }
+
+                        });
+                    }
+                }                
+            });
+
+            btn04.click(function () {
+                if (btn04.css('cursor') == 'pointer') {
+                    TweenMax.killTweensOf(btn04);
+                    btn04.css({
+                        'opacity': '1',
+                    });
+
+                    aplicacion.reproducirAudio(audio[8], terminaAudioBtn04, 1000);
+                    animacionEntrada(info04, 'default', 1, .5);
+
+                    function terminaAudioBtn04() {
+                        parpadea(btnCerrar04);
+                        btnCerrar04.click(function () {
+                            TweenMax.killTweensOf(btnCerrar04);
+                            animacionSalida(info04, 'default', 1, .2);
+                            animacionSalida(btnCerrar04, 'default', 1, .2);
+
+                            if(!abrirBtn04){
+                                abrirBtn04 = true;
+                                parpadea(btn05);
+                            }
+                        });
+                    }
+                }
+            });
+            
+            btn05.click(function () {
+                if (btn05.css('cursor') == 'pointer') {
+                    TweenMax.killTweensOf(btn05);
+                    btn05.css({
+                        'opacity': '1',
+                    });
+
+                    aplicacion.reproducirAudio(audio[9], terminaAudioBtn05, 1000);
+                    animacionEntrada(info05, 'default', 1, .5);
+
+                    function terminaAudioBtn05() {
+                        parpadea(btnCerrar05);
+                        btnCerrar05.click(function () {
+                            TweenMax.killTweensOf(btnCerrar05);
+                            animacionSalida(info05, 'default', 1, .2);
+                            animacionSalida(btnCerrar05, 'default', 1, .2);
+
+                            if(!abrirBtn05){
+                                abrirBtn05 = true;
+                                parpadea(btn06);
+                            }
+
+                        });
+                    }
+                }
+            });
+            
+            btn06.click(function () {
+                if (btn06.css('cursor') == 'pointer') {
+                    TweenMax.killTweensOf(btn06);
+                    btn06.css({
+                        'opacity': '1',
+                    });
+
+                    aplicacion.reproducirAudio(audio[10], terminaAudioBtn06, 1000);
+                    animacionEntrada(info06, 'default', 1, .5);
+
+                    function terminaAudioBtn06() {
+                        parpadea(btnCerrar06);
+                        btnCerrar06.click(function () {
+                            TweenMax.killTweensOf(btnCerrar06);
+                            animacionSalida(info06, 'default', 1, .2);
+                            animacionSalida(btnCerrar06, 'default', 1, .2);
+
+                            if(!abrirBtn06){
+                                abrirBtn06 = true;
+                                parpadea(btn07);
+                            }
+                        });
+                    }
+                }
+            });
+            
+            btn07.click(function () {
+                if (btn07.css('cursor') == 'pointer') {
+                    TweenMax.killTweensOf(btn07);
+                    btn07.css({
+                        'opacity': '1',
+                    });
+
+                    aplicacion.reproducirAudio(audio[11], terminaAudioBtn07, 1000);
+                    animacionEntrada(info07, 'default', 1, .5);
+
+                    function terminaAudioBtn07() {
+                        parpadea(btnCerrar07);
+                        btnCerrar07.click(function () {
+                            TweenMax.killTweensOf(btnCerrar07);
+                            animacionSalida(info07, 'default', 1, .2);
+                            animacionSalida(btnCerrar07, 'default', 1, .2);
+
+                            if(!abrirBtn07){
+                                abrirBtn07 = true;
+                                parpadea(btn08);
+                            }
+                        });
+                    }
+                }                
+            });
+
+            btn08.click(function () {
+                if (btn08.css('cursor') == 'pointer') {
+                    TweenMax.killTweensOf(btn08);
+                    btn08.css({
+                        'opacity': '1',
+                    });
+
+                    aplicacion.reproducirAudio(audio[12], terminaAudioBtn08, 1000);
+                    animacionEntrada(info08, 'default', 1, .5);
+
+                    function terminaAudioBtn08() {
+                        parpadea(btnCerrar08);
+                        btnCerrar08.click(function () {
+                            TweenMax.killTweensOf(btnCerrar08);
+                            animacionSalida(info08, 'default', 1, .2);
+                            animacionSalida(btnCerrar08, 'default', 1, .2);
+
+                            if(!abrirBtn08){
+                                abrirBtn08 = true;
+                                parpadea(btn09);
+                            }
+                        });
+                    }
+                }
+            });
+
+            btn09.click(function () {
+                if (btn09.css('cursor') == 'pointer') {
+                    TweenMax.killTweensOf(btn09);
+                    btn09.css({
+                        'opacity': '1',
+                    });
+
+                    aplicacion.reproducirAudio(audio[13], terminaAudioBtn09, 1000);
+                    animacionEntrada(info09, 'default', 1, .5);
+                
+                    function terminaAudioBtn09() {
+                        parpadea(btnCerrar09);
+                        btnCerrar09.click(function () {
+                            TweenMax.killTweensOf(btnCerrar09);
+                            animacionSalida(info09, 'default', 1, .2);
+                            animacionSalida(btnCerrar09, 'default', 1, .2);
+
+                            if(!abrirBtn09){
+                                abrirBtn09 = true;
+                                parpadea(btn10);
+                            }
+                        });
+                    }
+                }
+            });
+
+            btn10.click(function () {
+                if (btn10.css('cursor') == 'pointer') {
+                    TweenMax.killTweensOf(btn10);
+                    btn10.css({
+                        'opacity': '1'
+                    });
+
+                    aplicacion.reproducirAudio(audio[14], termina, 1000);
+                    animacionEntrada(info10, "default", .5, 0.3);
+                }
+            });
+
+            function termina(){
+                parpadea(btnAdelante);
+            }
+
+
+            //Funcionalidad btnAdelante--------------------------------------------------------
+            btnAdelante.click(function () {
+                if (btnAdelante.css('cursor') == 'pointer') {
+                    TweenMax.killTweensOf(btnAdelante);
+                    btnAdelante.css({
+                        'opacity': '1'
+                    });
+
+                    aplicacion.reproducirAudio(audio[15], terminaAudio101, 1000);
+                    animacionSalida(info10, "default", .5, 0.3);
+                    animacionSalida(btnAdelante, "default", .5, 0.3);
+                    animacionEntrada(info10_2, "default", .5, 0.3);
+                    animacionEntrada(btnAtras, "default", .5, 0.3);
+
+                    btnAtras.css("cursor", "pointer");
+                    
+                    function terminaAudio101() {
+                        parpadea(btnCerrar10);
+                    }
+                }
+            });
+
+            //Funcionalidad btnCerrar10--------------------------------------------------------
+            $(btnCerrar10).click(function () {
+                if (btnCerrar10.css('cursor') == 'pointer') {
+                    TweenMax.killTweensOf(btnCerrar10);
+                    btnCerrar10.css({
+                        'opacity': '1'
+                    });
+
+                    animacionSalida(info10_2, "default", .5, 0.2);
+                    animacionSalida(btnAtras, "default", .5, 0.2);
+                    animacionSalida(btnAdelante, "default", .5, 0.2);
+                    animacionSalida(btnCerrar10, "default", .5, 0.2);
+
+                    aplicacion.terminaPantalla();
+                }
+            });
+
+            //Funcionalidad btnRegresar--------------------------------------------------------
+            btnAtras.click(function () {
+                if (btnAtras.css('cursor') == 'pointer') {
+                    TweenMax.killTweensOf(btnAtras);
+                    btnAtras.css({
+                        'opacity': '1'
+                    });
+
+                    aplicacion.reproducirAudio(audio[14], terminaAtras, 1000);
+                    animacionEntrada(info10, "default", .5, 0.2);
+
+                    animacionSalida(info10_2, "default", .5, 0.2);
+                    animacionSalida(btnCerrar10, "default", .5, 0.2);
+                    animacionSalida(btnAtras, "default", .5, 0.2);
+                 
+                    function terminaAtras(){
+                        animacionEntrada(btnAdelante, "default", .5, 0.2);
+                    }
+                }
+            });
+            
+
+        });
+    </script>
+
+    <!-- Termina Script -->
+</body>
+</html>

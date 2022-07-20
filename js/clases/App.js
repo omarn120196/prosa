@@ -21,12 +21,16 @@ import { conectarLMS,
         asignarCalificacion } 
 from '../conexion.js';
 
+import { eliminarAnimaciones } from '../animaciones.js';
+
 export class App{
 
     // Parametros de Inicio------------------------------------------------------
 
     constructor(){
         this.audio;
+        this.delayAudio;
+        this.audiosActivos = true;
         this.muteado = false;
         this.noPagina = verificarLocacion();
         this.paginasActivas = 0;
@@ -50,6 +54,8 @@ export class App{
     //Esta función solo es para modo desarrollador y temario-------------------------
     irPagina(noPagina){
 
+        eliminarAnimaciones();
+
         const pagina = noPagina - 1;
 
         if(pagina <= this.totalPaginas && pagina >= 0){
@@ -68,10 +74,12 @@ export class App{
     }
 
     //Metodos de botones----------------------------------------------------------
- 
+
     nextPag(){
         if(this.noPagina < this.totalPaginas - 1){
             
+            eliminarAnimaciones();
+
             if(this.noPagina == this.paginasActivas){
                 this.paginasActivas++
             }
@@ -90,13 +98,18 @@ export class App{
     }
 
     prevPag(){
+
+        eliminarAnimaciones();
+
         if(this.noPagina > 0){
             this.noPagina--;
 
+            this.bloquearNavegacion();
             asignarLocacion(this.noPagina);
             this.detenerAudios();
             actualizarPorcentaje(this.noPagina, this.totalPaginas);
             cargarPagina(this.noPagina, this.paginasActivas);
+
         }
         else{
             console.log('Estas en la primer página');
@@ -131,9 +144,8 @@ export class App{
     //Metodos para reproducir y silenciar audios---------------------------------
 
     reproducirAudio(audio, funcion, delay = 0){
-
         this.audio = audio;
-
+        
         if(this.muteado){
             this.audio.muted = true;
         }
@@ -141,12 +153,16 @@ export class App{
             this.audio.muted = false;
         }
 
-        setTimeout(()=>{
-            this.audio.play();
-          
-            this.audio.addEventListener("ended", () => {
-                funcion();
-            });
+        this.delayAudio = setTimeout(()=>{
+            
+            if(this.audiosActivos){
+                this.audio.play();
+            
+                this.audio.addEventListener("ended", () => {
+                    funcion();
+                });
+            }
+            
         }, delay);
     }
 
@@ -166,7 +182,14 @@ export class App{
     }
 
     detenerAudios(){
+        this.audiosActivos = false;
+        clearTimeout(this.delayAudio);
         this.audio.pause();
+        this.audio.currenTime = 0;
+
+        setTimeout(()=>{
+            this.audiosActivos = true;
+        }, 1500);
     }
 
     //Guardar Calificacion-------------------------------------------------------
@@ -196,5 +219,10 @@ export class App{
     //Metodo para aumentar intentos de evaluación--------------------------------
     siguienteIntento(){
         this.intento++;
-    }    
+    }
+    
+    //Metodo para reiniciar intentos
+    reiniciarIntentos(){
+        this.intento = 1;
+    }
 }
