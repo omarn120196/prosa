@@ -26,11 +26,11 @@
     <img class="elementos" id="btnSiguiente" src="./img/pagina42/btnSiguiente.png" data-posX="900" data-posY="170" alt="">
     <img class="elementos" id="btnAtras" src="./img/pagina42/btnAtras.png" data-posX="900" data-posY="230" alt="">
 
-    <img class="elementos" id="progresoAudio" src="./img/pagina42/progresoAudio.png" data-posX="600" data-posY="487" alt="">
-    <img class="elementos" id="btnPlay" src="./img/pagina42/btnPlay.png" data-posX="550" data-posY="472" alt="">
-    <img class="elementos" id="btnPausa" src="./img/pagina42/btnPausa.png" data-posX="696.444" data-posY="506.302" alt="">
-    <img class="elementos" id="btnAvanzar" src="./img/pagina42/btnAvanzar.png" data-posX="760" data-posY="506.302" alt="">
-    <img class="elementos" id="btnAtrasar" src="./img/pagina42/btnAtrasar.png" data-posX="730" data-posY="506.302" alt="">
+    <img class="elementos" id="audio" src="./img/pagina42/audio.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="btnPlay" src="./img/pagina42/btnPlay.png" data-posX="647" data-posY="467" alt="">
+    <img class="elementos" id="btnPausa" src="./img/pagina42/btnPausa.png" data-posX="652" data-posY="506" alt="">
+    <img class="elementos" id="btnAvanzar" src="./img/pagina42/btnAvanzar.png" data-posX="720.358" data-posY="501.371" alt="">
+    <img class="elementos" id="btnAtrasar" src="./img/pagina42/btnAtrasar.png" data-posX="585" data-posY="501.871" alt="">
 
     <!-- Script de la página -->
     <script type="module">
@@ -68,7 +68,7 @@
             const btnPausa = $('#btnPausa');
             const btnAvanzar = $('#btnAvanzar');
             const btnAtrasar = $('#btnAtrasar');
-            const progresoAudio = $('#progresoAudio');
+            const imgaudio = $('#audio');
 
             const punteado = $('#punteado');
 
@@ -213,7 +213,7 @@
                     animacionEntrada(btnPausa, 'default');
                     animacionEntrada(btnAvanzar, 'default');
                     animacionEntrada(btnAtrasar, 'default');
-                    animacionEntrada(progresoAudio, 'default');
+                    animacionEntrada(imgaudio, 'default');
 
                     btnPausa.css({
                         'display': 'block',
@@ -302,7 +302,7 @@
                             animacionSalida(btnPausa, "default", 0);
                             animacionSalida(btnAvanzar, "default", 0);
                             animacionSalida(btnAtrasar, "default", 0);
-                            animacionSalida(progresoAudio, "default", 0);
+                            animacionSalida(audio, "default", 0);
 
                             aplicacion.reproducirAudio(audio[2], siguiente);;
                             animacionEntrada($("#info" + i + "_1"), 'derecha-izquierda', 1, .5);
