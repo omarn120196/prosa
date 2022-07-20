@@ -33,6 +33,7 @@ export class App{
         this.totalPaginas = paginas.length;
         this.intento = 1;
         this.calificacion = 0;
+        this.vistopag47= false;
     }
 
     //Iniciar el curso-----------------------------------------------------------
