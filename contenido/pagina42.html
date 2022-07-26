@@ -74,6 +74,7 @@
 
 
             var i = 1;
+            let iplay = 0;
 
 
             //Iniciar contenido de la página--------------------------------------
@@ -238,17 +239,20 @@
 
                 function controles(){
                     btnPlay.click(function () {
-                        if (btnPlay.css('cursor') == 'pointer') {
+                        if (btnPlay.css('cursor') == 'pointer' && iplay === 0) {
                             TweenMax.killTweensOf(btnPlay);
                             btnPlay.css({
                                 'opacity': '1',
                             });
                             audio[4].play();
-
                             if(audio[4].currentTime >= 241){
                                 terminaPantalla();
                             }
                         }
+                        
+                        audio[4].addEventListener("ended", () => {
+                            terminaPantalla();
+                        });
                     });
 
                     btnPausa.click(function () {
