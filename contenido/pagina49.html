@@ -448,7 +448,8 @@
                 new Audio('./audios/Prosa_Integracion_49_01.mp3'),
                 new Audio('./audios/Prosa_Integracion_49_02.mp3'),
                 new Audio('./audios/Prosa_Integracion_49_03.mp3'),
-                new Audio('./audios/Prosa_Integracion_49_04.mp3')
+                new Audio('./audios/Prosa_Integracion_49_04.mp3'),
+                new Audio('./audios/Prosa_Integracion_49_05.mp3'),
             ]
 
             //Crear Variables-----------------------------------------------------
@@ -752,13 +753,13 @@
                     'top': '175px',
                     'left': '500px'
                 });
-
+                aplicacion.reproducirAudio(audio[3], reiniciarActividad, 1000);
                 animacionEntrada(negativa, 'default', 1);
                 animacionEntrada(promedio, 'default', 1);
                 
-                setTimeout(()=>{
-                    parpadea(btnReintentar);
-                }, 2000);
+                function reiniciarActividad(){
+                  parpadea(btnReintentar);
+                }
 
                 btnReintentar.click(function(){
                     aplicacion.recargarPag();
@@ -774,7 +775,7 @@
                     'left': '545px'
                 });
 
-                aplicacion.reproducirAudio(audio[3], finRetro, 1);
+                aplicacion.reproducirAudio(audio[4], finRetro, 1);
                 animacionEntrada(final, 'default', 1);
                 animacionEntrada(promedio, 'default', 1);
                 animacionEntrada(robot, 'default', 1);

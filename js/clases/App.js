@@ -104,7 +104,6 @@ export class App{
         if(this.noPagina > 0){
             this.noPagina--;
 
-            this.bloquearNavegacion();
             asignarLocacion(this.noPagina);
             this.detenerAudios();
             actualizarPorcentaje(this.noPagina, this.totalPaginas);
